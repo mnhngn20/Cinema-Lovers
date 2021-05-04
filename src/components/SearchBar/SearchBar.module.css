@@ -1,0 +1,47 @@
+.SearchBar{
+    width: 700px;
+    padding: 6px;
+    border: none;
+    height: auto;
+    max-height: 700px;
+}
+
+.SearchBar .Items{
+    display: none;
+}
+
+.SearchBar .CustomSearchBar:focus + .Items{
+    display: block;
+}
+
+.SearchBar .Items:hover{
+    display: block;
+}
+
+.SearchBar .CustomSearchBar{
+    border-radius: 20px;
+    width: 80%;
+    height: 30px;
+    box-sizing: border-box;
+    font-size: 16px;
+    border: none;
+    background-color: var(--colorlight);
+    font-weight: 700;
+    text-align: center;
+    color: var(--colordark)
+}
+
+.SearchBar .CustomSearchBar:focus{
+    outline: none;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    transition-duration: 0.5s;
+}
+
+.SearchBar .SearchIcon{
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    margin-top: 3px;
+    margin-left: 8px;
+}
+

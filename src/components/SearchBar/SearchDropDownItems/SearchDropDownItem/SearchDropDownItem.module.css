@@ -1,0 +1,40 @@
+.SearchDropDownItem{
+    display: flex;
+    height: 100px;
+    width: auto;
+    padding: 10px 10px;
+    border-bottom: 2px solid #1b1a17;
+    justify-content: space-around;
+}
+
+.SearchDropDownItem:hover{
+    background-color: #cfcdc8; 
+}
+
+.SearchDropDownItem img{
+    grid-row: 1 / 3;
+    height: 100px;
+    width: 80px;
+    margin-right: 20px;
+    margin-left: 10px ;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+}
+
+.SearchDropDownItem .MovieInfo{
+    display: block;
+    width: 250px;
+    height: auto;
+    margin: auto 0px;
+}
+
+.SearchDropDownItem .MovieInfo a{
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #ff8303;
+}
+
+.SearchDropDownItem .MovieInfo a:hover{
+    text-decoration: underline;
+}

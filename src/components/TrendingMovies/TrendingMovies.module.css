@@ -1,0 +1,10 @@
+.TrendingMovies{
+    box-sizing: border-box;
+}
+
+.TrendingMovies .Trending {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: #ff8303;
+}

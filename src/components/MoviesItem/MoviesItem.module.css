@@ -1,0 +1,153 @@
+.Items {
+    height: 420px;
+    width: 700px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    padding: 20px;
+    border-top: 2px solid rgba(165, 163, 163, 0.5);
+    border-bottom: 2px solid rgba(165, 163, 163, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+    background-color: #f0e3ca;
+    display: flex;
+}
+
+.Items .Poster {
+    height: auto;
+    width: 285px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Items .BtnPosterContainer{
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.BtnPosterContainer:hover .PlayTrailerButton{
+    display: block;
+}
+
+.BtnPosterContainer:hover .Poster{
+    opacity: 0.85;
+}
+
+.Items .PlayTrailerButton{
+    width: 60px;
+    height: 60px;
+    display: none;
+    background-size: 60px 60px;
+    background-image: url('../../assets/playButtonDef.png');
+    position: absolute;
+    z-index: 2;
+}
+
+.Items .PlayTrailerButton:hover{
+    background-image: url('../../assets/playButton.png');
+}
+
+.Items .MovieInfos {
+    width: 350px;
+}
+
+.Items .MovieInfos .Title {
+    height: 100px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Items .MovieInfos .Title a{
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+    color: #ff8303;
+}
+
+.Items .MovieInfos .OverView{
+    margin: 10px 10px;
+    overflow-y: auto;
+    height: 150px;
+    width: auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.Items .MovieInfos .OverView::-webkit-scrollbar-track
+{
+    background-color: #f0e3ca;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.Items .MovieInfos .OverView::-webkit-scrollbar
+{
+	width: 6px;
+	opacity: 0;
+}
+
+.Items .MovieInfos .OverView::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #1b1a17;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.Items .MovieInfos .Genres{
+    width: 250px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.Items .sideBtn{
+    display: flex;
+    width: fit-content;
+    height: auto;
+    flex-direction: column;
+}
+
+.Items .Button{
+    width: 50px;
+    height: 50px;
+    background-size: 50px 50px;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.5);
+    border-radius: 60%;
+    float: right;
+    margin: 10px 0;
+}
+
+.Items .AddBtn{
+    background-image: url('../../assets/addBtn.png');
+}
+
+.Items .AddBtn:hover{
+    background-image: url('../../assets/addBtnHover.png');
+}
+
+.Items .RemoveBtn{
+    background-image: url('../../assets/removeBtn.png');
+}
+
+.Items .RemoveBtn:hover{
+    background-image: url('../../assets/removeBtnHover.png');
+}
+
+.Items .MovieInfo{
+    background-image: url('../../assets/infoBtn.png');
+}
+
+.Items .MovieInfo:hover{
+    background-image: url('../../assets/infoBtnHover.png');
+}

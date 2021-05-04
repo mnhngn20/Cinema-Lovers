@@ -1,0 +1,9 @@
+.SignIn{
+    margin: 100px 100px;
+    display: flex;
+    flex-flow: column;
+}
+
+.SignUpQuote{
+    margin: 10px auto;
+}

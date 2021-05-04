@@ -1,0 +1,28 @@
+.NavigationItems {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    height: auto;
+    width: auto;
+}
+
+.SignUpQuote{
+    font-size: 10px;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 4px;
+    color: var(--colorlight);
+}
+
+.SignUpQuote a{
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--colordark)
+}
+
+.SignUpQuote a:hover{
+    color: rgba(100, 99, 99, 0.933)
+}
