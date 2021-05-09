@@ -5,8 +5,9 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import classes from './TrendingMovies.module.css';
 import MoviesItem from '../MoviesItem/MoviesItem';
 import * as actions from '../../store/actions/index';
-import Spinner from '../UI/Spinner/Spinner';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
+
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
 
@@ -22,8 +23,8 @@ const TrendingMovies = props => {
         type: 'loop'
     };
 
-    let trendingMoviesList = <Spinner />
-    if(!props.isloading){
+    let trendingMoviesList = null
+    if(!props.isloading && !props.isError){
         trendingMoviesList = props.fetchedTrendingMovies.map((movie) => {
             return (
                 <SplideSlide key={movie.id}>
@@ -39,10 +40,15 @@ const TrendingMovies = props => {
 
     return (
         <div className= {classes.TrendingMovies}>
-            <p className={classes.Trending}>TRENDING</p>
-                <Splide options = {options}>
+            <p className={classes.Trending}>TRENDING NOW</p>
+            {
+                props.isError 
+                ? <p className={classes.Error}>Could not load Trending Movies</p> 
+                : <Splide options = {options}>
                     {trendingMoviesList}
                 </Splide>
+            }
+            
         </div>
     )
 }

@@ -21,11 +21,11 @@ export const fetchWLFail = (err) => {
     }
 }
 
-export const fetchWatchList = (userId) => {
+export const fetchWatchList = () => {
     return dispatch => {
         dispatch(fetchWLStart());
         let watchList = [];
-        axios.get('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/'+ userId +'/WatchList.json')
+        axios.get('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/'+ localStorage.getItem('userId') +'/WatchList.json')
         .then(res => {
             for(let movieId in res.data){
                 for(let key in res.data[movieId]){

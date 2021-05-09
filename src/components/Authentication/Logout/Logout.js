@@ -22,7 +22,12 @@ const Logout = props => {
     return (
         <div>
             {showModal
-            ?<Modal show={showModal} modalClosed={redirect}><p>You Logged out.</p></Modal>
+            ?<Modal 
+                show={showModal} 
+                modalClosed={redirect}
+                modalType="Success" 
+                width="20%"
+                height="20%"><p>You Logged out.</p></Modal>
             :null}
         </div>
     )

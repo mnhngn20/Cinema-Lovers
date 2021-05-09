@@ -3,31 +3,28 @@
     width: 700px;
     margin: 0 auto;
     margin-bottom: 40px;
-    padding: 20px;
-    border-top: 2px solid rgba(165, 163, 163, 0.5);
-    border-bottom: 2px solid rgba(165, 163, 163, 0.5);
     border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.5);
     background-color: var(--colorlight);
     display: flex;
+    justify-content: space-between;
 }
 
 .Items .Poster {
     height: auto;
-    width: 285px;
-    border-radius: 10px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.5);
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .Items .BtnPosterContainer{
-    width: fit-content;
-    height: fit-content;
-    margin: 0 auto;
+    width: 40%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.5);
 }
 
 .BtnPosterContainer:hover .PlayTrailerButton{
@@ -43,17 +40,18 @@
     height: 60px;
     display: none;
     background-size: 60px 60px;
-    background-image: url('../../assets/playButtonDef.png');
     position: absolute;
     z-index: 2;
+    color: white;
 }
 
 .Items .PlayTrailerButton:hover{
-    background-image: url('../../assets/playButton.png');
+    color: var(--color2)
 }
 
 .Items .MovieInfos {
-    width: 350px;
+    width: 50%;
+    margin-right: 25px
 }
 
 .Items .MovieInfos .Title {
@@ -68,33 +66,29 @@
     text-decoration: none;
     font-size: 25px;
     font-weight: bold;
-    color: #ff8303;
+    color: var(--color2);
 }
 
 .Items .MovieInfos .OverView{
-    margin: 10px 10px;
     overflow-y: auto;
     height: 150px;
     width: auto;
-    text-align: center;
+    text-align: left;
     vertical-align: middle;
 }
 
-.Items .MovieInfos .OverView::-webkit-scrollbar-track
-{
+.Items .MovieInfos .OverView::-webkit-scrollbar-track{
     background-color: #f0e3ca;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
 
-.Items .MovieInfos .OverView::-webkit-scrollbar
-{
+.Items .MovieInfos .OverView::-webkit-scrollbar{
 	width: 6px;
 	opacity: 0;
 }
 
-.Items .MovieInfos .OverView::-webkit-scrollbar-thumb
-{
+.Items .MovieInfos .OverView::-webkit-scrollbar-thumb{
 	border-radius: 10px;
 	background-color: #1b1a17;
     margin-left: 5px;
@@ -102,52 +96,52 @@
 }
 
 .Items .MovieInfos .Genres{
-    width: 250px;
-    height: auto;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    margin: 0 auto;
-    margin-top: 10px;
+    flex-wrap: wrap;
+    min-height: 70px;
 }
 
-.Items .sideBtn{
-    display: flex;
-    width: fit-content;
-    height: auto;
-    flex-direction: column;
+.Items .MovieInfos .Genres .Chip{
+    margin: 5px 5px;
+    background-color: var(--color2);
+    height: 24px;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--colorlight);
 }
 
-.Items .Button{
-    width: 50px;
-    height: 50px;
-    background-size: 50px 50px;
-    box-shadow: 0 3px 3px rgba(0,0,0,0.5);
-    border-radius: 60%;
+.Items .FButton{
+    width: 100%;
+    height: fit-content;
+}
+
+.Items .FavoriteButton{
+    width: 60px;
+    height: 60px;
     float: right;
-    margin: 10px 0;
 }
 
 .Items .AddBtn{
-    background-image: url('../../assets/addBtn.png');
+    color: rgb(136, 134, 134)
 }
 
 .Items .AddBtn:hover{
-    background-image: url('../../assets/addBtnHover.png');
+    color: rgb(66, 66, 66)
 }
 
 .Items .RemoveBtn{
-    background-image: url('../../assets/removeBtn.png');
+    color: var(--color2)
 }
 
 .Items .RemoveBtn:hover{
-    background-image: url('../../assets/removeBtnHover.png');
+    color: var(--colordark)
 }
 
-.Items .MovieInfo{
-    background-image: url('../../assets/infoBtn.png');
-}
-
-.Items .MovieInfo:hover{
-    background-image: url('../../assets/infoBtnHover.png');
+.Items .Spinner{
+    float: right;
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    margin-top: 10px;
 }

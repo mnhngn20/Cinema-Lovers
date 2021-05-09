@@ -1,3 +1,59 @@
 .Profile{
     margin-top: 82px;
+    display: flex;
+    align-items: center;
+    height: 500px;
+}
+
+.Profile .UserProfile{
+    background-color: var(--colorlight);
+    width: 50%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Profile .EditButton{
+    width: 200px;
+    height: 200px;
+}
+
+.Profile .EditButtonInactive{
+    color: black;
+}
+
+.Profile .EditButtonInactive:hover{
+    color: var(--colordark);
+}
+
+.Profile .EditButtonActive{
+    color: var(--colordark);
+}
+
+.Profile .EditButtonActive:hover{
+    color: black;
+}
+
+.Profile .GotoWLContainer{
+    width: 100%;
+}
+
+.Profile .GotoWLContainer .GotoWL{
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    outline: none;
+    color: var(--colordark);
+    font-size: 16px;
+}
+
+.Profile .GotoWLContainer .GotoWL:hover{
+    color: var(--color1)
 }

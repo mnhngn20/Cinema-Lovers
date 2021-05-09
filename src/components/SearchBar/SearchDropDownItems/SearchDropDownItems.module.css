@@ -3,19 +3,19 @@
     margin-top: 10px;
     height: auto;
     max-height: 460px;
-    overflow-y: scroll;
-    width: 565px;
+    overflow-y: auto;
+    width: 400px;
     z-index: 90;
-    background-color: #f0e3ca;
-    border-radius: 5px;
+    background-color: var(--color1);
     box-shadow: 0px 3px 6px rbga(0,0,0,0.5);
+    border-radius: 10px;
 }
 
 .SearchDropDownItems::-webkit-scrollbar-track
 {
-    background-color: #f0e3ca;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    background-color: var(--color1);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .SearchDropDownItems::-webkit-scrollbar
@@ -26,20 +26,8 @@
 
 .SearchDropDownItems::-webkit-scrollbar-thumb
 {
-	border-radius: 10px;
-	background-color: #1b1a17;
+
+	background-color: var(--colorlight);
     margin-left: 5px;
     margin-right: 5px;
-}
-
-@media (min-height: 300px){
-    .SearchBar{
-        overflow-y: hidden;
-    }
-}
-
-@media (max-height: 100px){
-    .SearchBar{
-        display: none;
-    }
 }

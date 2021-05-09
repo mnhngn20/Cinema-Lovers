@@ -4,21 +4,21 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
     loading: false,
     userId: null,
-    error: false,
+    error: null,
     token: null,
     userData: null
 }
 
 const authStart = (state, action) => {
     return updateObject(state, {
-            loading: true
+        loading: true
     });
 }
 
 const authSuccess = (state, action) => {
     return updateObject(state, {
         userId: action.userId,
-        error: false,
+        error: null,
         token: action.token,
         loading: false
     });
@@ -26,6 +26,7 @@ const authSuccess = (state, action) => {
 
 const authFail = (state, action) => {
     return updateObject(state, {
+        loading: false,
         error: action.error
     });
 }
@@ -46,7 +47,8 @@ const fetchUserStart = (state, action) => {
 const fetchUserSuccess = (state, action) => {
     return updateObject(state, {
         loading: false,
-        userData: action.userData
+        userData: action.userData,
+        error: null
     })
 }
 

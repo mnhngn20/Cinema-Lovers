@@ -8,13 +8,12 @@ import classes from './Toolbar.module.css';
 const Toolbar = props => {
     return (
         <div className={classes.Toolbar}>
-            <div className={classes.LogoContainer}>
-                <img className={classes.Logo} src= {logo} />
+            <div className={classes.Logo}>
+                <p className={classes.LogoMain}>Cinema</p>
+                <p className={classes.LogoSub}>Lovers</p>
             </div>
-            <form>
-                <SearchBar />
-            </form>
-            <nav><NavigationItems /></nav>
+            <SearchBar />
+            <NavigationItems />
         </div>
     )
 }

@@ -22,8 +22,6 @@ const App = props => {
   let routes = (
     <Switch>
       <Route path = '/movies/:id' component={Movie}/>
-      <Route path = '/signup' component={SignUp} />
-      <Route path = '/signin' component={SignIn} />
       <Route path = '/trending' component={TrendingPage}/>
       <Route path = '/' component={MainContent} />
       <Redirect to ='/' />
@@ -43,9 +41,14 @@ const App = props => {
     )
   }
   return (
+    <div>
+      <Route path = '/signup' exact component={SignUp} />
+      <Route path = '/signin' exact component={SignIn} />
       <Layout>
         {routes}
       </Layout>
+    </div>
+      
   );
 }
 

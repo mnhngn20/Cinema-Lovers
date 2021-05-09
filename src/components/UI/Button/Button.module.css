@@ -1,18 +1,13 @@
 .Button {
-    background-color: transparent;
     border: none;
-    color: white;
     outline: none;
     cursor: pointer;
     font: inherit;
     padding: 10px;
-    margin: 10px;
     font-weight: bold;
-}
-
-.Button:first-of-type {
-    margin-left: 0;
-    padding-left: 0;
+    border-radius: 20px;
+    width: 80px;
+    font-size: 12px;
 }
 
 .Button:disabled{
@@ -21,11 +16,22 @@
 }
 
 .Success {
-    color: #5C9210;
+    background-color: #74ad6a;
+    color: var(--colorlight);
+}
+
+.Success:hover {
+    background-color: #8dc484;
+    color: var(--colorlight);
+}
+
+.Success:hover{
+    
 }
 
 .Danger {
-    color: #944317;
+    background-color: #810000;
+    color: white;
 }
 
 .ToggleButton{

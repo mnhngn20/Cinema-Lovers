@@ -1,5 +1,5 @@
 .Input {
-    width: 100%;
+    width: 80%;
     padding: 10px;
     box-sizing: border-box;
 }
@@ -8,29 +8,34 @@
     font-weight: bold;
     display: block;
     margin-bottom: 8px;
+    color: var(--colordark);
+    text-align: center;
 }
 
 .InputElement {
     outline: none;
     border: 1px solid #ccc;
-    background-color: white;
+    background-color: var(--colorlight);
+    border-radius: 10px;
     font: inherit;
     padding: 6px 10px;
     display: block;
     width: 100%;
     box-sizing: border-box;
+    color: var(--colordark);
 }
 
-.InputElement :focus{
+.InputElement:focus{
     outline: none;
-    background-color: #ccc;
+    box-shadow: 0 1px 3px var(--color1);
 }
 
 .Invalid {
-    border: 1px solid red;
+    border: 1px solid #ce1212;
     background-color: rgb(231, 133, 133);
 }
 .ValidationError {
-    color: red;
+    color: #ce1212;
     margin: 5px 0;
+    font: inherit;
 } 

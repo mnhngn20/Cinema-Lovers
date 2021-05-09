@@ -26,7 +26,7 @@ const SearchBar = props => {
     };
 
     return (
-        <form className={classes.SearchBar}>
+        <div className={classes.SearchBar}>
             <img className={classes.SearchIcon} src={searchIcon} />
             <input
                 ref = {inputRef}
@@ -35,11 +35,10 @@ const SearchBar = props => {
                 className={classes.CustomSearchBar} 
                 type = 'text' 
                 placeholder="Search..." />
-                
             {query != ''? <div className={classes.Items}>
                 <SearchDropDownItems  query={query} />
                     </div> : null}
-        </form>
+        </div>
     )
 }
 

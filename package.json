@@ -37,7 +37,7 @@
     "eslint-plugin-testing-library": "^3.9.2",
     "eslint-webpack-plugin": "^2.5.2",
     "file-loader": "6.1.1",
-    "firebase": "^8.4.2",
+    "firebase": "^8.5.0",
     "firebase-tools": "^9.10.0",
     "fs-extra": "^9.0.1",
     "html-webpack-plugin": "4.5.0",
@@ -159,5 +159,9 @@
     "presets": [
       "react-app"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/mnhngn20/Cinema-Lovers.git",
+  "author": "Minh Nguyen <mnhngn20@gmail.com>",
+  "license": "MIT"
 }

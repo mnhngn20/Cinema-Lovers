@@ -2,28 +2,42 @@
     width: 100%;
     position: fixed;
     background-color: var(--color1);
-    height: auto;
+    height: 72px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-sizing: border-box;
     z-index: 90;
     top: 0;
-    left: 0;
-    padding: 10px 20px;
-    opacity: .8;
+    opacity: 0.8;
 }
 
 .Toolbar .Logo {
-    width: 50px;
-    height: 50px;
-    margin: 0px 10px;
-    margin-top: 5px;
+    width: 72px;
+    height: auto;
+}
+.Logo:hover .LogoMain {
+    color: rgb(255, 0, 242);
+}
+.Logo:hover .LogoSub {
+    color: var(--textcolor);
+}
+.Toolbar .LogoMain{
+    font-family: 'Pangolin', cursive !important;
+    color: rgb(255, 253, 253);
+    font-size: 240%;
+    font-weight: bold;
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: -30px;
+    margin-top: 15px;
 }
 
-.Toolbar .LogoContainer{
-    background-color: var(--colorlight);
-    border-radius: 20px;
+.Toolbar .LogoSub{
+    font-family: 'Pangolin', cursive !important;
+    color: rgb(196, 54, 189);
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 80%;
 }
 
   

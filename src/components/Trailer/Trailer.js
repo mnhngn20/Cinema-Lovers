@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
-import Spinner from '../UI/Spinner/Spinner';
+
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import classes from './Trailer.module.css'
 const Trailer = props => {  
     const { trailerPath } = props;
-    let trailer = <Spinner />;
+    let trailer = <CircularProgress className={classes.Spinner}/>
     if(trailerPath !== ''){
         trailer = ( 
-            <iframe width="600" height="450" src= {"https://www.youtube.com/embed/"+ props.trailerPath}>
+            <iframe width="100%" height="100%" src= {"https://www.youtube.com/embed/"+ props.trailerPath}>
             </iframe>
         );
     }

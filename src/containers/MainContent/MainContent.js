@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux'
 import axios from 'axios';
 
 import classes from './MainContent.module.css'
 import TrendingMovies from '../../components/TrendingMovies/TrendingMovies';
-import YourWatchList from '../../components/YourWatchlist.js/YourWatchList';
 import Trailer from '../../components/Trailer/Trailer';
 import Modal from '../../components/UI/Modal/Modal';
 import UpcomingMovies from '../../components/UpcomingMovies/UpcomingMovies';
@@ -11,7 +11,14 @@ import UpcomingMovies from '../../components/UpcomingMovies/UpcomingMovies';
 const MainContent = props => {
     const [showingTrailer, setShowingTrailer] = useState(false);
     const [trailerPath, setTrailerPath] = useState('');
-    
+    const [showingError, setShowingError] = useState(false);
+    const {loadUpcomingFailed, loadTrendingFailed} = props
+    useEffect(()=>{
+        if(loadUpcomingFailed || loadTrendingFailed){
+            setShowingError(true)
+        }
+    }, [loadTrendingFailed, loadUpcomingFailed])
+
     const showTrailer = movieId => {
         setShowingTrailer(true);
         axios.get('https://api.themoviedb.org/3/movie/'
@@ -25,8 +32,8 @@ const MainContent = props => {
         })
     }
 
-
     const hideModal = () => {
+        setShowingError(false)
         setShowingTrailer(false);
         setTrailerPath('');
     }
@@ -35,8 +42,21 @@ const MainContent = props => {
         <div>
             <div className = {classes.MainContent}>
                 <div>
+                    <Modal show={showingError}
+                        modalType = "Error"
+                        modalClosed ={hideModal}
+                        width="20%"
+                        height="20%">
+                            <p>{props.loadTrendingFailed ? "Error Loading Trending Movies" : null}</p>
+                            <p>{props.loadUpcomingFailed ? "Error Loading Upcoming Movies" : null}</p>
+                    </Modal>
+                </div>
+                <div>
                     <Modal show={showingTrailer}
-                        modalClosed = {hideModal}>
+                        modalType="Trailer"
+                        modalClosed = {hideModal}
+                        width="80%"
+                        height="80%">
                             <Trailer trailerPath = {trailerPath}/>
                     </Modal>
                 </div>
@@ -49,4 +69,11 @@ const MainContent = props => {
     )
 }
 
-export default MainContent;
+const mapStateToProps = state => {
+    return {
+        loadTrendingFailed: state.trendingMoviesState.error,
+        loadUpcomingFailed: state.upcomingMoviesState.error
+    }
+}
+
+export default connect(mapStateToProps, null)(MainContent);

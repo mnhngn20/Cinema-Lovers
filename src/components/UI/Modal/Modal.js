@@ -3,20 +3,27 @@ import React from 'react';
 import classes from './Modal.module.css'
 import Backdrop from '../Backdrop/Backdrop'
 
-const Modal = (props) =>{
-    // shouldComponentUpdate(nextProps, nextState){
-    //         return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
-    // }
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
+const Modal = (props) =>{
     return(
         <div>
             <Backdrop show={props.show} clicked={props.modalClosed}/>
             <div 
-                className={classes.Modal}
+                className={[classes.Modal, classes[props.modalType]].join(' ')}
                 style={{
                     transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',
-                    opacity: props.show ? '1' : '0'
+                    opacity: props.show ? '1' : '0',
+                    width: props.width,
+                    height: props.height
                 }}>
+                {props.modalType==="Success" 
+                ? <CheckCircleOutlineIcon className={classes.SuccessIcon}/>
+                : null}
+                {props.modalType==="Error" 
+                ? <HighlightOffIcon className={classes.ErrorIcon}/>
+                : null}
                 {props.children}
             </div>
         </div>

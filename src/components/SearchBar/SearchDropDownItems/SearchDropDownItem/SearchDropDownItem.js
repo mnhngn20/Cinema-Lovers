@@ -9,13 +9,13 @@ const imgWidth = 300;
 const SearchDropDownItem = props => {
     return (
         <div className={classes.SearchDropDownItem} >
-            <div><img src={imgPath + 'w' + imgWidth + props.posterPath}/></div>
+            <img src={imgPath + 'w' + imgWidth + props.posterPath}/>
             <div className={classes.MovieInfo} onClick = {props.clicked}>
                 <Link
                    to = {`/movies/${props.movieId}`}>
                     {props.title}
                 </Link>
-                <p>{props.releaseDate}</p>
+                <p>Release Date: {props.releaseDate}</p>
             </div> 
         </div>
     )

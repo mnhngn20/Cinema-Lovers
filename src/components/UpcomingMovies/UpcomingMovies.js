@@ -1,26 +1,28 @@
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import {connect} from 'react-redux';
 
 import classes from './UpcomingMovies.module.css';
 import * as actions from '../../store/actions/index';
-import Spinner from '../UI/Spinner/Spinner';
 import Items from './Items/Items';
+
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
 
 const imgWidth = 300;
 
 const UpcomingMovies = props => {
-    const {onFetchUpcomingMovies} = props;
+    const {onFetchUpcomingMovies, isError} = props;
     useEffect(()=> {
         onFetchUpcomingMovies();
     }, [onFetchUpcomingMovies])
 
-    let upcomingMoviesList = <Spinner />
+    let upcomingMoviesList = <CircularProgress className={classes.Spinner} />
     if(!props.isloading){
         upcomingMoviesList = props.fetchedUpcomingMovies.map((movie) => {
             return (
                 <Items
+                    key={movie.id}
                     id = {movie.id}
                     clicked = {props.clicked}
                     movie = {movie}
@@ -32,9 +34,17 @@ const UpcomingMovies = props => {
     }
 
     return (
-        <div className={classes.UpcomingMovies}>
-            {upcomingMoviesList}
+        <div>
+            <p className={classes.Upcoming}>UPCOMING MOVIES IN THEATER</p>
+            {
+                props.isError 
+                ? <p className={classes.Error}>Could not load Upcoming Movies</p>
+                : <div className={classes.UpcomingMovies}>
+                    {upcomingMoviesList}
+                </div>
+            }
         </div>
+        
     )
 }
 

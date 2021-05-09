@@ -1,8 +1,7 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
-import axiosUserData from 'axios';
 import { fetchWatchList } from './watchlist';
-
+import { database } from '../../instance/Firebase'
 const apiKey = 'AIzaSyAjXOiBjFoQ8KFlFolctnns5BeHKIua4Mw';
 
 export const authStart = () => {
@@ -57,14 +56,8 @@ export const auth = (username, password, isSignUp, userData) => {
                 dispatch(authSuccess(res.data.idToken, res.data.localId));
             }
             if(userData){
-                axiosUserData.post('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/'+ res.data.localId + '.json/', userData)
-                .then(res => {
-                    dispatch(authSuccess(res.data.idToken, res.data.localId, isSignUp));
-                })
-                .catch(err => {
-                    console.log(err);
-                    dispatch(authFail(err));
-                })
+                database.ref("UserData/"+ res.data.localId + "/Info").set(userData);
+                dispatch(authSuccess(res.data.idToken, res.data.localId, isSignUp));
             }
         })
         .catch(err => {
@@ -77,7 +70,7 @@ export const autoSignIn = () => {
     return dispatch => {
         if(localStorage.getItem('token')){
             dispatch(authSuccess(localStorage.getItem('token'), localStorage.getItem('userId')));
-            dispatch(fetchUserProfile(localStorage.getItem('userId')));
+            dispatch(fetchUserProfile());
             dispatch(fetchWatchList(localStorage.getItem('userId')));
         }
     }
@@ -103,20 +96,25 @@ export const fetchUserFail = (err) => {
     }
 }
 
-export const fetchUserProfile = (userId) => {
+export const fetchUserProfile = () => {
     return dispatch => {
         dispatch(fetchUserStart());
-        axios.get('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/' + userId + '.json' )
+        axios.get('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/' + localStorage.getItem('userId') + '/Info.json' )
         .then(res => {
             let userData = null
-            for(let key in res.data){
-                userData = res.data[key];
-                break;
-            }
+            userData = res.data
             dispatch(fetchUserSuccess(userData));
         })
         .catch(err => {
             console.log(err);
         })
+    }
+}
+
+export const updateUserProfile = (userData) => {
+    return dispatch => {
+        dispatch(fetchUserStart());
+        database.ref("UserData/"+localStorage.getItem("userId") + "/Info").set(userData);
+        dispatch(fetchUserSuccess(userData));
     }
 }

@@ -6,10 +6,12 @@ import { Link } from 'react-router-dom';
 import classes from './Items.module.css';
 import { checkIsInWatchList, getGenre } from '../../../shared/ultility';
 import * as actions from '../../../store/actions/index';
-import Spinner from '../../UI/Spinner/Spinner';
-import blank from '../../../assets/blank.png';
 
 import Chip from '@material-ui/core/Chip';
+import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import Tooltip from '@material-ui/core/Tooltip';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Items = props => {
     const [isInWatchList, setIsInWatchList] = useState(false);
@@ -24,19 +26,21 @@ const Items = props => {
     let addOrRemoveButton = (
         props.isAuthenticated
             ? <div>
-                <input 
-                    type="image" 
-                    src={blank} 
-                    className = {[classes.Button, classes[btnType]].join(' ')}
-                    onClick = {isInWatchList
-                        ? () => removeFromWatchList(props.userId, props.movie.id)
-                        : () => addToWatchList(props.userId, props.movie)}
-                    />
+                <Tooltip title={isInWatchList ? "Remove from Watchlist" : "Add to WatchList"}
+                    placement="top">
+                        <FavoriteIcon 
+                            className = {[classes.Button, classes[btnType]].join(' ')}
+                            onClick = {isInWatchList
+                                ? () => removeFromWatchList(props.userId, props.movie.id)
+                                : () => addToWatchList(props.userId, props.movie)}
+                            />
+                </Tooltip>
+                
             </div>
             : null
     )
     if(isLoading){
-        addOrRemoveButton = <Spinner />
+        addOrRemoveButton = <CircularProgress className={classes.Spinner} color="secondary" />
     }
 
     const addToWatchList = (userId, movie) => {
@@ -65,7 +69,7 @@ const Items = props => {
 
     const genres = props.movie.genres.map(genre => {
         return (
-            <Chip className = {classes.Chip}label={getGenre(genre)} />
+            <Chip key={genre} className = {classes.Chip}label={getGenre(genre)} />
         )
     })
 
@@ -74,8 +78,9 @@ const Items = props => {
             <div className = {classes.Container}>
                 <p className={classes.OverView}>{props.movie.overView}</p>
                 <div className={classes.BtnContainer}>
-                    <input type='image' className={classes.PlayTrailerButton} src={blank} onClick={() => props.clicked(props.movie.id)}/>
-        
+                    <Tooltip title="Play Trailer" placement="top">
+                        <PlayCircleFilledIcon className={classes.PlayTrailerButton} onClick={() => props.clicked(props.movie.id)}/>
+                    </Tooltip>
                     {addOrRemoveButton}
                 </div>
                 <img className={classes.Poster} src={props.poster} />

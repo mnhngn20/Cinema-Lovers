@@ -2,9 +2,29 @@
     box-sizing: border-box;
 }
 
+.TrendingMovies .Error{
+    text-align: center;
+    color: var(--colorlight);
+    font-size: 20px;
+}
+
 .TrendingMovies .Trending {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
+    color: var(--textcolor);
+    font-family: 'Pangolin', cursive;
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 25px;
+}
+
+.TrendingMovies .Trending:hover{
     color: var(--colorlight);
+}
+
+.Spinner{
+    width: 500px;
+    height: auto;
+    margin: 0 auto;
 }

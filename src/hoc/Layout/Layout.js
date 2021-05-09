@@ -15,7 +15,7 @@ const Layout = props => {
                 {props.children}
             </main>
             <div>
-                <WebInfo />
+                {/* <WebInfo /> */}
             </div>
         </div>
     );

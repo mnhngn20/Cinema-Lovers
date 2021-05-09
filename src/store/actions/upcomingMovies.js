@@ -24,7 +24,7 @@ export const fetchUpcomingMoviesFail = (error) => {
 export const fetchUpcomingMovies  = () => {
     return dispatch => {
         dispatch(fetchUpcomingMoviesStart());
-        axios.get('movie/upcoming?api_key=ccc040ef39e5eace4f5cd8028421f9f1&language=en-US&page=2')
+        axios.get('movie/upcoming?api_key=ccc040ef39e5eace4f5cd8028421f9f1&language=en-US&page=2') 
         .then(res => {
             let fetchedUpcomingMovies = [];
             let fetchedUpcomingMovie = null;
@@ -42,7 +42,6 @@ export const fetchUpcomingMovies  = () => {
                 }
                 fetchedUpcomingMovies.push(fetchedUpcomingMovie);
             }
-            console.log(fetchUpcomingMovies);
             dispatch(fetchUpcomingMoviesSuccess(fetchedUpcomingMovies));
         })
         .catch(err => {

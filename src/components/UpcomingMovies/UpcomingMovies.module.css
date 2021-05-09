@@ -3,3 +3,25 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.Error{
+    text-align: center;
+    color: var(--colorlight);
+    font-size: 20px;
+}
+.Upcoming{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--textcolor);
+    font-family: 'Pangolin', cursive;
+}
+
+.Upcoming:hover{
+    color: var(--colorlight);
+}
+
+.Spinner{
+    width: 500px;
+    height: auto;
+}
