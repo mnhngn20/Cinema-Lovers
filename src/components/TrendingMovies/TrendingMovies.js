@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import {NavLink} from 'react-router-dom';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 
 import classes from './TrendingMovies.module.css';
@@ -37,8 +36,6 @@ const TrendingMovies = props => {
             )
         })
     }
-
-
 
     return (
         <div className= {classes.TrendingMovies}>

@@ -1,0 +1,142 @@
+.Single{
+    width: 250px;
+    height: auto;
+    display: block;
+}
+
+.Container{
+    position: relative;
+    width: 80%;
+    height: auto;
+    margin: 20px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.Container .Poster{
+    height: auto;
+    width: 230px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Container:hover .OverView{
+    display: flex;
+}
+
+.Container:hover .Poster{
+    opacity: 0.2;
+}
+
+.Container .BtnContainer .PlayTrailerButton:hover{
+    background-image: url('../../../assets/playButton.png');
+}
+
+.Container .OverView{
+    position: absolute;
+    font-size: 10px;
+    margin: 10px 10px;
+    overflow-y: auto;
+    height: 130px;
+    width: 200px;
+    text-align: center;
+    vertical-align: middle;
+    display: none;
+    z-index: 2;
+    color: var(--colorlight);
+    align-self: flex-end;
+}
+
+.Container .OverView::-webkit-scrollbar-track
+{
+    background-color: #f0e3ca;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.Container .OverView::-webkit-scrollbar
+{
+	width: 6px;
+	opacity: 0;
+}
+
+.Container .BtnContainer .PlayTrailerButton{
+    width: 60px;
+    height: 60px;
+    background-size: 60px 60px;
+    background-image: url('../../../assets/playButton.png');
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.Container .BtnContainer{
+    width: 100%;
+    height: inherit;
+    position: absolute;
+    display: none;
+    z-index: 2;
+}
+
+.Container .OverView::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #1b1a17;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.Container .BtnContainer .Button{
+    width: 60px;
+    height: 60px;
+    background-size: 60px 60px;
+    z-index: 2;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.Container:hover .BtnContainer{
+    display: flex;
+    justify-content: space-between
+}
+
+.Container .BtnContainer .AddBtn{
+    background-image: url('../../../assets/addBtn.png');
+}
+
+.Container .BtnContainer .AddBtn:hover{
+    background-image: url('../../../assets/addBtnHover.png');
+}
+
+.Container .BtnContainer .RemoveBtn{
+    background-image: url('../../../assets/removeBtn.png');
+}
+
+.Container .BtnContainer .RemoveBtn:hover{
+    background-image: url('../../../assets/removeBtnHover.png');
+}
+
+.Genres{ 
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.Genres .Chip{
+    margin: 5px 5px;
+    background-color: var(--color2);
+    height: 24px;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--colorlight);
+}
+
+.Title{
+    width: 100%;
+    min-height: 50px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+

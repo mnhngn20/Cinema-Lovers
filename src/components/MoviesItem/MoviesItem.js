@@ -20,7 +20,6 @@ const MoviesItem = props => {
 
     useEffect(() => {
         setIsInWatchList(checkIsInWatchList(props.movie.id, watchList))
-        console.log(props.movie)
     }, [watchList])
 
     const btnType = isInWatchList ? "RemoveBtn" : "AddBtn";
@@ -122,9 +121,6 @@ const MoviesItem = props => {
                 {addOrRemoveButton}
                 {infoMovieButton}
             </div>
-            
-            
-            
         </div>
     )
 }

@@ -1,16 +1,31 @@
+:root{
+  background-color: #810034;
+}
+
 body {
   margin: 0;
   font-family: 'Noto Sans JP', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-  --color1: #810000;
-  --color2: #630000;
-  --colordark: #1b1717;
-  --colorlight: #eeebdd;
+  --color1: #26001b;
+  --color2: #ff005c;
+  --colordark: #810034;
+  --colorlight: #ffffff;
+  --textcolor: #fff600;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+a{
+  text-decoration: none;
+  color: var(--colorlight);
+  font-weight: bold;
+}
+
+a:hover{
+  color: rgba(194, 194, 194, 0.842);
 }

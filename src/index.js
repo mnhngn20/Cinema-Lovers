@@ -12,12 +12,14 @@ import trendingMoviesReducer from './store/reducers/trendingMovies';
 import searchReducer from './store/reducers/search';
 import authReducer from './store/reducers/auth';
 import watchListReducer from './store/reducers/watchlist';
+import upcomingMoviesReducer from './store/reducers/upcomingMovies';
 
 const rootReducer = combineReducers({
   trendingMoviesState: trendingMoviesReducer,
   searchState: searchReducer,
   authState: authReducer,
-  watchListState: watchListReducer
+  watchListState: watchListReducer,
+  upcomingMoviesState: upcomingMoviesReducer
 })
 
 const composeEnhancers = process.env.NODE_ENV === 'development' 

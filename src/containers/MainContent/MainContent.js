@@ -6,6 +6,7 @@ import TrendingMovies from '../../components/TrendingMovies/TrendingMovies';
 import YourWatchList from '../../components/YourWatchlist.js/YourWatchList';
 import Trailer from '../../components/Trailer/Trailer';
 import Modal from '../../components/UI/Modal/Modal';
+import UpcomingMovies from '../../components/UpcomingMovies/UpcomingMovies';
 
 const MainContent = props => {
     const [showingTrailer, setShowingTrailer] = useState(false);
@@ -41,6 +42,7 @@ const MainContent = props => {
                 </div>
                 <div className={classes.GridItem1}>
                     <TrendingMovies clicked = {showTrailer} />
+                    <UpcomingMovies clicked = {showTrailer}/>
                 </div>
             </div>
         </div>

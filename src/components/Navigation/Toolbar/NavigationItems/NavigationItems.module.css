@@ -4,8 +4,9 @@
     display: flex;
     flex-flow: row;
     justify-content: center;
-    height: auto;
+    height: 100%;
     width: auto;
+    align-items: center;
 }
 
 .SignUpQuote{
