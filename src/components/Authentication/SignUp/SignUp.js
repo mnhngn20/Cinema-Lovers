@@ -54,6 +54,9 @@ const SignUp = props => {
     const { error, isLoading} = props;
 
     useEffect(()=>{
+        console.log("a", isSubmitted)
+        console.log("aa", isLoading)
+        console.log("aaa", error)
         if(isSubmitted && error && !isLoading){
             setShowError(true);
         } else if(isSubmitted && !error && !isLoading){

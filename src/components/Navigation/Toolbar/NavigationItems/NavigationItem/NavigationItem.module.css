@@ -1,10 +1,11 @@
 .NavigationItem {
     height: 100%;
-    width: 100px;
+    width: 150%;
     top: 50%;
     height: 100%;
     list-style: none;
     text-align: center;
+    margin: 0 15px;
 }
 
 .NavigationItem a{
@@ -13,12 +14,11 @@
     width: 100%;
     height: 100%;
     display: block;
-    padding: 0 5px;
+    padding: 0 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    
 }
 .NavigationItem p{
     text-align: center;
@@ -27,11 +27,20 @@
 .NavigationItem a:hover,
 .NavigationItem a:active,
 .NavigationItem a.active{
-    color: var(--colorlight);
-    background-color: var(--colordark);
+    background-color: var(--color1);
 }
 
 .Active{
-    color: var(--colorlight);
-    background-color: var(--colordark);
+    background-color: var(--color1);
+}
+
+@media (max-width: 499px){
+    .NavigationItem{
+        height: 60px;
+        width: 100%;
+        margin: 0 0;
+    }
+    .NavigationItem a{
+        padding: 0 0;
+    }
 }

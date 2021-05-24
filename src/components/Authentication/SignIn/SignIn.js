@@ -38,16 +38,21 @@ const SignIn = props => {
     const { error, isLoading} = props;
 
     useEffect(()=>{
+        console.log("a", isSubmitted)
+        console.log("aa", isLoading)
+        console.log("aaa", error)
         if(isSubmitted && error && !isLoading){
             setShowError(true);
-        } else if(isSubmitted && !error && !isLoading){
+        } else if(isSubmitted && !error){
             setShowModal(true)
         }
-    }, [isSubmitted, error, isLoading]);
+    }, [isSubmitted, error, isLoading])
 
     useEffect(() => {
         if(email.isValid && password.isValid){
             setCanSubmitForm(true);
+        } else {
+            setCanSubmitForm(false);
         }
     }, [email, password]);
 
@@ -74,10 +79,6 @@ const SignIn = props => {
         setIsSubmitted(false);
     }
 
-    const redirect = () => {
-        props.history.push('/');
-    }
-
     const closeSignUp = () =>{
         props.history.push('/')
     }
@@ -88,18 +89,13 @@ const SignIn = props => {
             <form className = {classes.SignIn} onSubmit = {submitHandler}>
                 <Modal 
                     show={showModal} 
-                    modalType="Success" 
-                    modalClosed={redirect}
-                    width="20%"
-                    height="20%">
+                    modalType="Success">
                     <p>You logged in!</p>
                 </Modal>
                 <Modal 
                     show={showError} 
                     modalType="Error" 
-                    modalClosed={hideError}
-                    width="20%"
-                    height="20%">
+                    modalClosed={hideError}>
                     <p>Signed In Failed</p>
                 </Modal>
                 <div className = {classes.SignInBox}>

@@ -14,27 +14,27 @@ const NavigationItems = props => {
     return (
             <div className={classes.NavigationItems}>
                 
-                <NavigationItem link="/" exact>
+                <NavigationItem link="/" exact clicked={props.clicked}>
                     <Tooltip title='Home' placement='bottom'>
                         <HomeIcon />
                     </Tooltip>
                 </NavigationItem>
                 {props.isAuthenticated 
-                ? <NavigationItem link='/profile'>
+                ? <NavigationItem link='/profile' clicked={props.clicked}>
                     <Tooltip title='Your Profile' placement='bottom'>
                         <AccountCircleIcon />
                     </Tooltip>
                 </NavigationItem> : null}
                 {props.isAuthenticated 
-                    ? <NavigationItem link='/logout'>
+                    ? <NavigationItem link='/logout' clicked={props.clicked}>
                         <Tooltip title='Log out' placement='bottom'>
                             <ExitToAppIcon />
                         </Tooltip>
                     </NavigationItem> 
-                    : <NavigationItem link="/signin" >
+                    : <NavigationItem link="/signin" clicked={props.clicked}>
                         SIGN IN
                     </NavigationItem>}
-                {props.isAuthenticated ? null : <NavigationItem link="/signup">SIGN UP</NavigationItem>}
+                {props.isAuthenticated ? null : <NavigationItem link="/signup" clicked={props.clicked}>SIGN UP</NavigationItem>}
             </div>
         
     )

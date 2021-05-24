@@ -25,9 +25,9 @@ const Logout = props => {
             ?<Modal 
                 show={showModal} 
                 modalClosed={redirect}
-                modalType="Success" 
-                width="20%"
-                height="20%"><p>You Logged out.</p></Modal>
+                modalType="Success" >
+                <p>You Logged out.</p>
+            </Modal>
             :null}
         </div>
     )

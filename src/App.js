@@ -21,6 +21,8 @@ const App = props => {
 
   let routes = (
     <Switch>
+      <Route path = '/signup' exact component={SignUp} />
+      <Route path = '/signin' exact component={SignIn} />
       <Route path = '/movies/:id' component={Movie}/>
       <Route path = '/trending' component={TrendingPage}/>
       <Route path = '/' component={MainContent} />
@@ -30,20 +32,19 @@ const App = props => {
   if(props.isAuthenticated){
     routes = (
       <Switch>
+              {/* <Route path = '/signin' exact component={SignIn} /> */}
         <Route path = '/watchlist' component={WatchListPage} />
         <Route path = '/profile' component={Profile} />
         <Route path = '/logout' component={Logout} />
         <Route path = '/movies/:id' component={Movie}/>
         <Route path = '/trending' component={TrendingPage}/>
         <Route path = '/' exact component={MainContent} />
-      {/* <Redirect to ='/' /> */}
-    </Switch>
+      <Redirect to ='/' />
+      </Switch>
     )
   }
   return (
     <div>
-      <Route path = '/signup' exact component={SignUp} />
-      <Route path = '/signin' exact component={SignIn} />
       <Layout>
         {routes}
       </Layout>

@@ -7,6 +7,17 @@
     display: flex;
     flex-flow: row;
     height: 100%;
-    width: auto;
+    width: fit-content;
     align-items: center;
+}
+
+@media (max-width: 499px){
+    .NavigationItems{
+        margin-top: 50px;
+        display:flex;
+        flex-flow: column;
+        width: 100%;
+        height: fit-content;
+        justify-content: center;
+    }
 }

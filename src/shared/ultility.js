@@ -31,11 +31,11 @@ export const checkValidity = (value, rules) => {
 }
 
 export const checkIsInWatchList = (movieId, watchList) => {
+    let isIn = false;
     for(let key in watchList){
-        // console.log(watchList[key].id)
-        if (movieId === watchList[key].id) return true;
+        if (movieId === watchList[key].id) isIn=true;
     }
-    return false;
+    return isIn;
 }
 
 export const getGenre = code => {

@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
+import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
-import MainContent from '../../containers/MainContent/MainContent';
 import WebInfo from '../../components/WebInfo/WebInfo';
 import classes from './Layout.module.css';
 
 const Layout = props => {
+    const [showSideDrawer, setShowSideDrawer] = useState(false);
+
+    const openSideDrawer = () => {
+        setShowSideDrawer(true);
+    }
+
+    const closeSideDrawer = () => {
+        setShowSideDrawer(false)
+    }
+
     return (
         <div>
             <div>
-                <Toolbar />
+                <SideDrawer show={showSideDrawer} clicked={closeSideDrawer}/>
+                <Toolbar clicked={openSideDrawer}/>
             </div>
             <main className={classes.MarginTop}>
                 {props.children}

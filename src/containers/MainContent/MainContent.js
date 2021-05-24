@@ -44,9 +44,7 @@ const MainContent = props => {
                 <div>
                     <Modal show={showingError}
                         modalType = "Error"
-                        modalClosed ={hideModal}
-                        width="20%"
-                        height="20%">
+                        modalClosed ={hideModal}>
                             <p>{props.loadTrendingFailed ? "Error Loading Trending Movies" : null}</p>
                             <p>{props.loadUpcomingFailed ? "Error Loading Upcoming Movies" : null}</p>
                     </Modal>
@@ -54,9 +52,7 @@ const MainContent = props => {
                 <div>
                     <Modal show={showingTrailer}
                         modalType="Trailer"
-                        modalClosed = {hideModal}
-                        width="80%"
-                        height="80%">
+                        modalClosed = {hideModal}>
                             <Trailer trailerPath = {trailerPath}/>
                     </Modal>
                 </div>

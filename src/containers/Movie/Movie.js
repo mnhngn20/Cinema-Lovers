@@ -3,24 +3,52 @@ import axiosTrailer from 'axios';
 import { connect } from 'react-redux';
 
 import axios from '../../axios-movies';
-import Spinner from '../../components/UI/Spinner/Spinner';
+import classes from './Movie.module.css'
 import Modal from '../../components/UI/Modal/Modal';
 import Trailer from '../../components/Trailer/Trailer';
-import { checkIsInWatchList } from '../../shared/ultility';
+import { checkIsInWatchList, getGenre } from '../../shared/ultility';
+import * as actions from '../../store/actions/index';
+import imageError from '../../assets/imageError.jpg'
+import imageErrorPoster from '../../assets/imageErrorPoster.jpg';
+import Chip from '@material-ui/core/Chip';
+import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
+import Tooltip from '@material-ui/core/Tooltip';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import StarIcon from '@material-ui/icons/Star';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
-const imgWidth = 500
+const imgWidth = 500;
 
 const Movie = props => {
     const [movie, setMovie] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [aorLoading, setAorLoading] = useState(false);
     const [showingTrailer, setShowingTrailer] = useState(false);
     const [trailerPath, setTrailerPath] = useState('');
+    const [isInWatchList, setIsInWatchList] = useState(false);
+    const { watchList, fetchWatchList } = props;
+    const movieId = props.match.params.id;
+
+    useEffect(()=>{
+        if(movie){
+            console.log(imgPath + 'w' + imgWidth + movie.posterPath);
+            setIsInWatchList(checkIsInWatchList(movie.id, watchList))
+        }
+    }, [watchList, movie])
 
     const addToWatchList = (userId, movie) => {
-        axios.post('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/'+ userId +'/WatchList/'+ movie.id +'.json', movie)
+        setAorLoading(true);
+        const postMovie = {
+            ...movie,
+            genres: movie.genres.map((genre) => {
+                return genre.id
+            })
+        }
+        axios.post('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/'+ userId +'/WatchList/'+ movie.id +'.json', postMovie)
         .then(res => { 
-            console.log(res);
+            fetchWatchList();
+            setAorLoading(false);
         })
         .catch(err => {
             console.log(err);
@@ -28,16 +56,17 @@ const Movie = props => {
     }
     
     const removeFromWatchList = (userId, movieId) => {
-        axios.delete('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/'+ userId +'/WatchList/'+ movieId +'.json')
+        setAorLoading(true)
+        axios.delete('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/'+ userId +'/WatchList/'+ movie.id +'.json')
         .then(res => { 
-            console.log(res);
+            fetchWatchList();
+            setAorLoading(false);
         })
         .catch(err => {
             console.log(err);
         })
     }
 
-    const movieId = props.match.params.id;
     useEffect(()=> {
         setLoading(true);
         axios.get('/movie/' + movieId +'?api_key=ccc040ef39e5eace4f5cd8028421f9f1&language=en-US')
@@ -48,7 +77,13 @@ const Movie = props => {
                     overView: res.data.overview,
                     posterPath: res.data.poster_path,
                     releaseDay: res.data.release_date,
-                    genres: res.data.genres
+                    genres: res.data.genres,
+                    backdropPath: res.data.backdrop_path,
+                    voteAverage: res.data.vote_average,
+                    voteCount: res.data.vote_count,
+                    tagline: res.data.tagline,
+                    status: res.data.status,
+                    popularity: res.data.popularity
             };
             setMovie(fetchedMovie);
             setLoading(false);
@@ -76,30 +111,104 @@ const Movie = props => {
         setTrailerPath('');
     }
 
-    let renderedMovie = <Spinner />
+    const btnType = isInWatchList ? "RemoveBtn" : "AddBtn";
+    let addOrRemoveButton = (
+        props.isAuthenticated 
+            ?
+            aorLoading 
+                ? <CircularProgress className={classes.Spinner}/>
+                : <Tooltip title={isInWatchList ? "Remove from Watchlist" : "Add to Watchlist"} placement="right">
+                    <FavoriteIcon 
+                        style={{width: '80px', height: '80px'}}
+                        className = {[classes.FavoriteButton, classes[btnType]].join(' ')}
+                        onClick = {isInWatchList
+                            ? () => removeFromWatchList(props.userId, movie)
+                            : () => addToWatchList(props.userId, movie)} />
+                </Tooltip>
+            : null
+    )
+
+    let date = null;
+    let overView = null; 
+    let backdrop = null; 
+    let poster = null;
+    let title = null;
+    let genres = null;
+    let voteAverage = null;
+    let voteCount = null;
+    let status = null;
+    let popularity = null;
     if(!loading && movie){
-        renderedMovie = (
-            <div>
-                <img src={imgPath + 'w' + imgWidth + movie.posterPath} /> 
-                <p>{movie.title}</p>
-                <p>{movie.releaseDay}</p>
-                <p>{movie.overView}</p>
-                <button onClick = {() => showTrailer(movieId)} >PLAY</button>
-                <button onClick = {checkIsInWatchList(movieId, props.watchList) 
-                    ? () => removeFromWatchList(props.userId, movie)
-                    : () => addToWatchList(props.userId, movie)}>
-                    {checkIsInWatchList(movieId, props.watchList)?'REMOVE FROM WATCHLIST': 'ADD TO WATCHLIST'}
-                </button>
-            </div>        
-        )
-    }    
+        title = <p className={classes.Title}>{movie.title}</p>
+        date = <p className={classes.Info1Text}>Release Date: {movie.releaseDay}</p>
+        overView = <p className={classes.OverView}>{movie.overView}</p>
+        genres = movie.genres.map(genre => {
+            return (
+                <Chip key={genre.id} className={classes.Chip} label={getGenre(genre.id)} />
+            )
+        })
+        poster = <img className={classes.Poster} src={movie.posterPath ? imgPath + 'w' + imgWidth + movie.posterPath : imageErrorPoster} />
+        backdrop = <img className={classes.Backdrop} src={movie.backdropPath ? imgPath + 'original' + movie.backdropPath : imageError} />    
+        voteAverage = <p className={classes.VoteA}>
+            {movie.voteAverage}<span className={classes.VoteA10}>/10</span>
+        </p>
+        voteCount = <p className={classes.VoteC}>{movie.voteCount} Ratings</p>
+        status = <p className={classes.Info1Text}>Status: {movie.status}</p>
+        popularity = <p className = {classes.Info1Text}>Popularity: {movie.popularity}</p>
+    }
+    
     return (
-        <div>
+        <div className={classes.Movie}>
             <Modal show = {showingTrailer}
+                modalType = "Trailer"
                 modalClosed = {hideModal}>
                 <Trailer trailerPath = {trailerPath} />
             </Modal>
-            {renderedMovie}
+            {
+                loading 
+                ? null
+                : <div className={classes.MovieContainer}>
+                <div className={classes.BackGround}>
+                </div>
+                <div className={classes.BackdropContainer}>
+                    <div className={classes.MovieInfo}>
+                        <div className={classes.TitleContainer}>
+                            {title}
+                        </div>
+                        <div className={classes.Info}>
+                            <div className={classes.Info1}>
+                                {date}
+                                {status}
+                                {popularity}
+                                <div className={classes.Genres}>
+                                    {genres}
+                                </div>
+                            </div>
+                            <div className={classes.Info2}>
+                                {overView}
+                            </div>
+                            <div className={classes.Info3}>
+                                <Tooltip title='Play Trailer' placement='top'>
+                                    <PlayCircleFilledIcon className={classes.TrailerButton} style={{width: '150px', height: '150px'}} onClick={() => showTrailer(movieId)}/>
+                                </Tooltip>
+                            </div>
+                        </div>
+                    </div>
+                    {backdrop}
+                    <div className={classes.TopInfo}>
+                        <div className={classes.Rate}>
+                            <StarIcon style={{width: '40px', height: '40px'}}
+                                className={classes.StarIcon}/>
+                            <div className={classes.Vote}>
+                                {voteAverage}
+                                {voteCount}
+                            </div>
+                        </div>
+                        {props.isAuthenticated ? addOrRemoveButton : null}
+                    </div>
+                </div>
+            </div>
+            } 
         </div>
     )
 }
@@ -107,8 +216,15 @@ const Movie = props => {
 const mapStateToProps = state => {
     return {
         userId: state.authState.userId,
-        watchList: state.watchListState.watchList
+        watchList: state.watchListState.watchList,
+        isAuthenticated: state.authState.token !== null
     }
 }
 
-export default connect(mapStateToProps, null)(Movie);
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchWatchList: (userId)=> dispatch(actions.fetchWatchList(userId))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Movie);

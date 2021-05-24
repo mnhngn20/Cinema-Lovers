@@ -13,7 +13,7 @@ const Modal = (props) =>{
             <div 
                 className={[classes.Modal, classes[props.modalType]].join(' ')}
                 style={{
-                    transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',
+                    transform: props.show ? 'translateY(0)' : 'translateY(-1000vh)',
                     opacity: props.show ? '1' : '0',
                     width: props.width,
                     height: props.height

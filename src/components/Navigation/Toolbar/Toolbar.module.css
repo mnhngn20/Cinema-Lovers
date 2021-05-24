@@ -1,7 +1,7 @@
 .Toolbar{
     width: 100%;
     position: fixed;
-    background-color: var(--color1);
+    background-color: var(--colordark);
     height: 72px;
     display: flex;
     justify-content: space-between;
@@ -12,32 +12,67 @@
 }
 
 .Toolbar .Logo {
+    margin-left: 20px;
     width: 72px;
     height: auto;
 }
 .Logo:hover .LogoMain {
-    color: rgb(255, 0, 242);
+    color: rgb(255, 253, 253);
 }
+
 .Logo:hover .LogoSub {
-    color: var(--textcolor);
+    color: var(--color3);
 }
 .Toolbar .LogoMain{
-    font-family: 'Pangolin', cursive !important;
-    color: rgb(255, 253, 253);
+    font-family: 'Bebas Neue', cursive;
+    color: var(--color3);
     font-size: 240%;
     font-weight: bold;
     width: fit-content;
     height: fit-content;
     margin-bottom: -30px;
     margin-top: 15px;
+    text-shadow: 0px 0px 30px var(--color3);
 }
 
 .Toolbar .LogoSub{
-    font-family: 'Pangolin', cursive !important;
-    color: rgb(196, 54, 189);
-    font-size: 20px;
+    font-family: 'Bebas Neue', cursive;
+    color: var(--colorlight);
+    font-size: 15px;
     font-weight: bold;
     margin-left: 80%;
+}
+
+.DesktopOnly{
+    height: 100%;
+}
+
+@media (max-width: 499px){
+    .DesktopOnly{
+        display: none;
+    }
+    .Toolbar{
+        justify-content: space-around;
+        height: 60px;
+    }
+    .Toolbar .Logo {
+        margin-left: 0;
+    }
+    .Toolbar .LogoMain{
+        font-family: 'Bebas Neue', cursive;
+        color: var(--color3);
+        font-size: 30px;
+        font-weight: bold;
+        width: fit-content;
+        height: fit-content;
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
+    
+    .Toolbar .LogoSub{
+        display: none;
+    }
+
 }
 
   

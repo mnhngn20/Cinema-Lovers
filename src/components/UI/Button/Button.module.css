@@ -16,17 +16,12 @@
 }
 
 .Success {
-    background-color: #74ad6a;
+    background-color: var(--color3);
     color: var(--colorlight);
 }
 
 .Success:hover {
-    background-color: #8dc484;
-    color: var(--colorlight);
-}
-
-.Success:hover{
-    
+    background-color: rgb(17, 43, 68);
 }
 
 .Danger {

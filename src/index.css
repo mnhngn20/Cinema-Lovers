@@ -1,18 +1,19 @@
 :root{
-  background-color: #810034;
+  background-image:linear-gradient(#000000e7, #000000b0), url("./assets/background.jpg"); /* W3C */
 }
 
 body {
   margin: 0;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-  --color1: #26001b;
-  --color2: #ff005c;
-  --colordark: #810034;
+  --color1: #706c61;
+  --color2: #333333;
+  --color3: rgb(21, 61, 99);
+  --colordark: black;
   --colorlight: #ffffff;
-  --textcolor: #fff600;
+  --textcolor: #e1f4f3;
 }
 
 code {

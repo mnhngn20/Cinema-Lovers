@@ -11,6 +11,8 @@ export const authStart = () => {
 }
 
 export const authSuccess = (token, userId, isSignUp) => {
+    localStorage.setItem('token', token);
+    localStorage.setItem('userId', userId);
     return {
         type: actionTypes.AUTH_SUCCESS,
         token: isSignUp ? null : token, 
@@ -49,11 +51,9 @@ export const auth = (username, password, isSignUp, userData) => {
         axios.post(resQuery, resData)
         .then(res => {
             if(!isSignUp){
-                localStorage.setItem('token', res.data.idToken);
-                localStorage.setItem('userId', res.data.localId);
+                dispatch(authSuccess(res.data.idToken, res.data.localId));
                 dispatch(fetchUserProfile(res.data.localId));
                 dispatch(fetchWatchList(res.data.localId));
-                dispatch(authSuccess(res.data.idToken, res.data.localId));
             }
             if(userData){
                 database.ref("UserData/"+ res.data.localId + "/Info").set(userData);

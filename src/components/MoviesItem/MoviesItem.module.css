@@ -1,9 +1,8 @@
 .Items {
     height: 420px;
-    width: 700px;
+    width:  700px;
     margin: 0 auto;
     margin-bottom: 40px;
-    border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.5);
     background-color: var(--colorlight);
     display: flex;
@@ -13,8 +12,6 @@
 .Items .Poster {
     height: auto;
     width: 100%;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
 }
 
 .Items .BtnPosterContainer{
@@ -23,7 +20,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.5);
 }
 
@@ -46,12 +42,16 @@
 }
 
 .Items .PlayTrailerButton:hover{
-    color: var(--color2)
+    color: var(--color3)
 }
 
 .Items .MovieInfos {
     width: 50%;
-    margin-right: 25px
+    margin-right: 25px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .Items .MovieInfos .Title {
@@ -66,7 +66,7 @@
     text-decoration: none;
     font-size: 25px;
     font-weight: bold;
-    color: var(--color2);
+    color: var(--colordark);
 }
 
 .Items .MovieInfos .OverView{
@@ -75,6 +75,7 @@
     width: auto;
     text-align: left;
     vertical-align: middle;
+    color: var(--colordark)
 }
 
 .Items .MovieInfos .OverView::-webkit-scrollbar-track{
@@ -104,7 +105,7 @@
 
 .Items .MovieInfos .Genres .Chip{
     margin: 5px 5px;
-    background-color: var(--color2);
+    background-color: var(--color3);
     height: 24px;
     font-size: 12px;
     font-weight: bold;
@@ -114,6 +115,7 @@
 .Items .FButton{
     width: 100%;
     height: fit-content;
+    margin-bottom: 10px;
 }
 
 .Items .FavoriteButton{
@@ -140,8 +142,182 @@
 
 .Items .Spinner{
     float: right;
-    width: 60px;
-    height: 60px;
     margin-right: 10px;
-    margin-top: 10px;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.GenresText{
+    height: 10px;
+    font-size: 10px;
+    margin: 0px 0px;
+    text-align: center;
+    display: none;
+}
+
+@media (max-width: 399px){
+    .Items {
+        height: fit-content;
+        width: 98%
+    }
+    
+    .Items .Poster {
+        height: 100%;
+        width: 100%;
+    }
+    
+    .Items .BtnPosterContainer{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: cente  r;
+        align-items: center;
+        box-shadow: 0 0px 0px rgba(0,0,0,0.5);
+    }
+    
+    .BtnPosterContainer:hover .Poster{
+        opacity: 1;
+    }
+    
+    .Items .PlayTrailerButton{
+        width: 60px;
+        height: 60px;
+        display: block;
+        background-size: 60px 60px;
+        position: absolute;
+        z-index: 2;
+        color: white;
+    }
+    
+    .Items .PlayTrailerButton:hover{
+        color: var(--color3)
+    }
+    
+    .Items .MovieInfos {
+        width: 60%;
+        margin: 0px 10px;
+    }
+    
+    .Items .MovieInfos .Title {
+        height: 50px;
+    }
+    
+    .Items .MovieInfos .Title a{
+        font-size: 16px;
+    }
+    
+    .Items .MovieInfos .OverView{
+        font-size: 13px;
+        height: 80px;
+    }
+    
+    .Items .MovieInfos .Genres{
+        display: none;
+    }
+    
+    .Items .FButton{
+        width: 100%;
+        height: fit-content;
+        margin-bottom: 0px;
+    }
+    
+    .Items .FavoriteButton{
+        width: 30px;
+        height: 30px;
+        float: right;
+    }
+    .Items .Spinner{
+        float: right;
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        margin-top: 10px;
+        color: black;
+        font-size: 10;
+    }
+    .GenresText{
+        display: block;
+    }
+}
+
+@media (max-width: 600px) and (min-width: 400px){
+    .Items {
+        height: fit-content;
+        width: 90%
+    }
+    
+    .Items .Poster {
+        height: 100%;
+        width: 100%;
+    }
+    
+    .Items .BtnPosterContainer{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0px 0px rgba(0,0,0,0.5);
+    }
+    
+    .BtnPosterContainer:hover .Poster{
+        opacity: 1;
+    }
+    
+    .Items .PlayTrailerButton{
+        width: 60px;
+        height: 60px;
+        display: block;
+        background-size: 60px 60px;
+        position: absolute;
+        z-index: 2;
+        color: white;
+    }
+    
+    .Items .PlayTrailerButton:hover{
+        color: var(--color3)
+    }
+    
+    .Items .MovieInfos {
+        width: 60%;
+        margin: 5px 10px;
+    }
+    
+    .Items .MovieInfos .Title {
+        height: 50px;
+    }
+    
+    .Items .MovieInfos .Title a{
+        font-size: 20px;
+    }
+    
+    .Items .MovieInfos .OverView{
+        height: 80px;
+    }
+    
+    .Items .MovieInfos .Genres{
+        display: none;
+    }
+    
+    .Items .FButton{
+        width: 100%;
+        height: fit-content;
+    }
+    
+    .Items .FavoriteButton{
+        width: 30px;
+        height: 30px;
+        float: right;
+    }
+    .Items .Spinner{
+        float: right;
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+        margin-top: 10px;
+        color: black;
+    }
+    .GenresText{
+        display: block;
+    }
 }

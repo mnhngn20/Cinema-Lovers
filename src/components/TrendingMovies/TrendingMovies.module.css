@@ -8,19 +8,20 @@
     font-size: 20px;
 }
 
-.TrendingMovies .Trending {
+.TrendingMovies .Trending{
     text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-    color: var(--textcolor);
-    font-family: 'Pangolin', cursive;
+    font-size: 35px;
+    font-weight: 600;
+    color: var(--colorlight);
+    font-family: 'Bebas Neue', cursive;
     width: fit-content;
     margin: 0 auto;
     margin-bottom: 25px;
 }
 
 .TrendingMovies .Trending:hover{
-    color: var(--colorlight);
+    text-shadow: 0px 0px 30px var(--color3);
+
 }
 
 .Spinner{

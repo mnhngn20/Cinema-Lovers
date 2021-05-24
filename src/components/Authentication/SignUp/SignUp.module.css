@@ -15,7 +15,6 @@
 
 .SignUp .SignUpBox{
     background-color: var(--colorlight);
-    border-radius: 10px;
     width: 50%;
     display: flex;
     flex-flow: column;
@@ -29,11 +28,11 @@
 }
 
 .SignUpQuote a{
-    color: var(--colordark);
+    color: var(--color3);
 }
 
 .SignUpQuote a:hover{
-    color: var(--color2);
+    color: rgb(17, 43, 68);
 }
 
 .SignUpBox .CloseContainer{
@@ -47,4 +46,16 @@
 
 .Close:hover{
     background-color: rgb(226, 225, 221);
+}
+
+@media(max-width: 1100px){
+    .SignUp{
+        width: 90%;
+        height: 40%;
+        margin: -30% 0 0 -45%;
+    }
+    
+    .SignUp .SignUpBox{
+        width: 100%;
+    }
 }

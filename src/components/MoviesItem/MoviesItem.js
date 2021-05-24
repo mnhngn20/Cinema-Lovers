@@ -37,7 +37,7 @@ const MoviesItem = props => {
     )    
     
     if(isLoading){
-        addOrRemoveButton = <CircularProgress className={classes.Spinner} color="secondary" />
+        addOrRemoveButton = <CircularProgress className={classes.Spinner}/>
     }
 
     const addToWatchList = (userId, movie) => {
@@ -65,10 +65,17 @@ const MoviesItem = props => {
     }
 
     const genres = props.movie.genres.map(genre => {
-        return (
-            <Chip key={genre} className = {classes.Chip} label={getGenre(genre)} />
-        )
+        if(getGenre(genre) != 'Undefined')
+            return (
+                <Chip key={genre} className={classes.Chip} label={getGenre(genre)} />
+            )
     })
+    let genresText = '';
+    for(let key in props.movie.genres){
+        if(props.movie.genres[key] != 'Undefined')
+            genresText += getGenre(props.movie.genres[key]) + ", ";
+    }
+    genresText = genresText.slice(0, genresText.length-2);
 
     return (
         <div className= {classes.Items}>
@@ -83,6 +90,7 @@ const MoviesItem = props => {
                         {props.movie.title}
                     </Link>
                 </div>
+                <p className={classes.GenresText}>{genresText}</p>
                 <p className={classes.OverView}>{props.movie.overView}</p>
                 <div className={classes.Genres}>
                     {genres}

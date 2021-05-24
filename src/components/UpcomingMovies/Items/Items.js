@@ -68,9 +68,10 @@ const Items = props => {
     }
 
     const genres = props.movie.genres.map(genre => {
-        return (
-            <Chip key={genre} className = {classes.Chip}label={getGenre(genre)} />
-        )
+        if(getGenre(genre) != 'Undefined')
+            return (
+                <Chip key={genre} className = {classes.Chip} label={getGenre(genre)} />
+            )
     })
 
     return (

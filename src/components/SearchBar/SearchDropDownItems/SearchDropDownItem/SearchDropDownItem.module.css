@@ -21,7 +21,10 @@
 .SearchDropDownItem .MovieInfo{
     margin: 0 auto;
     text-align: center;
-
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .SearchDropDownItem .MovieInfo a{
@@ -36,5 +39,12 @@
 }
 
 .SearchDropDownItem .MovieInfo p{
+    font-size: 12px;
     color: var(--colorlight)
+}
+
+@media (max-width: 499px){
+    .SearchDropDownItem img{
+        display: none;
+    }
 }

@@ -31,11 +31,16 @@ export const fetchTrendingMovies  = () => {
             for(let key in res.data.results){
                 fetchedTrendingMovie = {
                     id: res.data.results[key].id,
-                    title: res.data.results[key].title? res.data.results[key].title : res.data.results[key].name,
+                    title: res.data.results[key].title ? res.data.results[key].title : res.data.results[key].name,
                     overView: res.data.results[key].overview,
                     posterPath: res.data.results[key].poster_path,
-                    releaseDay: res.data.results[key].release_date,
-                    genres: res.data.results[key].genre_ids
+                    releaseDay: res.data.results[key].release_date ? res.data.results[key].release_date : res.data.results[key].first_air_date,
+                    genres: res.data.results[key].genre_ids,
+                    voteAverage: res.data.results[key].vote_average,
+                    voteCount: res.data.results[key].vote_count,
+                    mediaType: res.data.results[key].media_type,
+                    originalLanguage: res.data.results[key].original_language,
+                    popularity: res.data.results[key].popularity
                 }
                 fetchedTrendingMovies.push(fetchedTrendingMovie);
             }

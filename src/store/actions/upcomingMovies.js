@@ -28,6 +28,7 @@ export const fetchUpcomingMovies  = () => {
         .then(res => {
             let fetchedUpcomingMovies = [];
             let fetchedUpcomingMovie = null;
+            console.log(res.data.results)
             for(let key in res.data.results){
                 fetchedUpcomingMovie = {
                     id: res.data.results[key].id,
@@ -39,6 +40,7 @@ export const fetchUpcomingMovies  = () => {
                     popularity: res.data.results[key].popularity,
                     voteAverage: res.data.results[key].vote_average,
                     voteCount: res.data.results[key].vote_count,
+                    originalLanguage: res.data.results[key].original_language,
                 }
                 fetchedUpcomingMovies.push(fetchedUpcomingMovie);
             }

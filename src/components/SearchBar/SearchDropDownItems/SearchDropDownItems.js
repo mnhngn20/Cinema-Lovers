@@ -27,7 +27,7 @@ const SearchDropDownItems = props => {
     return (
         <div className={classes.SearchDropDownItems} onFocus={props.notTouching} onBlur={props.isTouching}>
             {searchItems}
-            {props.searchData.length > 0 ? null : <p>No result match your search...</p>}
+            {props.searchData.length > 0 ? null : <p className={classes.NoResults}>No result match your search...</p>}
         </div>
     )
 }
