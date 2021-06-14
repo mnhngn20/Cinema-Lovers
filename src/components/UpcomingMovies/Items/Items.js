@@ -33,7 +33,7 @@ const Items = props => {
                             onClick = {isInWatchList
                                 ? () => removeFromWatchList(props.userId, props.movie.id)
                                 : () => addToWatchList(props.userId, props.movie)}
-                            />
+                        />
                 </Tooltip>
                 
             </div>

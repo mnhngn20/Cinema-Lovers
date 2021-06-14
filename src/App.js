@@ -32,7 +32,6 @@ const App = props => {
   if(props.isAuthenticated){
     routes = (
       <Switch>
-              {/* <Route path = '/signin' exact component={SignIn} /> */}
         <Route path = '/watchlist' component={WatchListPage} />
         <Route path = '/profile' component={Profile} />
         <Route path = '/logout' component={Logout} />

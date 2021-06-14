@@ -198,7 +198,7 @@
 @media(max-width: 500px){  
     .Movie{
         margin-top: 80px;
-        width: 100%;
+        width: 100vw;
         height: auto;
         display: flex;
         align-items: center;
@@ -223,7 +223,6 @@
     .BackdropContainer .Backdrop{
         width: 350px;
         height: auto;
-        display: none;
     }
     
     .MovieContainer .BackGround{

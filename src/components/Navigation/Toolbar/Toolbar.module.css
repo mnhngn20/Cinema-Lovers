@@ -46,10 +46,16 @@
 .DesktopOnly{
     height: 100%;
 }
+.MobileOnly{
+    display: none;
+}
 
 @media (max-width: 499px){
     .DesktopOnly{
         display: none;
+    }
+    .MobileOnly{
+        display: block;
     }
     .Toolbar{
         justify-content: space-around;
@@ -59,20 +65,10 @@
         margin-left: 0;
     }
     .Toolbar .LogoMain{
-        font-family: 'Bebas Neue', cursive;
-        color: var(--color3);
         font-size: 30px;
-        font-weight: bold;
-        width: fit-content;
-        height: fit-content;
         margin-bottom: 0px;
         margin-top: 0px;
     }
-    
-    .Toolbar .LogoSub{
-        display: none;
-    }
-
 }
 
   

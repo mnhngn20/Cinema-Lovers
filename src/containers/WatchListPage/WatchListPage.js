@@ -50,6 +50,7 @@ const WatchListPage = props => {
         <div className={classes.WatchListPage}>
             <div>
                 <Modal show={showingTrailer}
+                    modalType = "Trailer"
                     modalClosed = {hideModal}>
                         <Trailer trailerPath = {trailerPath}/>
                 </Modal>

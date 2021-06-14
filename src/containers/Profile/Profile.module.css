@@ -57,3 +57,9 @@
 .Profile .GotoWLContainer .GotoWL:hover{
     color: var(--color1)
 }
+
+@media(max-width: 600px) {
+    .Profile .UserProfile{
+        width: 90%;
+    }
+}

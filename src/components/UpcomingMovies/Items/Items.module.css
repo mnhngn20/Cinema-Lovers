@@ -81,8 +81,7 @@
 }
 
 .Container .BtnContainer .PlayTrailerButton:hover{
-    color: var(--color2);
-
+    color: #c5c4c4;
 }
 
 .Container .BtnContainer{
@@ -112,15 +111,15 @@
 }
 
 .Container .BtnContainer .AddBtn:hover{
-    color: var(--color1)
+    color: #c5c4c4;
 }
 
 .Container .BtnContainer .RemoveBtn{
-    color: var(--color2)
+    color: rgb(8, 36, 63);
 }
 
 .Container .BtnContainer .RemoveBtn:hover{
-    color: var(--colordark)
+    color: rgb(5, 28, 49);
 }
 
 .Genres{ 

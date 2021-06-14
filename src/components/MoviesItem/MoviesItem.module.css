@@ -133,11 +133,11 @@
 }
 
 .Items .RemoveBtn{
-    color: var(--color2)
+    color: var(--color3);
 }
 
 .Items .RemoveBtn:hover{
-    color: var(--colordark)
+    color: rgb(13, 45, 75);
 }
 
 .Items .Spinner{
@@ -309,6 +309,7 @@
         height: 30px;
         float: right;
     }
+
     .Items .Spinner{
         float: right;
         width: 60px;
