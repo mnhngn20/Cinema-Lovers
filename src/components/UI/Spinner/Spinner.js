@@ -4,7 +4,7 @@ import classes from './Spinner.module.css'
 
 const spinner = (props) => {
     return (
-        <div className={classes[props.spinnerType]}><div></div></div>
+        <div className={classes.ldsFacebook}><div></div><div></div><div></div></div>
     );
 }
 

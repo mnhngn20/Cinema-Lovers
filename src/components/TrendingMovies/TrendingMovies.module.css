@@ -8,23 +8,10 @@
     font-size: 20px;
 }
 
-.TrendingMovies .Trending{
-    text-align: center;
-    font-size: 35px;
-    font-weight: 600;
-    color: var(--colorlight);
-    font-family: 'Bebas Neue', cursive;
-    width: fit-content;
-    margin: 0 auto;
-    margin-bottom: 25px;
-}
-
-.TrendingMovies .Trending:hover{
-    text-shadow: 0px 0px 30px var(--color3);
-}
-
-.Spinner{
-    width: 500px;
-    height: auto;
-    margin: 0 auto;
+.spinner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }

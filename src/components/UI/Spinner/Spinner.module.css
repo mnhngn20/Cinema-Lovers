@@ -1,54 +1,69 @@
-.Heart {
+.ldsFacebook {
   display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
-  transform: rotate(45deg);
-  transform-origin: 40px 40px;
 }
-.Heart div {
-  top: 32px;
+.ldsFacebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #fff;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.ldsFacebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.ldsFacebook div:nth-child(2) {
   left: 32px;
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  background: #fff;
-  animation: Heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+  animation-delay: -0.12s;
 }
-.Heart div:after,
-.Heart div:before {
-  content: " ";
-  position: absolute;
-  display: block;
-  width: 32px;
-  height: 32px;
-  background: #fff;
+.ldsFacebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
 }
-.Heart div:before {
-  left: -24px;
-  border-radius: 50% 0 0 50%;
-}
-.Heart div:after {
-  top: -24px;
-  border-radius: 50% 50% 0 0;
-}
-@keyframes Heart {
+@keyframes lds-facebook {
   0% {
-    transform: scale(0.95);
+    top: 8px;
+    height: 64px;
   }
-  5% {
-    transform: scale(1.1);
+  50%, 100% {
+    top: 24px;
+    height: 32px;
   }
-  39% {
-    transform: scale(0.85);
+}
+
+@media (max-width: 499px){
+  .ldsFacebook {
+    width: 40px;
+    height: 40px;
   }
-  45% {
-    transform: scale(1);
+
+  .ldsFacebook div {
+    left: 4px;
+    width: 8px;
   }
-  60% {
-    transform: scale(0.95);
+  .ldsFacebook div:nth-child(1) {
+    left: 4px;
   }
-  100% {
-    transform: scale(0.9);
+  .ldsFacebook div:nth-child(2) {
+    left: 16px;
+  }
+  .ldsFacebook div:nth-child(3) {
+    left: 26px;
+    animation-delay: 0;
+  }
+
+  @keyframes lds-facebook {
+    0% {
+      top: 4px;
+      height: 32px;
+    }
+    50%, 100% {
+      top: 12px;
+      height: 16px;
+    }
   }
 }

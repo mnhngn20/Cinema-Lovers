@@ -13,20 +13,19 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 const NavigationItems = props => {
     return (
             <div className={classes.NavigationItems}>
-                
-                <NavigationItem link="/" exact clicked={props.clicked}>
+                <NavigationItem link="/" exact clicked={props.clicked} title="Home">
                     <Tooltip title='Home' placement='bottom'>
                         <HomeIcon />
                     </Tooltip>
                 </NavigationItem>
                 {props.isAuthenticated 
-                ? <NavigationItem link='/profile' clicked={props.clicked}>
+                ? <NavigationItem link='/profile' clicked={props.clicked} title="Profile">
                     <Tooltip title='Your Profile' placement='bottom'>
                         <AccountCircleIcon />
                     </Tooltip>
                 </NavigationItem> : null}
                 {props.isAuthenticated 
-                    ? <NavigationItem link='/logout' clicked={props.clicked}>
+                    ? <NavigationItem link='/logout' clicked={props.clicked} title="Log out">
                         <Tooltip title='Log out' placement='bottom'>
                             <ExitToAppIcon />
                         </Tooltip>

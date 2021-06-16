@@ -1,5 +1,5 @@
 .Movie{
-    margin-top: 80px;
+    margin-top: 72px;
     width: 100%;
     height: auto;
     display: flex;
@@ -191,42 +191,41 @@
 /*  */
 
 .Spinner{
-    margin: 20px 30px;
-    color: var(--colorlight);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
-@media(max-width: 500px){  
-    .Movie{
-        margin-top: 80px;
-        width: 100vw;
-        height: auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-flow: column;
-    }
-    
-    .Movie .MovieContainer{
-        width: 100%;
-        height: fit-content;
-        display: flex;
-        flex-flow: column-reverse;
-    }    
+.MobileOnly{
+    display: none;
+}
+
+@media(max-width: 400px){  
     .MovieContainer .BackdropContainer{
-        width: 150px;
+        width: 100%;
         height: fit-content;
         margin: 0 auto;
         display: flex;
         flex-flow: column-reverse;
+        align-items: center;
     }
     
     .BackdropContainer .Backdrop{
-        width: 350px;
+        width: 100%;
         height: auto;
     }
     
     .MovieContainer .BackGround{
-        display: none;
+        position: absolute;
+        width: 100vw;
+        height: 200vh;
+        background-color: rgb(0, 0, 0);
+        opacity: 0.5;
+        left: 0;
+        transform: translateX(0);
+        top: 0;
     }
     
     .MovieInfo{
@@ -234,26 +233,25 @@
         display: flex;
         flex-flow: column;
         justify-content: flex-start;
-        width: 350px;
-        height: 500px;
-        left: 50%;
-        transform: translateX(-50%);
+        align-items: center;
+        width: 100vw;
+        height: fit-content;
     }
     
     .Info{
-        width: 100%;
+        width: 100vw;
         display: flex;
         flex-flow: column;
         justify-content: space-around;
+        align-items: center;
     }
     
     /* DATE AND GENRES */
     .Info1{
-        height: 110px;
-        width: 300px;
+        height: fit-content;
+        width: 90%;
         font-size: 15px;
         color: var(--colorlight);
-        margin-top: 20px;   
     }
     .Info1Text{
         font-size: 13px;
@@ -274,9 +272,9 @@
     
     /* OVERVIEW */
     .Info2{
-        height: 150px;
-        width: 300px;
-        overflow-y: auto;
+        height: fit-content;
+        width: 90%;
+        line-height: 3vh;
     }
     .Info2::-webkit-scrollbar-track{
         background-color: #f0e3ca;
@@ -299,93 +297,30 @@
     
     /* PLAY BUTTON */
     .Info3{
-        height: 150px;
-        width: 300px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 20px 0px;
-    }
-    .TrailerButton{
-        color: var(--color3);
-        opacity: 0.7;
-    }
-    .TrailerButton:hover{
-        opacity: 1;
+        display: none;
     }
     /*  */
-    
+
     /* TITLE */
     .TitleContainer{
-        height: 80px;
+        height: fit-content;
         width: 100%;
-        margin-bottom: 20px;
+        text-align: center;
     }
     .Title{
-        color: var(--colorlight);
-        font-size: 35px;
+        font-size: 25px;
         font-weight: bold;
     }
     /*  */
     
     /* TOP INFO */
     .TopInfo{
-        position: absolute;
-        width: 1000px;
-        height: auto;
-        top: 80px;
-        padding: 0px -30px;
-        font-size: 15px;
-        font-weight: bold;
-        color: var(--colorlight);
-        display: flex;
-        justify-content: space-between;
-    }
-    .FavoriteButton{
-        width: 150px;
-        height: 150px;
-        margin-top: 10px;
-        margin-right: 10px;
-        opacity: 0.7;
-    
-    }
-    .FavoriteButton:hover{
-        opacity: 1;
-    }
-    .RemoveBtn{
-        color: var(--colordark)
-    }
-    .AddBtn{
-        color: var(--colorlight)
-    }
-    .Rate{
-        margin-left: 20px;
-        margin-top: 20px;
-        display: flex;
-        width: fit-content;
-    }
-    .StarIcon{
-        color: var(--colorlight)
-    }
-    .VoteA{
-        margin: 0px 0px;
-    }
-    .VoteA10{
-        color: rgb(156, 153, 153);
-    }
-    .VoteC{
-        color:rgb(156, 153, 153);
-        margin: 2px 0px;
+        display: none;
     }
     /*  */
-    
-    .Spinner{
-        margin: 20px 30px;
-        color: var(--colorlight);
+    .MobileOnly{
+        display: block;
     }
-    
-    
-    
 }
 
 

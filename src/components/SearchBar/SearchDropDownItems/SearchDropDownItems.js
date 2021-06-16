@@ -12,7 +12,7 @@ const SearchDropDownItems = props => {
         onSearching('movie', props.query)
     }, [onSearching, query]);
 
-    let searchItems = <Spinner />
+    let searchItems = <div className={classes.Spinner}><Spinner /></div>
     if(!props.isLoading){
         searchItems = props.searchData.map(item => {
             return <SearchDropDownItem

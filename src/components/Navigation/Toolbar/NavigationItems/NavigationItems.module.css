@@ -13,7 +13,7 @@
 
 @media (max-width: 499px){
     .NavigationItems{
-        margin-top: 50px;
+        margin-bottom: 50px;
         display:flex;
         flex-flow: column;
         width: 100%;

@@ -6,4 +6,20 @@
     left: 0;
     top: 0;
     background-color: rgba(0,0,0,0.5);
+    animation: backdropShow 0.3s ease-in;
+}
+
+.backdropHide{
+    z-index: -100;
+    opacity: 0;
+}
+
+.backdropShow{
+    z-index: 100;
+    opacity: 1;
+}
+
+@keyframes backdropShow {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }

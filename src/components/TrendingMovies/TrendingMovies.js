@@ -6,8 +6,7 @@ import classes from './TrendingMovies.module.css';
 import MoviesItem from '../MoviesItem/MoviesItem';
 import * as actions from '../../store/actions/index';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
-
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Spinner from '../UI/Spinner/Spinner';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
 
@@ -39,8 +38,8 @@ const TrendingMovies = props => {
     }
 
     return (
-        <div className= {classes.TrendingMovies}>
-            <p className={classes.Trending}>TRENDING NOW</p>
+        props.isloading ? <div className={classes.spinner}><Spinner /></div>
+        : <div className= {classes.TrendingMovies}>
             {
                 props.isError 
                 ? <p className={classes.Error}>Could not load Trending Movies</p> 
@@ -48,7 +47,6 @@ const TrendingMovies = props => {
                     {trendingMoviesList}
                 </Splide>
             }
-            
         </div>
     )
 }

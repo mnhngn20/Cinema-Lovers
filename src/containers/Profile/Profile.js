@@ -98,22 +98,14 @@ const Profile = props => {
 
     return (
         <div className = {classes.Profile}>
-            {
-                props.error 
-                ? <Modal show={showingError}
-                    modalClosed={hideModal}
-                    modalType = "Error"
-                    width="20%"
-                    height="20%">
-                    {props.error.message}
-                </Modal>
-                : null
-            }
+            <Modal show={showingError}
+                modalClosed={hideModal}
+                modalType = "Error">
+                {props.error ? props.error.message : null}
+            </Modal>
             <Modal show={editSuccess}
                 modalClosed={hideModal}
-                modalType = "Success"
-                width = "20%"
-                height = "20%">
+                modalType = "Success">
                     <p>Changed!</p>
             </Modal>
             <form className={classes.UserProfile} onSubmit={(event) => updateProfile(event, fName.value, lName.value)}>

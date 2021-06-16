@@ -57,7 +57,9 @@ const MainContent = props => {
                     </Modal>
                 </div>
                 <div className={classes.GridItem1}>
+                    <p className={classes.headline}>TRENDING NOW</p>
                     <TrendingMovies clicked = {showTrailer} />
+                    <p className={classes.headline}>UPCOMING MOVIES IN THEATER</p>
                     <UpcomingMovies clicked = {showTrailer}/>
                 </div>
             </div>

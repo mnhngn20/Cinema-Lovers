@@ -8,7 +8,9 @@
     top: 0;
     left: 0;
     transition: transform 0.3s ease-out;
-
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
 .SideDrawer .LogoMain{
@@ -27,6 +29,21 @@
     margin-left: 65%;
     margin-top: 17%;
     position: absolute;
+}
+
+.SideDrawerBottom{
+    width: 100%;
+    height: max-content;
+    margin-bottom: 20px;
+}
+
+.SideDrawerBottom p{
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--colorlight);
+    text-align: center;
+    text-transform: uppercase;
 }
 
 @media (min-width: 500px){

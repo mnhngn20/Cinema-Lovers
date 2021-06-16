@@ -11,10 +11,8 @@ const Modal = (props) =>{
         <div>
             <Backdrop show={props.show} clicked={props.modalClosed}/>
             <div 
-                className={[classes.Modal, classes[props.modalType]].join(' ')}
+                className={[classes.Modal, classes[props.modalType], props.show ? classes.modalShow : classes.modalHide].join(' ')}
                 style={{
-                    transform: props.show ? 'translateY(0)' : 'translateY(-1000vh)',
-                    opacity: props.show ? '1' : '0',
                     width: props.width,
                     height: props.height
                 }}>

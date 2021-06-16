@@ -22,9 +22,9 @@ const Layout = props => {
                 <SideDrawer show={showSideDrawer} clicked={closeSideDrawer}/>
                 <Toolbar clicked={openSideDrawer}/>
             </div>
-            <main className={classes.MarginTop}>
+            <div className={classes.MarginTop}>
                 {props.children}
-            </main>
+            </div>
             <div>
                 {/* <WebInfo /> */}
             </div>

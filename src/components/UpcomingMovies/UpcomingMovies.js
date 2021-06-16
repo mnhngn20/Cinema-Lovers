@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import classes from './UpcomingMovies.module.css';
 import * as actions from '../../store/actions/index';
 import Items from './Items/Items';
-
+import Spinner from '../UI/Spinner/Spinner'
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
@@ -34,8 +34,8 @@ const UpcomingMovies = props => {
     }
 
     return (
-        <div>
-            <p className={classes.Upcoming}>UPCOMING MOVIES IN THEATER</p>
+        props.isLoading ? <div className={classes.spinner}><Spinner /></div>
+        :<div>
             {
                 props.isError 
                 ? <p className={classes.Error}>Could not load Upcoming Movies</p>

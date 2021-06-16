@@ -1,6 +1,5 @@
 import React from 'react';
 
-import logo from '../../../assets/logo.png';
 import SearchBar from '../../SearchBar/SearchBar';
 import NavigationItems from './NavigationItems/NavigationItems';
 import classes from './Toolbar.module.css';

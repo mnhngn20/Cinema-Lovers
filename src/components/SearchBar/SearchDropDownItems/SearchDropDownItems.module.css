@@ -36,6 +36,12 @@
     font-weight: bold;
 }
 
+.Spinner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media (max-width: 499px){
     .SearchDropDownItems{
         width: 200px;

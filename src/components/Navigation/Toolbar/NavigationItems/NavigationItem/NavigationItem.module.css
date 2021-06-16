@@ -34,13 +34,34 @@
     background-color: var(--color1);
 }
 
+.NavItem{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.NavItemTitle{
+    display: none;
+    margin: 0 0;
+}
+
 @media (max-width: 499px){
     .NavigationItem{
         height: 60px;
         width: 100%;
         margin: 0 0;
+        margin-bottom: 10px;
     }
     .NavigationItem a{
         padding: 0 0;
+    }
+    .NavItemTitle{
+        display: block;
+    }
+    .NavigationItem p{
+        margin: 0 0;
     }
 }

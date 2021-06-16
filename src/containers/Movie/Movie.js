@@ -16,7 +16,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import StarIcon from '@material-ui/icons/Star';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import Spinner from '../../components/UI/Spinner/Spinner'
+import Button from '../../components/UI/Button/Button'
 const imgPath = 'https://image.tmdb.org/t/p/';
 const imgWidth = 500;
 
@@ -128,33 +129,15 @@ const Movie = props => {
             : null
     )
 
-    let date = null;
-    let overView = null; 
-    let backdrop = null; 
     let poster = null;
-    let title = null;
     let genres = null;
-    let voteAverage = null;
-    let voteCount = null;
-    let status = null;
-    let popularity = null;
     if(!loading && movie){
-        title = <p className={classes.Title}>{movie.title}</p>
-        date = <p className={classes.Info1Text}>Release Date: {movie.releaseDay}</p>
-        overView = <p className={classes.OverView}>{movie.overView}</p>
         genres = movie.genres.map(genre => {
             return (
                 <Chip key={genre.id} className={classes.Chip} label={getGenre(genre.id)} />
             )
         })
         poster = <img className={classes.Poster} src={movie.posterPath ? imgPath + 'w' + imgWidth + movie.posterPath : imageErrorPoster} />
-        backdrop = <img className={classes.Backdrop} src={movie.backdropPath ? imgPath + 'original' + movie.backdropPath : imageError} />    
-        voteAverage = <p className={classes.VoteA}>
-            {movie.voteAverage}<span className={classes.VoteA10}>/10</span>
-        </p>
-        voteCount = <p className={classes.VoteC}>{movie.voteCount} Ratings</p>
-        status = <p className={classes.Info1Text}>Status: {movie.status}</p>
-        popularity = <p className = {classes.Info1Text}>Popularity: {movie.popularity}</p>
     }
     
     return (
@@ -165,49 +148,55 @@ const Movie = props => {
                 <Trailer trailerPath = {trailerPath} />
             </Modal>
             {
-                loading 
-                ? null
+                loading || !movie
+                ? <div className={classes.Spinner}><Spinner /></div>
                 : <div className={classes.MovieContainer}>
-                <div className={classes.BackGround}>
-                </div>
-                <div className={classes.BackdropContainer}>
-                    <div className={classes.MovieInfo}>
-                        <div className={classes.TitleContainer}>
-                            {title}
-                        </div>
-                        <div className={classes.Info}>
-                            <div className={classes.Info1}>
-                                {date}
-                                {status}
-                                {popularity}
-                                <div className={classes.Genres}>
-                                    {genres}
+                    <div className={classes.BackGround}>
+                    </div>
+                    <div className={classes.BackdropContainer}>
+                        <div className={classes.MovieInfo}>
+                            <div className={classes.TitleContainer}>
+                                <p className={classes.Title}>{movie.title}</p>
+                            </div>
+                            <div className={classes.Info}>
+                                <div className={classes.Info1}>
+                                    <p className = {[classes.Info1Text, classes.MobileOnly].join(' ')}>Score: {movie.voteAverage}/10</p>
+                                    <p className = {[classes.Info1Text, classes.MobileOnly].join(' ')}>{movie.voteCount} Ratings</p>
+                                    <p className={classes.Info1Text}>Release Date: {movie.releaseDay}</p>
+                                    <p className={classes.Info1Text}>Status: {movie.status}</p>
+                                    <p className = {classes.Info1Text}>Popularity: {movie.popularity}</p>
+                                    <div className={classes.Genres}>
+                                        {genres}
+                                    </div>
+                                </div>
+                                <div className={classes.Info2}>
+                                    <p className={classes.OverView}>{movie.overView}</p>
+                                </div>
+                                <div className={classes.MobileOnly}><Button clicked={() => showTrailer(movieId)} btnType="Success">PLAY TRAILER</Button></div>
+
+                                <div className={classes.Info3}>
+                                    <Tooltip title='Play Trailer' placement='top'>
+                                        <PlayCircleFilledIcon className={classes.TrailerButton} style={{width: '150px', height: '150px'}} onClick={() => showTrailer(movieId)}/>
+                                    </Tooltip>
                                 </div>
                             </div>
-                            <div className={classes.Info2}>
-                                {overView}
-                            </div>
-                            <div className={classes.Info3}>
-                                <Tooltip title='Play Trailer' placement='top'>
-                                    <PlayCircleFilledIcon className={classes.TrailerButton} style={{width: '150px', height: '150px'}} onClick={() => showTrailer(movieId)}/>
-                                </Tooltip>
-                            </div>
                         </div>
-                    </div>
-                    {backdrop}
-                    <div className={classes.TopInfo}>
-                        <div className={classes.Rate}>
-                            <StarIcon style={{width: '40px', height: '40px'}}
-                                className={classes.StarIcon}/>
-                            <div className={classes.Vote}>
-                                {voteAverage}
-                                {voteCount}
+                        <img className={classes.Backdrop} src={movie.backdropPath ? imgPath + 'original' + movie.backdropPath : imageError} /> 
+                        <div className={classes.TopInfo}>
+                            <div className={classes.Rate}>
+                                <StarIcon style={{width: '40px', height: '40px'}}
+                                    className={classes.StarIcon}/>
+                                <div className={classes.Vote}>
+                                    <p className={classes.VoteA}>
+                                        {movie.voteAverage}<span className={classes.VoteA10}>/10</span>
+                                    </p>
+                                    <p className={classes.VoteC}>{movie.voteCount} Ratings</p>
+                                </div>
                             </div>
+                            {props.isAuthenticated ? addOrRemoveButton : null}
                         </div>
-                        {props.isAuthenticated ? addOrRemoveButton : null}
                     </div>
                 </div>
-            </div>
             } 
         </div>
     )
