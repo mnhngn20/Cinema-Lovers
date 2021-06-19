@@ -10,7 +10,7 @@ import * as actions from '../../store/actions/index';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const Profile = props => {
+const Profile = ({ userData, error, onFetchProfile, onUpdateUserData }) => {
     const [editSuccess, setEditSuccess] = useState(false);
     const [isInEditMode, setIsInEditMode] = useState(false);
     const [canSubmitForm, setCanSubmitForm] = useState(false);
@@ -33,7 +33,6 @@ const Profile = props => {
             minLength: 0
         }
     });
-    const { userData, error, onFetchProfile } = props; 
     useEffect(()=>{
         onFetchProfile();
     }, [onFetchProfile])
@@ -50,7 +49,6 @@ const Profile = props => {
     }, [userData])
 
     useEffect(()=>{
-        console.log(userData);
         if(error){
             setShowingError(true)
         }
@@ -87,7 +85,7 @@ const Profile = props => {
             lastName: lastName
         })
         console.log("aaa ",updatedUserData);
-        props.onUpdateUserData(updatedUserData);
+        onUpdateUserData(updatedUserData);
         setEditSuccess(true);
     }
 
@@ -101,7 +99,7 @@ const Profile = props => {
             <Modal show={showingError}
                 modalClosed={hideModal}
                 modalType = "Error">
-                {props.error ? props.error.message : null}
+                {error ? error.message : null}
             </Modal>
             <Modal show={editSuccess}
                 modalClosed={hideModal}

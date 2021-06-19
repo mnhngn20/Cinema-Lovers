@@ -12,8 +12,7 @@ const imgPath = 'https://image.tmdb.org/t/p/';
 
 const imgWidth = 300;
 
-const UpcomingMovies = props => {
-    const {onFetchUpcomingMovies, isError} = props;
+const UpcomingMovies = ({onFetchUpcomingMovies, isError, fetchedUpcomingMovies, isLoading, clicked}) => {
     useEffect(()=> {
         onFetchUpcomingMovies();
     }, [onFetchUpcomingMovies])
@@ -28,13 +27,13 @@ const UpcomingMovies = props => {
     };
 
     let upcomingMoviesList = <CircularProgress className={classes.Spinner} />
-    if(!props.isloading){
-        upcomingMoviesList = props.fetchedUpcomingMovies.map((movie) => {
+    if(!isLoading){
+        upcomingMoviesList = fetchedUpcomingMovies.map((movie) => {
             return (
                 <SplideSlide key={movie.id}>
                     <Items
                         id = {movie.id}
-                        clicked = {props.clicked}
+                        clicked = {clicked}
                         movie = {movie}
                         poster = {movie.posterPath ? imgPath + 'w' + imgWidth + movie.posterPath : ''}
                         title = {movie.title}>
@@ -45,10 +44,10 @@ const UpcomingMovies = props => {
     }
 
     return (
-        props.isLoading ? <div className={classes.spinner}><Spinner /></div>
+        isLoading ? <div className={classes.spinner}><Spinner /></div>
         :<div>
             {
-                props.isError 
+                isError 
                 ? <p className={classes.Error}>Could not load Upcoming Movies</p>
                 : <div>
                     <div className={classes.UpcomingMovies}>

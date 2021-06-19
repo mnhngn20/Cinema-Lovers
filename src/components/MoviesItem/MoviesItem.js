@@ -15,7 +15,7 @@ const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, 
 
     useEffect(() => {
         setIsInWatchList(checkIsInWatchList(movie.id, watchList))
-    }, [watchList])
+    }, [watchList, movie])
 
     let addOrRemoveButton =  <FavoriteButton isAuthenticated={isAuthenticated} isInWatchList={isInWatchList}
                                 toolTipPlacement="top" isLoading={isLoading} 
@@ -25,15 +25,16 @@ const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, 
                                 type="MovieItemType"/>
 
     const genres = movie.genres.map(genre => {
-        if(getGenre(genre) != 'Undefined')
+        if(getGenre(genre) !== 'Undefined')
             return (
                 <Chip key={genre} className={classes.Chip} label={getGenre(genre)} />
             )
+        return null
     })
     
     let genresText = '';
     for(let key in movie.genres){
-        if(movie.genres[key] != 'Undefined')
+        if(movie.genres[key] !== 'Undefined')
             genresText += getGenre(movie.genres[key]) + ", ";
     }
     genresText = genresText.slice(0, genresText.length-2);
@@ -42,7 +43,7 @@ const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, 
         <div className= {classes.Items}>
             <div className = {classes.BtnPosterContainer}>
                 <PlayCircleFilledIcon className={classes.PlayTrailerButton} onClick={() => clicked(movie.id)}/>
-                <img className={classes.Poster} src={poster} />
+                <img className={classes.Poster} src={poster} alt="img"/>
             </div>
             <div className= {classes.MovieInfos}>
                 <div className={classes.Title}>

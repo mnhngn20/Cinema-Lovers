@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 
@@ -24,7 +24,7 @@ const TrendingMovies = ({onFetchTrendingMovies, isloading, isError, fetchedTrend
     useEffect(()=>{
         onFetchTrendingMovies();
     }, [onFetchTrendingMovies])
-
+    const slideRef = useRef();
     let trendingMoviesList = null
     if(!isloading && !isError){
         trendingMoviesList = fetchedTrendingMovies.map((movie) => {
@@ -45,7 +45,7 @@ const TrendingMovies = ({onFetchTrendingMovies, isloading, isError, fetchedTrend
             {
                 isError 
                 ? <p className={classes.Error}>Could not load Trending Movies</p> 
-                : <Splide options = {options}>
+                : <Splide options = {options} ref={slideRef}>
                     {trendingMoviesList}
                 </Splide>
             }

@@ -23,7 +23,8 @@ const FavoriteButton = ({isAuthenticated, isLoading, isInWatchList, toolTipPlace
         case "MovieType":
             if(btnType === "R") iconColor = "var(--color3)";
                 else iconColor = "var(--colorlight)" 
-            spinnerClass = "MovieClass"
+            spinnerClass = "MovieClass";
+            break;
         default: break;
     }
     return (

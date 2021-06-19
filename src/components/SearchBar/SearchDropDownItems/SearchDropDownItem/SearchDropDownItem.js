@@ -10,7 +10,7 @@ const imgWidth = 300;
 const SearchDropDownItem = ({posterPath, clicked, title, movieId, releaseDate})=> {
     return (
         <div className={classes.SearchDropDownItem} >
-            <img src={posterPath ? imgPath + 'w' + imgWidth + posterPath : imageErrorPoster}/>
+            <img src={posterPath ? imgPath + 'w' + imgWidth + posterPath : imageErrorPoster} alt="img"/>
             <div className={classes.MovieInfo} onClick = {clicked}>
                 <Link
                    to = {`/movies/${movieId}`}>

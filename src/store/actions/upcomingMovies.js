@@ -28,7 +28,6 @@ export const fetchUpcomingMovies  = () => {
         .then(res => {
             let fetchedUpcomingMovies = [];
             let fetchedUpcomingMovie = null;
-            console.log(res.data.results)
             for(let key in res.data.results){
                 fetchedUpcomingMovie = {
                     id: res.data.results[key].id,

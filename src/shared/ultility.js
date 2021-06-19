@@ -3,8 +3,7 @@ import '../instance/Firebase';
 
 export const updateObject = (oldObject, updatedProperties) => {
     return {
-        ...oldObject,
-        ... updatedProperties
+        ...oldObject,...updatedProperties
         }
 }
 
@@ -105,7 +104,6 @@ export const getGenre = code => {
     return genre;
 }
 export const addToWatchList = (userId, movie, setIsLoading, fetchWatchList) => {
-    console.log(movie)
     if(movie){
         setIsLoading(true);
         axios.post('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/'+ userId +'/WatchList/'+ movie.id +'.json', movie)
@@ -120,8 +118,6 @@ export const addToWatchList = (userId, movie, setIsLoading, fetchWatchList) => {
 }
 
 export const removeFromWatchList = (userId, movieId, setIsLoading, fetchWatchList) => {
-    console.log("aaaa")
-    
     setIsLoading(true);
     axios.delete('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/'+ userId +'/WatchList/'+ movieId +'.json')
     .then(res => { 
@@ -134,7 +130,6 @@ export const removeFromWatchList = (userId, movieId, setIsLoading, fetchWatchLis
 }
 
 export const showTrailer = (movieId, setShowingTrailer, setTrailerPath) => {
-    console.log(movieId)
     setShowingTrailer(true);
     axios.get('https://api.themoviedb.org/3/movie/'
         + movieId +

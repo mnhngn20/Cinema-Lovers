@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Spinner from '../UI/Spinner/Spinner';
 
@@ -11,7 +11,7 @@ const Trailer = ({trailerPath}) => {
             trailer = <div>NO TRAILER AVAILABLE</div>
         } else {
             trailer = ( 
-                <iframe width="100%" height="100%" src= {"https://www.youtube.com/embed/"+ trailerPath}>
+                <iframe title="Trailer" width="100%" height="100%" src= {"https://www.youtube.com/embed/"+ trailerPath}>
                 </iframe>
             );
         }

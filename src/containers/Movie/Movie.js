@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axiosTrailer from 'axios';
 import { connect } from 'react-redux';
 
 import axios from '../../axios-movies';
@@ -9,14 +8,13 @@ import Trailer from '../../components/Trailer/Trailer';
 import { checkIsInWatchList, addToWatchList, removeFromWatchList, showTrailer } from '../../shared/ultility';
 import * as actions from '../../store/actions/index';
 import imageError from '../../assets/imageError.jpg'
-import imageErrorPoster from '../../assets/imageErrorPoster.jpg';
 import FavoriteButton from '../../components/UI/FavoriteButton/FavoriteButton';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Score from '../../components/UI/Score/Score';
 import MovieInfo from './MovieInfo/MovieInfo';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
-const imgWidth = 500;
+// const imgWidth = 500;
 
 const Movie = ({match, watchList, fetchWatchList, isAuthenticated, userId, isLoading}) => {
     const [movie, setMovie] = useState(null);
@@ -29,7 +27,6 @@ const Movie = ({match, watchList, fetchWatchList, isAuthenticated, userId, isLoa
 
     useEffect(()=>{
         if(movie){
-            console.log(imgPath + 'w' + imgWidth + movie.posterPath);
             setIsInWatchList(checkIsInWatchList(movie.id, watchList))
         }
     }, [watchList, movie])
@@ -54,8 +51,7 @@ const Movie = ({match, watchList, fetchWatchList, isAuthenticated, userId, isLoa
             };
             setMovie(fetchedMovie);
             setLoading(false);
-        }).
-        catch(err => {
+        }).catch(err => {
             console.log(err);
         })
     }, [movieId]);
@@ -72,10 +68,10 @@ const Movie = ({match, watchList, fetchWatchList, isAuthenticated, userId, isLoa
                                     : () => addToWatchList(userId, {...movie, genres: movie.genres.map((genre) => genre.id)}, setAorLoading, fetchWatchList)}
                                     type= "MovieType"/>
 
-    let poster = null;
-    if(!loading && movie){
-        poster = <img className={classes.Poster} src={movie.posterPath ? imgPath + 'w' + imgWidth + movie.posterPath : imageErrorPoster} />
-    }
+    // let poster = null;
+    // if(!loading && movie){
+    //     poster = <img className={classes.Poster} src={movie.posterPath ? imgPath + 'w' + imgWidth + movie.posterPath : imageErrorPoster} />
+    // }
     
     return (
         <div className={classes.Movie}>
@@ -92,7 +88,7 @@ const Movie = ({match, watchList, fetchWatchList, isAuthenticated, userId, isLoa
                     </div>
                     <div className={classes.BackdropContainer}>
                         <MovieInfo movie={movie} addOrRemoveButton={addOrRemoveButton} showTrailer={(movieId) => showTrailer(movieId, setShowingTrailer, setTrailerPath)}/>
-                        <img className={classes.Backdrop} src={movie.backdropPath ? imgPath + 'original' + movie.backdropPath : imageError} /> 
+                        <img className={classes.Backdrop} src={movie.backdropPath ? imgPath + 'original' + movie.backdropPath : imageError} alt="img"/> 
                         <div className={classes.TopInfo}>
                             <div className={classes.Rate}>
                                 <Score voteCount={movie.voteCount} voteAverage={movie.voteAverage} />

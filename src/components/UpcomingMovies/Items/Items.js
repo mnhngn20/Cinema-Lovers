@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -16,13 +16,14 @@ const Items = ({watchList, movie, isAuthenticated, userId, fetchWatchList, poste
     const [isLoading, setIsLoading] = useState(false);
     useEffect(()=>{
         setIsInWatchList(checkIsInWatchList(movie.id, watchList))
-    }, [watchList])
+    }, [watchList, movie])
 
     const genres = movie.genres.map(genre => {
-        if(getGenre(genre) != 'Undefined')
+        if(getGenre(genre) !== 'Undefined')
             return (
                 <Chip key={genre} className = {classes.Chip} label={getGenre(genre)} />
             )
+        return null;
     })
 
     return (
@@ -43,8 +44,7 @@ const Items = ({watchList, movie, isAuthenticated, userId, fetchWatchList, poste
                     </div>
                     
                 </div>
-                {console.log(poster)}
-                <img className={classes.Poster} src={poster !== '' ? poster : blankImg} />
+                <img className={classes.Poster} src={poster !== '' ? poster : blankImg} alt="img"/>
             </div>
             <div className={classes.Title}>
                 <Link

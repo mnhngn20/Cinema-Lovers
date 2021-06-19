@@ -27,7 +27,7 @@ const SearchBar = props => {
 
     return (
         <div className={classes.SearchBar}>
-            <img className={classes.SearchIcon} src={searchIcon} />
+            <img className={classes.SearchIcon} src={searchIcon} alt="img"/>
             <input
                 ref = {inputRef}
                 onChange = {(event)=> inputChangeHandler(event)}
@@ -35,7 +35,7 @@ const SearchBar = props => {
                 className={classes.CustomSearchBar} 
                 type = 'text' 
                 placeholder="Search..." />
-            {query != ''? <div className={classes.Items}>
+            {query !== ''? <div className={classes.Items}>
                 <SearchDropDownItems  query={query} />
             </div> : null}
         </div>
