@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 
 import classes from './Profile.module.css';
@@ -10,13 +10,13 @@ import * as actions from '../../store/actions/index';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const Profile = ({ userData, error, onFetchProfile, onUpdateUserData }) => {
+const Profile = ({ userData, error, onFetchProfile, onUpdateUserData, isLoading }) => {
     const [editSuccess, setEditSuccess] = useState(false);
     const [isInEditMode, setIsInEditMode] = useState(false);
     const [canSubmitForm, setCanSubmitForm] = useState(false);
     const [showingError, setShowingError] = useState(false);
     const [fName, setFName] = useState({
-        value: 'loading...', 
+        value: isLoading ? 'Loading...' : userData.firstName, 
         isValid: true, 
         touched: false,
         rules: {
@@ -25,7 +25,7 @@ const Profile = ({ userData, error, onFetchProfile, onUpdateUserData }) => {
         }
     });
     const [lName, setLName] = useState({
-        value: 'loading...', 
+        value: isLoading ? 'Loading...' : userData.lastName, 
         isValid: true, 
         touched: false,
         rules: {
@@ -34,34 +34,36 @@ const Profile = ({ userData, error, onFetchProfile, onUpdateUserData }) => {
         }
     });
     useEffect(()=>{
-        onFetchProfile();
-    }, [onFetchProfile])
-    
-    useEffect(()=>{
+        if(!userData) {onFetchProfile();}
+    })
+    const updateInputs = useCallback((userData) => {
+        setFName(updateObject(fName, {
+            value: userData.firstName
+        }));
+        setLName(updateObject(lName, {
+            value: userData.lastName
+        }));
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
         if(userData){
-            setFName(updateObject(fName, {
-                value: userData.firstName
-            }));
-            setLName(updateObject(lName, {
-                value: userData.lastName
-            }));
+            updateInputs(userData);
         }
-    }, [userData])
+    }, [userData, updateInputs])
 
     useEffect(()=>{
         if(error){
+            
             setShowingError(true)
         }
     }, [error])
 
     useEffect(() => {
-        console.log(fName);
         if(fName.isValid && lName.isValid){
             setCanSubmitForm(true);
         } else {
             setCanSubmitForm(false);
         }
-    }, [fName, lName]);
+    }, [fName, lName]); 
 
     const onChangeHandler = (event, typeInput, setInput) => {
         const newInput = event.target.value;
@@ -84,7 +86,12 @@ const Profile = ({ userData, error, onFetchProfile, onUpdateUserData }) => {
             firstName: firstName,
             lastName: lastName
         })
-        console.log("aaa ",updatedUserData);
+        setFName(updateObject(fName, {
+            value: userData.firstName
+        }));
+        setLName(updateObject(lName, {
+            value: userData.lastName
+        }));
         onUpdateUserData(updatedUserData);
         setEditSuccess(true);
     }
@@ -92,7 +99,6 @@ const Profile = ({ userData, error, onFetchProfile, onUpdateUserData }) => {
     const switchMode = () =>{
         setIsInEditMode(!isInEditMode);
     }
-
 
     return (
         <div className = {classes.Profile}>

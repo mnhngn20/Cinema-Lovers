@@ -165,6 +165,13 @@
 
 @media (max-width: 400px){
     .Single{
-        margin: 0 auto
+        margin: 10px auto
+    }
+    .Container{
+        margin: 0px auto;
+    }
+    .Container .OverView{
+        margin: 10px auto;
+        overflow-y: auto;
     }
 }

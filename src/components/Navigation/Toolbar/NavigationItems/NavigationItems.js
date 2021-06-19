@@ -11,21 +11,21 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 const NavigationItems = ({isAuthenticated, clicked, }) => {
     return (
             <div className={classes.NavigationItems}>
-                <NavigationItem link="/" exact title="Home">
+                <NavigationItem clicked={clicked} link="/" exact title="Home">
                         <HomeIcon />
                 </NavigationItem>
                 {isAuthenticated 
-                ? <NavigationItem link='/profile' title="Profile">
+                ? <NavigationItem clicked={clicked} link='/profile' title="Profile">
                         <AccountCircleIcon />
                 </NavigationItem> : null}
                 {isAuthenticated 
                     ? <NavigationItem clicked={clicked} title="Log out">
                             <ExitToAppIcon />
                     </NavigationItem> 
-                    : <NavigationItem link="/signin">
+                    : <NavigationItem clicked={clicked} link="/signin">
                         SIGN IN
                     </NavigationItem>}
-                {isAuthenticated ? null : <NavigationItem link="/signup">SIGN UP</NavigationItem>}
+                {isAuthenticated ? null : <NavigationItem clicked={clicked} link="/signup">SIGN UP</NavigationItem>}
             </div>
     )
 }

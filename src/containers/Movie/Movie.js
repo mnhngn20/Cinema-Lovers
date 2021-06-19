@@ -14,7 +14,6 @@ import Score from '../../components/UI/Score/Score';
 import MovieInfo from './MovieInfo/MovieInfo';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
-// const imgWidth = 500;
 
 const Movie = ({match, watchList, fetchWatchList, isAuthenticated, userId, isLoading}) => {
     const [movie, setMovie] = useState(null);
@@ -67,11 +66,6 @@ const Movie = ({match, watchList, fetchWatchList, isAuthenticated, userId, isLoa
                                     ? () => removeFromWatchList(userId, movie.id, setAorLoading, fetchWatchList)
                                     : () => addToWatchList(userId, {...movie, genres: movie.genres.map((genre) => genre.id)}, setAorLoading, fetchWatchList)}
                                     type= "MovieType"/>
-
-    // let poster = null;
-    // if(!loading && movie){
-    //     poster = <img className={classes.Poster} src={movie.posterPath ? imgPath + 'w' + imgWidth + movie.posterPath : imageErrorPoster} />
-    // }
     
     return (
         <div className={classes.Movie}>
