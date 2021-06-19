@@ -8,7 +8,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-const NavigationItems = ({isAuthenticated, clicked, }) => {
+const NavigationItems = ({isAuthenticated, clicked, logout}) => {
     return (
             <div className={classes.NavigationItems}>
                 <NavigationItem clicked={clicked} link="/" exact title="Home">
@@ -19,7 +19,7 @@ const NavigationItems = ({isAuthenticated, clicked, }) => {
                         <AccountCircleIcon />
                 </NavigationItem> : null}
                 {isAuthenticated 
-                    ? <NavigationItem clicked={clicked} title="Log out">
+                    ? <NavigationItem logout={logout} title="Log out">
                             <ExitToAppIcon />
                     </NavigationItem> 
                     : <NavigationItem clicked={clicked} link="/signin">

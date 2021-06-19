@@ -76,4 +76,13 @@
         width: 96%;
         height: 40%;
     }
+    .SuccessIcon{
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .ErrorIcon{
+        width: 40px !important;
+        height: 40px !important;
+    }
 }

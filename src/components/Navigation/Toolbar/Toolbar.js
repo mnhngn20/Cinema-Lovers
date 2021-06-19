@@ -32,7 +32,7 @@ const Toolbar = props => {
                 </div>
                 <SearchBar />
                 <div className={classes.DesktopOnly}>
-                    <NavigationItems clicked={() => setLogoutModal(true)}/>
+                    <NavigationItems logout={() => setLogoutModal(true)}/>
                 </div>
             </div>  
         </div>

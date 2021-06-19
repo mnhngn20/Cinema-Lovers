@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom'
 import classes from './NavigationItem.module.css'
 import Tooltip from '@material-ui/core/Tooltip';
 
-const NavigationItem = ({clicked, link, children, title, exact}) => {
+const NavigationItem = ({clicked, link, children, title, exact, logout}) => {
     return (
-        <li className={classes.NavigationItem} onClick={clicked}>
+        <li className={classes.NavigationItem} onClick={clicked ? clicked : logout}>
             <NavLink 
                 activeClassName={link ? classes.Active : null}
                 to = {link ? link : ''}
