@@ -173,5 +173,7 @@
     .Container .OverView{
         margin: 10px auto;
         overflow-y: auto;
+        height: 100px;
+        width: 200px;
     }
 }
