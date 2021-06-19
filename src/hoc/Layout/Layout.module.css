@@ -1,5 +1,19 @@
-.MarginTop {
-    margin-top: 72px;
+.Layout{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.Top{
     width: 100%;
-    height: 100%;
+    height: 10%;
+}
+
+.Body{
+    width: 100%;
+    height: 80%;
+}
+
+.Bottom{
+    width: 100%;
+    height: 10%;
 }

@@ -7,16 +7,16 @@ import imageErrorPoster from '../../../../assets/imageErrorPoster.jpg';
 const imgPath = 'https://image.tmdb.org/t/p/';
 const imgWidth = 300;
 
-const SearchDropDownItem = props => {
+const SearchDropDownItem = ({posterPath, clicked, title, movieId, releaseDate})=> {
     return (
         <div className={classes.SearchDropDownItem} >
-            <img src={props.posterPath ? imgPath + 'w' + imgWidth + props.posterPath : imageErrorPoster}/>
-            <div className={classes.MovieInfo} onClick = {props.clicked}>
+            <img src={posterPath ? imgPath + 'w' + imgWidth + posterPath : imageErrorPoster}/>
+            <div className={classes.MovieInfo} onClick = {clicked}>
                 <Link
-                   to = {`/movies/${props.movieId}`}>
-                    {props.title}
+                   to = {`/movies/${movieId}`}>
+                    {title}
                 </Link>
-                <p>Release Date: {props.releaseDate}</p>
+                <p>Release Date: {releaseDate}</p>
             </div> 
         </div>
     )

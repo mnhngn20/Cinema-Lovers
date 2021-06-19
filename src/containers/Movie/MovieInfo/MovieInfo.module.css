@@ -1,0 +1,141 @@
+.MovieInfo{
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    width: 850px;
+    height: 290px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.Info{
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+}
+
+.Info1{
+    height: 150px;
+    width: 300px;
+    font-size: 15px;
+    color: var(--colorlight);
+}
+.Info1Text{
+    font-size: 13px;
+    line-height: 10px;
+}
+.Genres{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.Genres .Chip{
+    margin: 5px 10px 5px 0px;
+    background-color: var(--color3);
+    height: 24px;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--colorlight);
+}
+
+.Info2{
+    height: 150px;
+    width: 300px;
+    overflow-y: auto;
+}
+.Info2::-webkit-scrollbar-track{
+    background-color: #f0e3ca;
+
+}
+.Info2::-webkit-scrollbar{
+	width: 6px;
+	opacity: 0;
+}
+.Info2::-webkit-scrollbar-thumb{
+	background-color: #1b1a17;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.OverView{
+    font-size: 15px;
+    color: var(--colorlight);
+}
+
+.Info3{
+    height: 150px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.TrailerButton{
+    color: var(--color3);
+    opacity: 0.7;
+}
+.TrailerButton:hover{
+    opacity: 1;
+}
+.TitleContainer{
+    height: 80px;
+    width: 100%;
+}
+.Title{
+    color: var(--colorlight);
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.MobileOnly{
+    display: none;
+}
+
+@media(max-width: 400px){ 
+    .MovieInfo{
+        position: relative;
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100vw;
+        height: fit-content;
+    }
+    
+    .Info{
+        width: 100vw;
+        flex-flow: column;
+        align-items: center;
+    }
+  
+    .Info1{
+        height: fit-content;
+        width: 90%;
+    }
+
+    .Info2{
+        height: fit-content;
+        width: 90%;
+        line-height: 3vh;
+    }
+    .Info3{
+        display: none;
+    }
+
+    .TitleContainer{
+        height: fit-content;
+        text-align: center;
+    }
+    .Title{
+        font-size: 25px;
+    }
+    .MobileOnly{
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+}

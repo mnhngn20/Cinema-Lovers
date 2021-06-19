@@ -104,4 +104,45 @@ export const getGenre = code => {
     }
     return genre;
 }
+export const addToWatchList = (userId, movie, setIsLoading, fetchWatchList) => {
+    console.log(movie)
+    if(movie){
+        setIsLoading(true);
+        axios.post('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/'+ userId +'/WatchList/'+ movie.id +'.json', movie)
+        .then(res => { 
+            fetchWatchList(userId);
+            setIsLoading(false);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+}
 
+export const removeFromWatchList = (userId, movieId, setIsLoading, fetchWatchList) => {
+    console.log("aaaa")
+    
+    setIsLoading(true);
+    axios.delete('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/'+ userId +'/WatchList/'+ movieId +'.json')
+    .then(res => { 
+        fetchWatchList(userId);
+        setIsLoading(false);
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+export const showTrailer = (movieId, setShowingTrailer, setTrailerPath) => {
+    console.log(movieId)
+    setShowingTrailer(true);
+    axios.get('https://api.themoviedb.org/3/movie/'
+        + movieId +
+        '/videos?api_key=ccc040ef39e5eace4f5cd8028421f9f1&language=en-US')
+    .then(res => {
+        setTrailerPath(res.data.results[0].key ? res.data.results[0].key : "err")
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}

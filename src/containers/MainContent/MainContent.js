@@ -7,6 +7,7 @@ import TrendingMovies from '../../components/TrendingMovies/TrendingMovies';
 import Trailer from '../../components/Trailer/Trailer';
 import Modal from '../../components/UI/Modal/Modal';
 import UpcomingMovies from '../../components/UpcomingMovies/UpcomingMovies';
+import {showTrailer} from '../../shared/ultility';
 
 const MainContent = props => {
     const [showingTrailer, setShowingTrailer] = useState(false);
@@ -18,19 +19,6 @@ const MainContent = props => {
             setShowingError(true)
         }
     }, [loadTrendingFailed, loadUpcomingFailed])
-
-    const showTrailer = movieId => {
-        setShowingTrailer(true);
-        axios.get('https://api.themoviedb.org/3/movie/'
-            + movieId +
-            '/videos?api_key=ccc040ef39e5eace4f5cd8028421f9f1&language=en-US')
-        .then(res => {
-            setTrailerPath(res.data.results[0].key)
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }
 
     const hideModal = () => {
         setShowingError(false)
@@ -58,9 +46,9 @@ const MainContent = props => {
                 </div>
                 <div className={classes.GridItem1}>
                     <p className={classes.headline}>TRENDING NOW</p>
-                    <TrendingMovies clicked = {showTrailer} />
+                    <TrendingMovies clicked = {(movieId) => showTrailer(movieId, setShowingTrailer, setTrailerPath)} />
                     <p className={classes.headline}>UPCOMING MOVIES IN THEATER</p>
-                    <UpcomingMovies clicked = {showTrailer}/>
+                    <UpcomingMovies clicked = {(movieId) => showTrailer(movieId, setShowingTrailer, setTrailerPath)}/>
                 </div>
             </div>
         </div>

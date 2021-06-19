@@ -37,7 +37,7 @@ const SearchBar = props => {
                 placeholder="Search..." />
             {query != ''? <div className={classes.Items}>
                 <SearchDropDownItems  query={query} />
-                    </div> : null}
+            </div> : null}
         </div>
     )
 }

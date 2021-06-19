@@ -22,6 +22,9 @@
     box-shadow: 0 3px 6px rgba(0,0,0,0.5);
     margin-left: auto;
     margin-right: auto;
+    opacity: 1;
+    animation: onHover 1s ease-out;
+    transition: 0.3s
 }
 
 .Container:hover .OverView{
@@ -30,6 +33,11 @@
 
 .Container:hover .Poster{
     opacity: 0.3;
+}
+
+@keyframes onHover {
+    from{opacity: 0.3;}
+    to{opacity: 1;}
 }
 
 .Container .BtnContainer .PlayTrailerButton:hover{
@@ -99,6 +107,8 @@
     z-index: 2;
     margin-top: 10px;
     margin-right: 10px;
+    transition: 0.3s
+
 }
 
 .Container:hover .BtnContainer{
@@ -146,8 +156,15 @@
     font-size: 18px;
 }
 
-.Container .BtnContainer .Spinner{
-    margin-top: 20px;
-    margin-right: 20px;
-    color: white;
+.FavContainer{
+    width: fit-content;
+    height: fit-content;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+@media (max-width: 400px){
+    .Single{
+        margin: 0 auto
+    }
 }

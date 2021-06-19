@@ -58,39 +58,6 @@
     color: #ce1212;
 }
 
-/* @media desktop (max-width: 399px){
-    .Error{
-        margin: -5% 0 0 -10%;
-        width: 20%;
-        height: 20%;
-    }
-    
-    .Success{
-        margin: -5% 0 0 -10%;
-        width: 20%;
-        height: 20%;
-    }
-    
-    .Trailer{
-        margin: -40% 0 0 -48%;
-        width: 96%;
-        height: 40%;
-    }
-    
-    .SuccessIcon{
-        width: 70px !important;
-        height: 70px !important;
-        color: #91c788;
-    }
-    
-    .ErrorIcon{
-        width: 70px !important;
-        height: 70px !important;
-        color: #ce1212;
-    }
-    
-} */
-
 @media (max-width: 1100px){
     .Error{
         margin: -5% 0 0 -10%;

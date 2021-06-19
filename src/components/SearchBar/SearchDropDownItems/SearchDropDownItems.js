@@ -6,44 +6,39 @@ import * as actions from '../../../store/actions/index';
 import classes from './SearchDropDownItems.module.css';
 import Spinner from '../../UI/Spinner/Spinner';
 
-const SearchDropDownItems = props => {
-    const {onSearching, query} = props;
+const SearchDropDownItems = ({onSearching, query, isLoading, searchData}) => {
     useEffect(()=>{
-        onSearching('movie', props.query)
+        onSearching('movie', query)
     }, [onSearching, query]);
 
     let searchItems = <div className={classes.Spinner}><Spinner /></div>
-    if(!props.isLoading){
-        searchItems = props.searchData.map(item => {
+    if(!isLoading){
+        searchItems = searchData.map(item => {
             return <SearchDropDownItem
                 posterPath = {item.posterPath}
                 movieId = {item.id}
                 key = {item.id}
                 title={item.title}
                 releaseDate={item.releaseDate}
-                />
+            />
         })
     }
     return (
-        <div className={classes.SearchDropDownItems} onFocus={props.notTouching} onBlur={props.isTouching}>
+        <div className={classes.SearchDropDownItems}>
             {searchItems}
-            {props.searchData.length > 0 ? null : <p className={classes.NoResults}>No result match your search...</p>}
+            {searchData.length > 0 ? null : <p className={classes.NoResults}>No result match your search...</p>}
         </div>
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        isLoading: state.searchState.loading,
-        isError: state.searchState.error,
-        searchData: state.searchState.data
-    }
-}
+const mapState = state => ({
+    isLoading: state.searchState.loading,
+    isError: state.searchState.error,
+    searchData: state.searchState.data
+})
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onSearching: (typeOfSearch, query) => dispatch(actions.search(typeOfSearch, query))
-    }
-}
+const mapDispatch = dispatch => ({
+    onSearching: (typeOfSearch, query) => dispatch(actions.search(typeOfSearch, query))
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchDropDownItems);
+})
+export default connect(mapState, mapDispatch)(SearchDropDownItems);

@@ -12,6 +12,8 @@
 .Items .Poster {
     height: auto;
     width: 100%;
+    transition: 0.3s
+
 }
 
 .Items .BtnPosterContainer{
@@ -28,7 +30,7 @@
 }
 
 .BtnPosterContainer:hover .Poster{
-    opacity: 0.85;
+    opacity: 0.9;
 }
 
 .Items .PlayTrailerButton{
@@ -39,6 +41,7 @@
     position: absolute;
     z-index: 2;
     color: white;
+    transition: 0.3s
 }
 
 .Items .PlayTrailerButton:hover{
@@ -114,7 +117,7 @@
 
 .Items .FButton{
     width: 100%;
-    height: fit-content;
+    height: 60px;
     margin-bottom: 10px;
 }
 
@@ -122,6 +125,7 @@
     width: 60px;
     height: 60px;
     float: right;
+    transition: 0.3s
 }
 
 .Items .AddBtn{
@@ -140,13 +144,6 @@
     color: rgb(13, 45, 75);
 }
 
-.Items .Spinner{
-    float: right;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    color: black;
-}
-
 .GenresText{
     height: 10px;
     font-size: 10px;
@@ -163,28 +160,14 @@
     
     .Items .Poster {
         height: 100%;
-        width: 100%;
     }
     
     .Items .BtnPosterContainer{
         width: 50%;
-        height: 100%;
-        display: flex;
-        justify-content: cente  r;
-        align-items: center;
-        box-shadow: 0 0px 0px rgba(0,0,0,0.5);
-    }
-    
-    .BtnPosterContainer:hover .Poster{
-        opacity: 1;
     }
     
     .Items .PlayTrailerButton{
-        width: 60px;
-        height: 60px;
         display: block;
-        background-size: 60px 60px;
-        position: absolute;
         z-index: 2;
         color: white;
     }
@@ -216,25 +199,10 @@
     }
     
     .Items .FButton{
-        width: 100%;
-        height: fit-content;
         margin-bottom: 0px;
-    }
-    
-    .Items .FavoriteButton{
-        width: 30px;
         height: 30px;
-        float: right;
     }
-    .Items .Spinner{
-        float: right;
-        width: 20px;
-        height: 20px;
-        margin-right: 10px;
-        margin-top: 10px;
-        color: black;
-        font-size: 10;
-    }
+
     .GenresText{
         display: block;
     }
@@ -248,30 +216,10 @@
     
     .Items .Poster {
         height: 100%;
-        width: 100%;
     }
     
     .Items .BtnPosterContainer{
         width: 50%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 0px 0px rgba(0,0,0,0.5);
-    }
-    
-    .BtnPosterContainer:hover .Poster{
-        opacity: 1;
-    }
-    
-    .Items .PlayTrailerButton{
-        width: 60px;
-        height: 60px;
-        display: block;
-        background-size: 60px 60px;
-        position: absolute;
-        z-index: 2;
-        color: white;
     }
     
     .Items .PlayTrailerButton:hover{
@@ -300,23 +248,7 @@
     }
     
     .Items .FButton{
-        width: 100%;
-        height: fit-content;
-    }
-    
-    .Items .FavoriteButton{
-        width: 30px;
         height: 30px;
-        float: right;
-    }
-
-    .Items .Spinner{
-        float: right;
-        width: 60px;
-        height: 60px;
-        margin-right: 10px;
-        margin-top: 10px;
-        color: black;
     }
     .GenresText{
         display: block;

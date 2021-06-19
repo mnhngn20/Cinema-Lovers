@@ -2,19 +2,21 @@ import React from 'react';
 import { NavLink } from 'react-router-dom'
 
 import classes from './NavigationItem.module.css'
+import Tooltip from '@material-ui/core/Tooltip';
 
-const NavigationItem = props => {
+const NavigationItem = ({clicked, link, children, title, exact}) => {
     return (
-        <li className={classes.NavigationItem} onClick={props.clicked}>
+        <li className={classes.NavigationItem} onClick={clicked}>
             <NavLink 
-                activeClassName={classes.Active}
-                to = {props.link}
-                exact={props.exact}>
-                    <div className={classes.NavItem}>
-                        <p>{props.children}</p>
-                        <p className={classes.NavItemTitle}>{props.title}</p>
-                    </div>
-                    
+                activeClassName={link ? classes.Active : null}
+                to = {link ? link : ''}
+                exact={exact}>
+                    <Tooltip title={title} placement='bottom'>
+                        <div className={classes.NavItem}>
+                            <p>{children}</p>
+                            <p className={classes.NavItemTitle}>{title}</p>
+                        </div>
+                    </Tooltip>
             </NavLink>
         </li>
     )

@@ -1,73 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { connect } from 'react-redux';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import classes from './Items.module.css';
-import { checkIsInWatchList, getGenre } from '../../../shared/ultility';
-import * as actions from '../../../store/actions/index';
-
 import Chip from '@material-ui/core/Chip';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import Tooltip from '@material-ui/core/Tooltip';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import FavoriteButton from '../../UI/FavoriteButton/FavoriteButton';
+import * as actions from '../../../store/actions/index';
+import { checkIsInWatchList, getGenre, addToWatchList, removeFromWatchList } from '../../../shared/ultility';
+import blankImg from '../../../assets/imageErrorPoster.jpg';
 
-const Items = props => {
+const Items = ({watchList, movie, isAuthenticated, userId, fetchWatchList, poster, clicked}) => {
     const [isInWatchList, setIsInWatchList] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const { watchList } = props;
-
     useEffect(()=>{
-        setIsInWatchList(checkIsInWatchList(props.movie.id, watchList))
+        setIsInWatchList(checkIsInWatchList(movie.id, watchList))
     }, [watchList])
 
-    const btnType = isInWatchList ? "RemoveBtn" : "AddBtn";
-    let addOrRemoveButton = (
-        props.isAuthenticated
-            ? <div>
-                <Tooltip title={isInWatchList ? "Remove from Watchlist" : "Add to WatchList"}
-                    placement="top">
-                        <FavoriteIcon 
-                            className = {[classes.Button, classes[btnType]].join(' ')}
-                            onClick = {isInWatchList
-                                ? () => removeFromWatchList(props.userId, props.movie.id)
-                                : () => addToWatchList(props.userId, props.movie)}
-                        />
-                </Tooltip>
-                
-            </div>
-            : null
-    )
-    if(isLoading){
-        addOrRemoveButton = <CircularProgress className={classes.Spinner} color="secondary" />
-    }
-
-    const addToWatchList = (userId, movie) => {
-        setIsLoading(true);
-        axios.post('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/'+ userId +'/WatchList/'+ movie.id +'.json', movie)
-        .then(res => { 
-            props.fetchWatchList(userId);
-            setIsLoading(false);
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }
-    
-    const removeFromWatchList = (userId, movieId) => {
-        setIsLoading(true);
-        axios.delete('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/'+ userId +'/WatchList/'+ movieId +'.json')
-        .then(res => { 
-            props.fetchWatchList(userId);
-            setIsLoading(false);
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }
-
-    const genres = props.movie.genres.map(genre => {
+    const genres = movie.genres.map(genre => {
         if(getGenre(genre) != 'Undefined')
             return (
                 <Chip key={genre} className = {classes.Chip} label={getGenre(genre)} />
@@ -77,19 +28,28 @@ const Items = props => {
     return (
         <div className = {classes.Single}>
             <div className = {classes.Container}>
-                <p className={classes.OverView}>{props.movie.overView}</p>
+                <p className={classes.OverView}>{movie.overView}</p>
                 <div className={classes.BtnContainer}>
                     <Tooltip title="Play Trailer" placement="top">
-                        <PlayCircleFilledIcon className={classes.PlayTrailerButton} onClick={() => props.clicked(props.movie.id)}/>
+                        <PlayCircleFilledIcon className={classes.PlayTrailerButton} onClick={() => clicked(movie.id)}/>
                     </Tooltip>
-                    {addOrRemoveButton}
+                    <div className={classes.FavContainer}>
+                        <FavoriteButton isAuthenticated={isAuthenticated} isLoading={isLoading} 
+                            isInWatchList={isInWatchList} toolTipPlacement="top"
+                            clicked={isInWatchList
+                                ? () => removeFromWatchList(userId, movie.id, setIsLoading, fetchWatchList)
+                                : () => addToWatchList(userId, movie, setIsLoading, fetchWatchList)}
+                            type="ItemType"/>
+                    </div>
+                    
                 </div>
-                <img className={classes.Poster} src={props.poster} />
+                {console.log(poster)}
+                <img className={classes.Poster} src={poster !== '' ? poster : blankImg} />
             </div>
             <div className={classes.Title}>
                 <Link
-                    to = {`/movies/${props.movie.id}`}>
-                    {props.movie.title}
+                    to = {`/movies/${movie.id}`}>
+                    {movie.title}
                 </Link>
             </div>
             <div className={classes.Genres}>
@@ -99,7 +59,7 @@ const Items = props => {
     )
 }
 
-const mapStateToProps = state => {
+const mapState = state => {
     return {
         userId: state.authState.userId,
         watchList: state.watchListState.watchList,
@@ -107,10 +67,10 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatch = dispatch => {
     return {
         fetchWatchList: (userId)=> dispatch(actions.fetchWatchList(userId))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Items);
+export default connect(mapState, mapDispatch)(Items);

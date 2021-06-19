@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import classes from './SignUp.module.css';
-import Button from '../../UI/Button/Button';
-import * as actions from '../../../store/actions/index';
-import Input from '../../UI/Input/Input';
-import { checkValidity, updateObject } from '../../../shared/ultility';
-import Modal from '../../../components/UI/Modal/Modal';
-import Backdrop from '../../UI/Backdrop/Backdrop';
-
+import classes from './Auth.module.css';
 import CloseIcon from '@material-ui/icons/Close';
+import Button from '../UI/Button/Button';
+import Input from '../UI/Input/Input';
+import Modal from '../UI/Modal/Modal';
+import Backdrop from '../UI/Backdrop/Backdrop';
+import * as actions from '../../store/actions/index';
+import { checkValidity, updateObject } from '../../shared/ultility';
 
-const SignUp = props => {
+
+const SignUp = ({error, isLoading, onAuth, history, modalClosed}) => {
     const [firstName, setFirstName] = useState({
         value:'', 
         isValid: false, 
@@ -50,13 +50,9 @@ const SignUp = props => {
     const [showModal, setShowModal] = useState(false)
     const [showError, setShowError] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
-
-    const { error, isLoading} = props;
+    const [canSubmitForm, setCanSubmitForm] = useState(false);
 
     useEffect(()=>{
-        console.log("a", isSubmitted)
-        console.log("aa", isLoading)
-        console.log("aaa", error)
         if(isSubmitted && error && !isLoading){
             setShowError(true);
         } else if(isSubmitted && !error && !isLoading){
@@ -71,8 +67,6 @@ const SignUp = props => {
             setCanSubmitForm(false);
         }
     }, [firstName, lastName, email, password]);
-
-    const [canSubmitForm, setCanSubmitForm] = useState(false);
 
     const onChangeHandler = (event, typeInput, setInput) => {
         const newInput = event.target.value;
@@ -91,7 +85,7 @@ const SignUp = props => {
             lastName: lastName.value,
             email: email.value
         }
-        props.onAuth(email.value, password.value, true, userData);
+        onAuth(email.value, password.value, true, userData);
         setIsSubmitted(true);
     }   
 
@@ -100,22 +94,18 @@ const SignUp = props => {
         setIsSubmitted(false);
     }
 
-    const redirect = () => {
-        props.history.push('/')
-    }
-
     const closeSignUp = () =>{
-        props.history.push('/')
+        history.push('/')
     }
 
     return (
-        <div>
-            <Backdrop show={true} clicked={props.modalClosed}/>
-            <form className = {classes.SignUp} onSubmit={submitHandler}>
+        <div style={{height:"100vh"}}>
+            <Backdrop show={true} clicked={modalClosed}/>
+            <form className = {classes.Auth} onSubmit={submitHandler}>
                 <Modal 
                     show={showModal} 
                     modalType="Success" 
-                    modalClosed={redirect}
+                    modalClosed={closeSignUp}
                     width="20%"
                     height="20%">
                     <p>Signed Up Successful</p>
@@ -128,7 +118,7 @@ const SignUp = props => {
                     height="20%">
                     <p>Signed Up Failed</p>
                 </Modal>
-                <div className = {classes.SignUpBox}>
+                <div className = {classes.AuthBox}>
                     <div className={classes.CloseContainer}>
                         <CloseIcon className={classes.Close} onClick={closeSignUp}/>
                     </div>
@@ -173,24 +163,21 @@ const SignUp = props => {
                         changed = {event => onChangeHandler(event, password, setPassword)}
                     />
                     <Button btnType="Success" disabled={!canSubmitForm}>SIGN UP</Button>
-                    <p className={classes.SignUpQuote}>Already had an account? <Link to="/signin">Sign In Now</Link></p>
+                    <p className={classes.AuthQuote}>Already had an account? <Link to="/signin">Sign In Now</Link></p>
                 </div>
             </form>
         </div>
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        isLoading: state.authState.loading,
-        error: state.authState.error
-    }
-}
+const mapStateToProps = state => ({
+    isLoading: state.authState.loading,
+    error: state.authState.error
+})
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onAuth: (email, password, isSignUp, userData) => dispatch(actions.auth(email, password, isSignUp, userData))
-    }
-}
+const mapDispatchToProps = dispatch => ({
+    onAuth: (email, password, isSignUp, userData) => dispatch(actions.auth(email, password, isSignUp, userData))
+
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

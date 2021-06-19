@@ -45,6 +45,7 @@
 
 .DesktopOnly{
     height: 100%;
+    width: fit-content;
 }
 .MobileOnly{
     display: none;

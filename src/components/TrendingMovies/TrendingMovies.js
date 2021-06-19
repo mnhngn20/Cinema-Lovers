@@ -9,26 +9,29 @@ import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import Spinner from '../UI/Spinner/Spinner';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
-
 const imgWidth = 300;
+const options = {
+    type: 'loop',
+    autoplay: true,
+    interval: '3000',
+    speed: '1000',
+    pauseOnHover: true,
+    rewind: true,
+    classes: {arrows: classes.arrows} 
+};
 
-const TrendingMovies = props => {
-    const {onFetchTrendingMovies} = props
+const TrendingMovies = ({onFetchTrendingMovies, isloading, isError, fetchedTrendingMovies, clicked}) => {
     useEffect(()=>{
         onFetchTrendingMovies();
     }, [onFetchTrendingMovies])
 
-    const options = {
-        type: 'loop'
-    };
-
     let trendingMoviesList = null
-    if(!props.isloading && !props.isError){
-        trendingMoviesList = props.fetchedTrendingMovies.map((movie) => {
+    if(!isloading && !isError){
+        trendingMoviesList = fetchedTrendingMovies.map((movie) => {
             return (
                 <SplideSlide key={movie.id}>
                     <MoviesItem
-                        clicked = {props.clicked}
+                        clicked = {clicked}
                         movie = {movie}
                         poster = {imgPath + 'w' + imgWidth + movie.posterPath}
                         title = {movie.title}></MoviesItem>
@@ -36,12 +39,11 @@ const TrendingMovies = props => {
             )
         })
     }
-
     return (
-        props.isloading ? <div className={classes.spinner}><Spinner /></div>
+        isloading ? <div className={classes.Spinner}><Spinner /></div>
         : <div className= {classes.TrendingMovies}>
             {
-                props.isError 
+                isError 
                 ? <p className={classes.Error}>Could not load Trending Movies</p> 
                 : <Splide options = {options}>
                     {trendingMoviesList}
@@ -51,18 +53,14 @@ const TrendingMovies = props => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        isloading: state.trendingMoviesState.loading,
-        fetchedTrendingMovies: state.trendingMoviesState.trendingMovies,
-        isError: state.trendingMoviesState.error
-    }
-}
+const mapState = state => ({
+    isloading: state.trendingMoviesState.loading,
+    fetchedTrendingMovies: state.trendingMoviesState.trendingMovies,
+    isError: state.trendingMoviesState.error
+})
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onFetchTrendingMovies: () => dispatch(actions.fetchTrendingMovies()) 
-    }
-}
+const mapDispatch = dispatch => ({
+    onFetchTrendingMovies: () => dispatch(actions.fetchTrendingMovies()) 
 
-export default connect(mapStateToProps, mapDispatchToProps)(TrendingMovies);
+})
+export default connect(mapState, mapDispatch)(TrendingMovies);

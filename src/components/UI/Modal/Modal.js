@@ -6,23 +6,19 @@ import Backdrop from '../Backdrop/Backdrop'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
-const Modal = (props) =>{
+const Modal = ({show, modalClosed, modalType, children}) =>{
     return(
         <div>
-            <Backdrop show={props.show} clicked={props.modalClosed}/>
+            <Backdrop show={show} clicked={modalClosed}/>
             <div 
-                className={[classes.Modal, classes[props.modalType], props.show ? classes.modalShow : classes.modalHide].join(' ')}
-                style={{
-                    width: props.width,
-                    height: props.height
-                }}>
-                {props.modalType==="Success" 
+                className={[classes.Modal, classes[modalType], show ? classes.modalShow : classes.modalHide].join(' ')}>
+                {modalType==="Success" 
                 ? <CheckCircleOutlineIcon className={classes.SuccessIcon}/>
                 : null}
-                {props.modalType==="Error" 
+                {modalType==="Error" 
                 ? <HighlightOffIcon className={classes.ErrorIcon}/>
                 : null}
-                {props.children}
+                {children}
             </div>
         </div>
     );

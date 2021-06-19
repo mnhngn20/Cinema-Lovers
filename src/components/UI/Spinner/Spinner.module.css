@@ -12,6 +12,11 @@
   background: #fff;
   animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
+
+.colorBlack{
+  background: var(--colordark) !important;
+}
+
 .ldsFacebook div:nth-child(1) {
   left: 8px;
   animation-delay: -0.24s;

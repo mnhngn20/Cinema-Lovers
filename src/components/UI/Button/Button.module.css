@@ -8,6 +8,8 @@
     border-radius: 20px;
     width: 80px;
     font-size: 12px;
+    transition: 0.3s
+
 }
 
 .Button:disabled{

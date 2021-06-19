@@ -17,16 +17,16 @@ const Layout = props => {
     }
 
     return (
-        <div>
-            <div>
+        <div className={classes.Layout}>
+            <div className={classes.Top}>
                 <SideDrawer show={showSideDrawer} clicked={closeSideDrawer}/>
                 <Toolbar clicked={openSideDrawer}/>
             </div>
-            <div className={classes.MarginTop}>
+            <div className={classes.Body}>
                 {props.children}
             </div>
-            <div>
-                {/* <WebInfo /> */}
+            <div className={classes.Bottom}>
+                <WebInfo />
             </div>
         </div>
     );

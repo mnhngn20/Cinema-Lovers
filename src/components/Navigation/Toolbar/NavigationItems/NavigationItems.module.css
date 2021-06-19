@@ -1,14 +1,11 @@
-.NavContainer{
-    height: 100%;
-    width: 80%;
-}
-
 .NavigationItems{
     display: flex;
     flex-flow: row;
     height: 100%;
     width: fit-content;
     align-items: center;
+    justify-content: center;
+    margin-right: 10px;
 }
 
 @media (max-width: 499px){

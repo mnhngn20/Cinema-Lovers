@@ -14,6 +14,7 @@ body {
   --colordark: black;
   --colorlight: #ffffff;
   --textcolor: #e1f4f3;
+  overflow-x: hidden;
 }
 
 code {

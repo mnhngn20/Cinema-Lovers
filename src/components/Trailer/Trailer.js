@@ -1,16 +1,20 @@
 import React, { useEffect } from 'react';
 
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Spinner from '../UI/Spinner/Spinner';
 
 import classes from './Trailer.module.css'
-const Trailer = props => {  
-    const { trailerPath } = props;
-    let trailer = <CircularProgress className={classes.Spinner}/>
-    if(trailerPath !== ''){
-        trailer = ( 
-            <iframe width="100%" height="100%" src= {"https://www.youtube.com/embed/"+ props.trailerPath}>
-            </iframe>
-        );
+
+const Trailer = ({trailerPath}) => {  
+    let trailer = <div className={classes.Spinner}><Spinner colorBlack/></div>
+    if(trailerPath){
+        if(trailerPath === 'err'){
+            trailer = <div>NO TRAILER AVAILABLE</div>
+        } else {
+            trailer = ( 
+                <iframe width="100%" height="100%" src= {"https://www.youtube.com/embed/"+ trailerPath}>
+                </iframe>
+            );
+        }
     }
     return (
         <div className = {classes.Trailer}>

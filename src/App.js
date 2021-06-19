@@ -1,17 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'; 
 
-import SignUp from './components/Authentication/SignUp/SignUp';
-import SignIn from './components/Authentication/SignIn/SignIn';
+import Spinner from './components/UI/Spinner/Spinner';
 import MainContent from './containers/MainContent/MainContent';
-import Movie from './containers/Movie/Movie';
 import TrendingPage from './containers/TrendingPage/TrendingPage';
 import Layout from './hoc/Layout/Layout';
-import Logout from './components/Authentication/Logout/Logout';
 import * as actions from './store/actions/index';
-import Profile from './containers/Profile/Profile';
-import WatchListPage from './containers/WatchListPage/WatchListPage';
+
+const SignUp = React.lazy(() => {
+  return import('./components/Authentication/SignUp');
+}) 
+
+const SignIn = React.lazy(() => {
+  return import('./components/Authentication/SignIn');
+}) 
+const Movie = React.lazy(() => {
+  return import('./containers/Movie/Movie');
+}) 
+const Profile = React.lazy(() => {
+  return import('./containers/Profile/Profile');
+}) 
+const WatchListPage = React.lazy(() => {
+  return import('./containers/WatchListPage/WatchListPage');
+}) 
 
 const App = props => {
   const { onAutoSignIn } = props;
@@ -21,9 +33,9 @@ const App = props => {
 
   let routes = (
     <Switch>
-      <Route path = '/signup' exact component={SignUp} />
-      <Route path = '/signin' exact component={SignIn} />
-      <Route path = '/movies/:id' component={Movie}/>
+      <Route path = '/signup' exact render={props => <SignUp {...props} />} />
+      <Route path = '/signin' exact render={props => <SignIn {...props} />} />
+      <Route path = '/movies/:id' render={props => <Movie {...props}  />}/>
       <Route path = '/trending' component={TrendingPage}/>
       <Route path = '/' component={MainContent} />
       <Redirect to ='/' />
@@ -32,12 +44,11 @@ const App = props => {
   if(props.isAuthenticated){
     routes = (
       <Switch>
-        <Route path = '/watchlist' component={WatchListPage} />
-        <Route path = '/profile' component={Profile} />
-        <Route path = '/logout' component={Logout} />
-        <Route path = '/movies/:id' component={Movie}/>
+        <Route path = '/watchlist' render={props => <WatchListPage {...props} />} />
+        <Route path = '/profile' render={proSps => <Profile {...props} />}/>
+        <Route path = '/movies/:id' render={props => <Movie {...props}/> } />
         <Route path = '/trending' component={TrendingPage}/>
-        <Route path = '/' exact component={MainContent} />
+        <Route path = '/' exact component={MainContent} />S
       <Redirect to ='/' />
       </Switch>
     )
@@ -45,7 +56,9 @@ const App = props => {
   return (
     <div>
       <Layout>
-        {routes}
+        <Suspense fallback = {<Spinner />}>
+          {routes}
+        </Suspense>
       </Layout>
     </div>
       

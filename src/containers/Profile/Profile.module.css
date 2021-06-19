@@ -21,10 +21,11 @@
 .Profile .EditButton{
     width: 200px;
     height: 200px;
+    transition: 0.3s
 }
 
 .Profile .EditButtonInactive{
-    color: black;
+    color: var(--color3);
 }
 
 .Profile .EditButtonInactive:hover{
@@ -36,7 +37,7 @@
 }
 
 .Profile .EditButtonActive:hover{
-    color: black;
+    color: var(--color3);
 }
 
 .Profile .GotoWLContainer{

@@ -6,6 +6,7 @@ import * as actions from '../../store/actions/index';
 import Items from './Items/Items';
 import Spinner from '../UI/Spinner/Spinner'
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
 
@@ -17,18 +18,28 @@ const UpcomingMovies = props => {
         onFetchUpcomingMovies();
     }, [onFetchUpcomingMovies])
 
+    const options = {
+        type: 'loop',
+        speed: '500',
+        rewind: true,
+        classes: {arrows: classes.arrows},
+        fixedWidth: '100vw',
+        perPage: 1
+    };
+
     let upcomingMoviesList = <CircularProgress className={classes.Spinner} />
     if(!props.isloading){
         upcomingMoviesList = props.fetchedUpcomingMovies.map((movie) => {
             return (
-                <Items
-                    key={movie.id}
-                    id = {movie.id}
-                    clicked = {props.clicked}
-                    movie = {movie}
-                    poster = {imgPath + 'w' + imgWidth + movie.posterPath}
-                    title = {movie.title}>
-                </Items>
+                <SplideSlide key={movie.id}>
+                    <Items
+                        id = {movie.id}
+                        clicked = {props.clicked}
+                        movie = {movie}
+                        poster = {movie.posterPath ? imgPath + 'w' + imgWidth + movie.posterPath : ''}
+                        title = {movie.title}>
+                    </Items>
+                </SplideSlide>
             )
         })
     }
@@ -39,8 +50,15 @@ const UpcomingMovies = props => {
             {
                 props.isError 
                 ? <p className={classes.Error}>Could not load Upcoming Movies</p>
-                : <div className={classes.UpcomingMovies}>
-                    {upcomingMoviesList}
+                : <div>
+                    <div className={classes.UpcomingMovies}>
+                        {upcomingMoviesList}
+                    </div>
+                    <div className={classes.UpcomingMoviesMobile}>
+                        <Splide options = {options}>
+                            {upcomingMoviesList}
+                        </Splide>
+                    </div>
                 </div>
             }
         </div>
