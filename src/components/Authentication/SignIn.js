@@ -7,9 +7,9 @@ import CloseIcon from '@material-ui/icons/Close';
 import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
 import Modal from '../UI/Modal/Modal';
-import Backdrop from '../UI/Backdrop/Backdrop';
 import * as actions from '../../store/actions/index';
 import { checkValidity, updateObject } from '../../shared/ultility';
+import ikiru from '../../assets/ikiru.jpg';
 
 const SignIn = ({error, isLoading, onAuth, history, modalClosed}) => {
     const [email, setEmail] = useState({
@@ -77,50 +77,56 @@ const SignIn = ({error, isLoading, onAuth, history, modalClosed}) => {
     }
 
     return (
-        <div style={{height:"100vh"}}>
-            <Backdrop show={true} clicked={modalClosed}/>
-            <form className = {classes.Auth} onSubmit = {submitHandler}>
-                <Modal 
-                    show={showModal} 
-                    modalType="Success">
-                    <p>You logged in!</p>
-                </Modal>
-                <Modal 
-                    show={showError} 
-                    modalType="Error" 
-                    modalClosed={hideError}>
-                    <p>Signed In Failed</p>
-                </Modal>
-                <div className = {classes.AuthBox}>
-                    <div className={classes.CloseContainer}>
-                        <CloseIcon className={classes.Close} onClick={closeSignUp}/>
+            <div className={classes.AuthContainer}>           
+                <form className = {classes.Auth} onSubmit = {submitHandler}>
+                    <Modal 
+                        show={showModal} 
+                        modalType="Success">
+                        <p>You logged in!</p>
+                    </Modal>
+                    <Modal 
+                        show={showError} 
+                        modalType="Error" 
+                        modalClosed={hideError}>
+                        <p>Signed In Failed</p>
+                    </Modal>
+                    <div className = {classes.AuthBox}>
+                        <div className={classes.CloseContainer}>
+                            <CloseIcon className={classes.Close} onClick={closeSignUp}/>
+                        </div>
+                        <h1>Login</h1>
+                        <Input 
+                            label = "Username:"
+                            elementType = "input"
+                            elementConfig = {{type: "text", placeholder: "Example: abc@gmail.com,..."}}
+                            value = {email.value}
+                            invalid = {!email.isValid}
+                            shouldValidate
+                            touched = {email.touched}
+                            changed = {event => onChangeHandler(event, email, setEmail)}
+                        />
+                        <Input 
+                            label = "Password:"
+                            elementType = "input"
+                            elementConfig = {{type: "password", placeholder: "Password"}}
+                            value = {password.value}
+                            invalid = {!password.isValid}
+                            shouldValidate
+                            touched = {password.touched}
+                            changed = {event => onChangeHandler(event, password, setPassword)}
+                        />
+                        <Button btnType="Success" disabled={!canSubmitForm}>SIGN IN</Button>
+                        <p className={classes.AuthQuote}>Don't have an account yet? <Link to="/signup">Sign Up</Link></p>
                     </div>
-                    <Input 
-                        label = "Username"
-                        elementType = "input"
-                        elementConfig = {{type: "text", placeholder: "Example: abc@gmail.com,..."}}
-                        value = {email.value}
-                        invalid = {!email.isValid}
-                        shouldValidate
-                        touched = {email.touched}
-                        changed = {event => onChangeHandler(event, email, setEmail)}
-                    />
-                    <Input 
-                        label = "Password"
-                        elementType = "input"
-                        elementConfig = {{type: "password", placeholder: "Password"}}
-                        value = {password.value}
-                        invalid = {!password.isValid}
-                        shouldValidate
-                        touched = {password.touched}
-                        changed = {event => onChangeHandler(event, password, setPassword)}
-                    />
-                    <Button btnType="Success" disabled={!canSubmitForm}>SIGN IN</Button>
-                    <p className={classes.AuthQuote}>Don't have an account yet? <Link to="/signup">Sign Up</Link></p>
+                </form>
+                <div className={classes.ikiru}>
+                    <div className={classes.Welcome}>
+                            <p>WELCOME TO</p>
+                            <p>CINEMA LOVERS</p>
+                    </div>
+                    <img className={classes.Wallpaper} src={ikiru} alt="ikiru 1952" />
                 </div>
-            </form>
-        </div>
-        
+            </div>
     )
 }
 

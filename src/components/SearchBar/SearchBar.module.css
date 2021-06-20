@@ -26,7 +26,7 @@
     color: rgb(102, 100, 100);
     padding: 0 40px;
     border: 1px solid var(--colordark);
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .SearchBar .CustomSearchBar:focus{

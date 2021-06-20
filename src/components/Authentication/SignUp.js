@@ -7,9 +7,9 @@ import CloseIcon from '@material-ui/icons/Close';
 import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
 import Modal from '../UI/Modal/Modal';
-import Backdrop from '../UI/Backdrop/Backdrop';
 import * as actions from '../../store/actions/index';
 import { checkValidity, updateObject } from '../../shared/ultility';
+import ikiru from '../../assets/ikiru.jpg';
 
 const SignUp = ({error, isLoading, onAuth, history, modalClosed}) => {
     const [firstName, setFirstName] = useState({
@@ -98,29 +98,25 @@ const SignUp = ({error, isLoading, onAuth, history, modalClosed}) => {
     }
 
     return (
-        <div style={{height:"100vh"}}>
-            <Backdrop show={true} clicked={modalClosed}/>
+        <div className={classes.AuthContainer}>
             <form className = {classes.Auth} onSubmit={submitHandler}>
                 <Modal 
                     show={showModal} 
                     modalType="Success" 
-                    modalClosed={closeSignUp}
-                    width="20%"
-                    height="20%">
+                    modalClosed={closeSignUp}>
                     <p>Signed Up Successful</p>
                 </Modal>
                 <Modal 
                     show={showError} 
                     modalType="Error" 
-                    modalClosed={hideError}
-                    width="20%"
-                    height="20%">
+                    modalClosed={hideError}>
                     <p>Signed Up Failed</p>
                 </Modal>
                 <div className = {classes.AuthBox}>
                     <div className={classes.CloseContainer}>
                         <CloseIcon className={classes.Close} onClick={closeSignUp}/>
                     </div>
+                    <h2>Create an account</h2>
                     <Input 
                         label = "First Name"
                         elementType ="input"
@@ -165,6 +161,13 @@ const SignUp = ({error, isLoading, onAuth, history, modalClosed}) => {
                     <p className={classes.AuthQuote}>Already had an account? <Link to="/signin">Sign In Now</Link></p>
                 </div>
             </form>
+            <div className={classes.ikiru}>
+                    <div className={classes.Welcome}>
+                            <p>WELCOME TO</p>
+                            <p>CINEMA LOVERS</p>
+                    </div>
+                    <img className={classes.Wallpaper} src={ikiru} alt="ikiru 1952" />
+                </div>
         </div>
     )
 }

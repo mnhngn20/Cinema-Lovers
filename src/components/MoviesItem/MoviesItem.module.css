@@ -45,7 +45,7 @@
     position: absolute;
     z-index: 2;
     color: white;
-    transition: 0.3s
+    transition: 0.3s ease-in;
 }
 
 .Items .PlayTrailerButton:hover{
@@ -124,7 +124,7 @@
 .Items .FButton{
     width: 100%;
     height: 60px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .Items .AddBtn{
