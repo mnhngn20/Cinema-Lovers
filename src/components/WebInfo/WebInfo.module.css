@@ -16,22 +16,24 @@
 }
 
 .Webinfo p {
-    font-size: 20px;
+    font-size: 15px;
     text-align: center;
     font-weight: bold;
     color: var(--textcolor);
-    letter-spacing: 2px;
 }
 
 .ContacIcons{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 50%;
     align-items: center;
 }
 
 .icons{
+    height: 30px !important;
+    width: 30px !important;
     color: var(--textcolor);
+    margin: auto 5px;
 }
 
 .icons:hover{
