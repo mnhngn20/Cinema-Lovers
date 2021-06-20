@@ -8,6 +8,7 @@
     z-index: 90;
     background-color: var(--colordark);
     opacity: 1 !important;
+    border-radius: 10px;
 }
 
 .SearchDropDownItems::-webkit-scrollbar-track

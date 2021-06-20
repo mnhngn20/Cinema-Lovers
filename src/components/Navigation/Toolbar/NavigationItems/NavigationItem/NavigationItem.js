@@ -8,15 +8,20 @@ const NavigationItem = ({clicked, link, children, title, exact, logout}) => {
     return (
         <li className={classes.NavigationItem} onClick={clicked ? clicked : logout}>
             <NavLink 
-                activeClassName={link ? classes.Active : null}
+                // activeClassName={link ? classes.Active : null}
                 to = {link ? link : ''}
                 exact={exact}>
-                    <Tooltip title={title} placement='bottom'>
-                        <div className={classes.NavItem}>
+                    {title 
+                        ?<Tooltip title={title} placement='bottom'>
+                            <div className={classes.NavItem}>
+                                <p>{children}</p>
+                                <p className={classes.NavItemTitle}>{title}</p>
+                            </div>
+                        </Tooltip>
+                        :<div className={classes.NavItem}>
                             <p>{children}</p>
                             <p className={classes.NavItemTitle}>{title}</p>
-                        </div>
-                    </Tooltip>
+                        </div>}
             </NavLink>
         </li>
     )

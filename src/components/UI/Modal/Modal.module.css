@@ -18,7 +18,7 @@
 }
 
 .modalHide{
-    transform: translateY(-100vh);
+    transform: translateY(-1000vh);
 }
 
 .Error{

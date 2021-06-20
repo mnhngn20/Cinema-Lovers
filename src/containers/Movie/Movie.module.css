@@ -61,7 +61,7 @@
     display: none;
 }
 
-@media(max-width: 400px){  
+@media(max-width: 1100px){  
     .MovieContainer .BackdropContainer{
         width: 100%;
         height: fit-content;
@@ -75,7 +75,7 @@
     
     .MovieContainer .BackGround{
         width: 100vw;
-        height: 200vh;
+        height: 100vh;
         left: 0;
         transform: translateX(0);
         top: 0;

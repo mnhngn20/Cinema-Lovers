@@ -93,7 +93,7 @@
     display: none;
 }
 
-@media(max-width: 400px){ 
+@media(max-width: 1100px){ 
     .MovieInfo{
         position: relative;
         display: flex;
@@ -113,6 +113,12 @@
     .Info1{
         height: fit-content;
         width: 90%;
+
+    }
+    
+    .Info1 p{
+        font-size: 17px;
+        letter-spacing: 0.5px;
     }
 
     .Info2{
@@ -129,7 +135,8 @@
         text-align: center;
     }
     .Title{
-        font-size: 25px;
+        font-size: 30px;
+        letter-spacing: 0.5px;
     }
     .MobileOnly{
         width: 80%;
@@ -137,5 +144,13 @@
         justify-content: space-between;
         align-items: center;
     }
-
+    .OverView{
+        font-size: 18px;
+        line-height: 25px;
+        letter-spacing: 0.5px;
+    }
+    .Genres .Chip{
+        height: 30px;
+        font-size: 15px;
+    }
 }

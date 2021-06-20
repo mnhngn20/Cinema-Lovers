@@ -52,6 +52,7 @@ const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, 
                         {movie.title}
                     </Link>
                 </div>
+                <p className={classes.ReleaseDate}>Release Date: {movie.releaseDay}</p>
                 <p className={classes.GenresText}>{genresText}</p>
                 <p className={classes.OverView}>{movie.overView}</p>
                 <div className={classes.Genres}>

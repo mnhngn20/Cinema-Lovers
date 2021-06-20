@@ -3,7 +3,6 @@
     height: 90px;
     width: auto;
     justify-content: space-between;
-    border-radius: 10px 0px 0px 10px;
 }
 
 .SearchDropDownItem:hover{
@@ -12,9 +11,8 @@
 
 .SearchDropDownItem img{
     height: 100%;
-    width: auto;
+    width: 70px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.5);
-    border-radius:10px;
     z-index: 2;
 }
 

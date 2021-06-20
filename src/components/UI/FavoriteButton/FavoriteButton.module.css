@@ -47,7 +47,15 @@
 }
 
 @media (max-width: 600px) and (min-width: 400px){
-
+    .MovieItemType{
+        width: 50px !important;
+        height: 50px !important;
+    }
+    .Spinner{
+        width: 10px !important;
+        height: 10px !important;
+        color: black;
+    }
 }
 
 @media (max-width: 399px){

@@ -12,12 +12,12 @@ const imgPath = 'https://image.tmdb.org/t/p/';
 const imgWidth = 300;
 const options = {
     type: 'loop',
-    autoplay: true,
+    autoplay: false,
     interval: '3000',
-    speed: '1000',
+    speed: '500',
     pauseOnHover: true,
     rewind: true,
-    classes: {arrows: classes.arrows} 
+    classes: {arrows: classes.arrows, pagination: classes.pagination} 
 };
 
 const TrendingMovies = ({onFetchTrendingMovies, isloading, isError, fetchedTrendingMovies, clicked}) => {

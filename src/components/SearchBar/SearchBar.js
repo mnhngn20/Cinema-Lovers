@@ -34,7 +34,7 @@ const SearchBar = props => {
                 value = {searchInput}
                 className={classes.CustomSearchBar} 
                 type = 'text' 
-                placeholder="Search..." />
+                placeholder="" />
             {query !== ''? <div className={classes.Items}>
                 <SearchDropDownItems  query={query} />
             </div> : null}

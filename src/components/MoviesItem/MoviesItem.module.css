@@ -1,28 +1,32 @@
 .Items {
-    height: 420px;
-    width:  700px;
+    height: 500px;
+    width:  1200px;
     margin: 0 auto;
     margin-bottom: 40px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.5);
     background-color: var(--colorlight);
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    border-radius: 10px;
 }
 
 .Items .Poster {
-    height: auto;
+    height: 100%;
     width: 100%;
-    transition: 0.3s
-
+    transition: 0.3s;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .Items .BtnPosterContainer{
-    width: 40%;
+    width: fit-content;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .BtnPosterContainer:hover .PlayTrailerButton{
@@ -49,12 +53,13 @@
 }
 
 .Items .MovieInfos {
-    width: 50%;
+    width: 70%;
     margin-right: 25px;
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
 }
 
 .Items .MovieInfos .Title {
@@ -101,9 +106,10 @@
 
 .Items .MovieInfos .Genres{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     min-height: 70px;
+    width: 100%;
 }
 
 .Items .MovieInfos .Genres .Chip{
@@ -119,13 +125,6 @@
     width: 100%;
     height: 60px;
     margin-bottom: 10px;
-}
-
-.Items .FavoriteButton{
-    width: 60px;
-    height: 60px;
-    float: right;
-    transition: 0.3s
 }
 
 .Items .AddBtn{
@@ -152,9 +151,14 @@
     display: none;
 }
 
+.ReleaseDate{
+    width: 100%;
+    font-weight: 700;
+}
+
 @media (max-width: 399px){
     .Items {
-        height: fit-content;
+        height: 250px;
         width: 98%
     }
     
@@ -206,12 +210,16 @@
     .GenresText{
         display: block;
     }
+    .ReleaseDate{
+        display: none;
+    }
 }
 
 @media (max-width: 600px) and (min-width: 400px){
     .Items {
-        height: fit-content;
-        width: 90%
+        height: 300px;
+        width: 90%;
+        justify-content: space-between;
     }
     
     .Items .Poster {
@@ -228,7 +236,7 @@
     
     .Items .MovieInfos {
         width: 60%;
-        margin: 5px 10px;
+        margin: 0px 10px;
     }
     
     .Items .MovieInfos .Title {
@@ -249,8 +257,28 @@
     
     .Items .FButton{
         height: 30px;
+        margin-bottom: 0px;
     }
     .GenresText{
         display: block;
+    }
+    .ReleaseDate{
+        display: none;
+    }
+}
+
+@media(min-width: 401px) and (max-width: 1100px){
+    .Items{
+        width: 95%;
+    }
+    .Items .MovieInfos{
+        width: 57%;
+        justify-content: space-evenly;
+
+    }
+    .Items .FButton{
+        width: 100%;
+        height: 30px;
+        margin-bottom: 50px;
     }
 }
