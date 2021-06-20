@@ -2,6 +2,7 @@
     width: 250px;
     height: auto;
     display: block;
+    margin: 0px 10px;
 }
 
 .Container{
@@ -11,17 +12,15 @@
     display: flex;
     justify-content: center;
     background-color: rgb(54, 54, 54);
-    margin: 20px 20px;
+    margin: 20px auto;
     border-radius: 10px;
 }
 
 .Container .Poster{
     height: auto;
-    width: 230px;
+    width: 250px;
     border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.5);
-    margin-left: auto;
-    margin-right: auto;
     opacity: 1;
     animation: onHover 1s ease-out;
     transition: 0.3s
@@ -134,9 +133,10 @@
 
 .Genres{ 
     display: flex;
+    width: 100%;
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin: 0px 20px;
+    margin: 0 auto;
 }
 
 .Genres .Chip{
@@ -163,12 +163,12 @@
     margin-right: 10px;
 }
 
-@media (max-width: 1100px){
+@media (max-width: 700px){
     .Single{
         margin: 10px auto
     }
     .Container{
-        margin: 0px auto;
+        margin: 20px auto;
     }
     .Container .OverView{
         margin: 10px auto;

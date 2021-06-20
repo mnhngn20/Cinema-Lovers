@@ -6,17 +6,19 @@
 }
 
 .StarIcon{
-    color: var(--colorlight);
     width: 40px !important;
     height: 40px !important;
 }
 .VoteA{
     margin: 0px 0px;
+    font-weight: 700;
 }
 .VoteA10{
     color: rgb(156, 153, 153);
+    font-weight: 700;
 }
 .VoteC{
     color:rgb(156, 153, 153);
     margin: 2px 0px;
+    font-weight: 700;
 }

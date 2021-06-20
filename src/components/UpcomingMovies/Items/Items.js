@@ -42,7 +42,6 @@ const Items = ({watchList, movie, isAuthenticated, userId, fetchWatchList, poste
                                 : () => addToWatchList(userId, movie, setIsLoading, fetchWatchList)}
                             type="ItemType"/>
                     </div>
-                    
                 </div>
                 <img className={classes.Poster} src={poster !== '' ? poster : blankImg} alt="img"/>
             </div>

@@ -11,7 +11,6 @@ import Backdrop from '../UI/Backdrop/Backdrop';
 import * as actions from '../../store/actions/index';
 import { checkValidity, updateObject } from '../../shared/ultility';
 
-
 const SignUp = ({error, isLoading, onAuth, history, modalClosed}) => {
     const [firstName, setFirstName] = useState({
         value:'', 

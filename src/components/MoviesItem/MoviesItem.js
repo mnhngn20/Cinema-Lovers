@@ -8,7 +8,7 @@ import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteButton from '../UI/FavoriteButton/FavoriteButton';
 import * as actions from '../../store/actions/index';
 import { checkIsInWatchList, getGenre, addToWatchList, removeFromWatchList } from '../../shared/ultility';
-
+import Score from '../UI/Score/Score';
 const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, clicked, poster}) => {
     const [isInWatchList, setIsInWatchList] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -51,6 +51,9 @@ const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, 
                         to = {`/movies/${movie.id}`}>
                         {movie.title}
                     </Link>
+                </div>
+                <div className={classes.Score}>
+                    <Score type="black" voteAverage={movie.voteAverage} voteCount={movie.voteCount}/>
                 </div>
                 <p className={classes.ReleaseDate}>Release Date: {movie.releaseDay}</p>
                 <p className={classes.GenresText}>{genresText}</p>

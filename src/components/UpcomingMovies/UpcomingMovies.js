@@ -23,7 +23,7 @@ const UpcomingMovies = ({onFetchUpcomingMovies, isError, fetchedUpcomingMovies, 
         rewind: true,
         classes: {arrows: classes.arrows},
         fixedWidth: '100vw',
-        perPage: 1
+        perPage: 3
     };
 
     let upcomingMoviesList = <CircularProgress className={classes.Spinner} />
