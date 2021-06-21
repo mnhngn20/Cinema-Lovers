@@ -1,4 +1,5 @@
 .UserProfile{
+    position: relative;
     background-color: var(--colorlight);
     width: 50%;
     height: fit-content;
@@ -50,6 +51,22 @@
 
 .GotoWLContainer .GotoWL:hover{
     color: var(--color1)
+}
+.SetAvatarContainer{
+    width: 200px !important;
+    position: absolute;
+    top: 170px;
+}
+.SetAvatar{
+    width: 30px !important;
+    height: 30px !important;
+    float: right;
+    color: var(--color3)
+}
+
+.SetAvatar:hover{
+    background-color: rgb(218, 213, 213);
+    border-radius: 5px;
 }
 
 @media(max-width: 600px) {

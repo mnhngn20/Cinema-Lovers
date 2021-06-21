@@ -8,10 +8,9 @@ import Button from '../../../components/UI/Button/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import * as actions from '../../../store/actions/index';
-import FilePicker from '../../../components/FilePicker/FilePicker';
+import CameraAltIcon from '@material-ui/icons/CameraAlt';
 
-
-const Inputs = ({userData, onFetchProfile, onUpdateUserData, isLoading, isInEditMode, switchMode, setEditSuccess}) => {
+const Inputs = ({setAvatar, userData, onFetchProfile, onUpdateUserData, isLoading, isInEditMode, switchMode, setEditSuccess}) => {
     const [canSubmitForm, setCanSubmitForm] = useState(false);
     const [fName, setFName] = useState({
         value: isLoading ? 'Loading...' : userData.firstName, 
@@ -112,6 +111,7 @@ const Inputs = ({userData, onFetchProfile, onUpdateUserData, isLoading, isInEdit
     }
     return (
         <form className={classes.UserProfile} onSubmit={(event) => updateProfile(event, fName.value, lName.value, bDay.value, description.value)}>
+            <div className={classes.SetAvatarContainer}><CameraAltIcon className={classes.SetAvatar} onClick={() => setAvatar(true)}/></div>
             <Tooltip title={isInEditMode ? 'Turn off edit' : 'Click here to Edit Your Profile'} placement='top'>
                 <AccountCircleIcon 
                     className={
@@ -120,7 +120,6 @@ const Inputs = ({userData, onFetchProfile, onUpdateUserData, isLoading, isInEdit
                         : [classes.EditButton, classes.EditButtonInactive].join(' ')
                     } 
                     onClick={switchMode}/>
-                <FilePicker />
             </Tooltip>
             <Input 
                 label = "First Name:"

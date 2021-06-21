@@ -39,6 +39,13 @@
     height: 600px;
 }
 
+.Avatar{
+    margin: -200px 0 0 -300px;
+    height: 400px;
+    width: 600px;
+    border-radius: 0px;
+}
+
 .Modal p{
     color: var(--colordark);
     font: inherit;
@@ -85,6 +92,12 @@
         width: 40px !important;
         height: 40px !important;
     }
+
+    .Avatar{
+        margin: -50vh 0 0 -50vw;
+        width: 100vw;
+        height: 100vh;
+    }
 }
 
 @media (max-width: 1350px) and (min-width:601px){
@@ -113,5 +126,10 @@
     .ErrorIcon{
         width: 40px !important;
         height: 40px !important;
+    }
+    .Avatar{
+        margin: -50vh 0 0 -50vw;
+        width: 100vw;
+        height: 100vh;
     }
 }
