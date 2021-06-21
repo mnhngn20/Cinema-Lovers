@@ -32,7 +32,7 @@ const NavigationItems = ({isAuthenticated, clicked, logout}) => {
 
 const mapState = state => {
     return {
-        isAuthenticated: state.authState.token !== null
+        isAuthenticated: state.authState.isAuth
     }
 }
 

@@ -25,6 +25,12 @@
     color: var(--colordark);
 }
 
+.Textarea{
+    height: 200px;
+    overflow-y: auto;
+
+}
+
 .InputElement:focus{
     outline: none;
     box-shadow: 0 1px 3px var(--color1);

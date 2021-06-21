@@ -68,10 +68,20 @@ export const auth = (username, password, isSignUp, userData) => {
 
 export const autoSignIn = () => {
     return dispatch => {
-        if(localStorage.getItem('token')){
-            dispatch(authSuccess(localStorage.getItem('token'), localStorage.getItem('userId')));
-            dispatch(fetchUserProfile());
-            dispatch(fetchWatchList(localStorage.getItem('userId')));
+        if(localStorage.getItem('userId') && localStorage.getItem('token')){
+            axios.get('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData.json')
+            .then(res => {
+                for(let id in res.data){
+                    if (id === localStorage.getItem('userId')) {
+                        dispatch(authSuccess(localStorage.getItem('token'), localStorage.getItem('userId')));
+                        dispatch(fetchUserProfile());
+                        dispatch(fetchWatchList(localStorage.getItem('userId')));
+                    }
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
         }
     }
 }

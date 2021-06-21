@@ -7,7 +7,7 @@ import Chip from '@material-ui/core/Chip';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteButton from '../UI/FavoriteButton/FavoriteButton';
 import * as actions from '../../store/actions/index';
-import { checkIsInWatchList, getGenre, addToWatchList, removeFromWatchList } from '../../shared/ultility';
+import { checkIsInWatchList, getGenre, addToWatchList, removeFromWatchList} from '../../shared/ultility';
 import Score from '../UI/Score/Score';
 const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, clicked, poster}) => {
     const [isInWatchList, setIsInWatchList] = useState(false);
@@ -72,7 +72,7 @@ const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, 
 const mapStateToProps = state => ({
     userId: state.authState.userId,
     watchList: state.watchListState.watchList,
-    isAuthenticated: state.authState.token != null
+    isAuthenticated: state.authState.isAuth
 })
 
 const mapDispatchToProps = dispatch => ({

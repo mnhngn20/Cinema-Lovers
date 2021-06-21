@@ -127,7 +127,7 @@
     }
     .Auth{
         width: 90%;
-        height: 400px;
+        height: fit-content;
     }
     .Auth .AuthBox{
         border-radius: 10px;

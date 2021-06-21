@@ -22,11 +22,13 @@ const Input = ({invalid, shouldValidate, touched, elementType, elementConfig, va
                 />
             break;
         case ('textarea'):
+            inputClasses.push(classes.Textarea);
             inputElement = <textarea 
                 className={inputClasses.join(' ')} 
                 {...elementConfig} 
                 value={value}
-                onChange={changed}/>
+                onChange={changed}
+                disabled = {disabled}/>
             break;
         case ('select'):
             inputElement = <select 

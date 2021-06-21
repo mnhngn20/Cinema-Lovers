@@ -8,7 +8,7 @@ import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import Tooltip from '@material-ui/core/Tooltip';
 import FavoriteButton from '../../UI/FavoriteButton/FavoriteButton';
 import * as actions from '../../../store/actions/index';
-import { checkIsInWatchList, getGenre, addToWatchList, removeFromWatchList } from '../../../shared/ultility';
+import { checkIsInWatchList, getGenre, addToWatchList, removeFromWatchList} from '../../../shared/ultility';
 import blankImg from '../../../assets/imageErrorPoster.jpg';
 
 const Items = ({watchList, movie, isAuthenticated, userId, fetchWatchList, poster, clicked}) => {
@@ -62,7 +62,7 @@ const mapState = state => {
     return {
         userId: state.authState.userId,
         watchList: state.watchListState.watchList,
-        isAuthenticated: state.authState.token != null
+        isAuthenticated: state.authState.isAuth
     }
 }
 

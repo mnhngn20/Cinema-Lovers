@@ -5,7 +5,7 @@ import axios from '../../axios-movies';
 import classes from './Movie.module.css'
 import Modal from '../../components/UI/Modal/Modal';
 import Trailer from '../../components/Trailer/Trailer';
-import { checkIsInWatchList, addToWatchList, removeFromWatchList, showTrailer } from '../../shared/ultility';
+import { checkIsInWatchList, addToWatchList, removeFromWatchList, showTrailer} from '../../shared/ultility';
 import * as actions from '../../store/actions/index';
 import imageError from '../../assets/imageError.jpg'
 import FavoriteButton from '../../components/UI/FavoriteButton/FavoriteButton';
@@ -100,7 +100,7 @@ const mapStateToProps = state => {
     return {
         userId: state.authState.userId,
         watchList: state.watchListState.watchList,
-        isAuthenticated: state.authState.token !== null
+        isAuthenticated: state.authState.isAuth
     }
 }
 

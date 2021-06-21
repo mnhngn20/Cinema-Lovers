@@ -6,7 +6,8 @@ const initialState = {
     userId: null,
     error: null,
     token: null,
-    userData: null
+    userData: null,
+    isAuth: false
 }
 
 const authStart = (state, action) => {
@@ -20,7 +21,8 @@ const authSuccess = (state, action) => {
         userId: action.userId,
         error: null,
         token: action.token,
-        loading: false
+        loading: false,
+        isAuth: true
     });
 }
 

@@ -8,9 +8,9 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    transition: transform 0.3s ease-out;
+    transition: transform 1s ease-out;
     box-shadow: 0px 3px 6px rgba(0,0,0,0.5);
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .modalShow{
@@ -22,21 +22,21 @@
 }
 
 .Error{
-    margin: -5% 0 0 -10%;
-    width: 20%;
-    height: 20%;
+    margin: -100px 0 0 -150px;
+    height: 200px;
+    width: 300px;
 }
 
 .Success{
-    margin: -5% 0 0 -10%;
-    height: 20%;
-    width: 20%;
+    margin: -100px 0 0 -150px;
+    height: 200px;
+    width: 300px;
 }
 
 .Trailer{
-    margin: -20% 0 0 -40%;
-    width: 80%;
-    height: 80%;
+    margin: -300px 0 0 -600px;
+    width: 1200px;
+    height: 600px;
 }
 
 .Modal p{
@@ -58,23 +58,52 @@
     color: #ce1212;
 }
 
-@media (max-width: 1100px){
+@media (max-width: 600px){
     .Error{
-        margin: -5% 0 0 -10%;
-        width: 40%;
-        height: 20%;
+        margin: -75px 0 0 -100px;
+        width: 200px;
+        height: 150px;
     }
     
     .Success{
-        margin: -20% 0 0 -20%;
-        width: 40%;
-        height: 20%;
+        margin: -75px 0 0 -100px;
+        width: 200px;
+        height: 150px;
     }
     
     .Trailer{
-        margin: -40% 0 0 -48%;
-        width: 96%;
-        height: 40%;
+        margin: -18vh 0 0 -45vw;
+        width: 90vw;
+        height: 36vh;
+    }
+    .SuccessIcon{
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .ErrorIcon{
+        width: 40px !important;
+        height: 40px !important;
+    }
+}
+
+@media (max-width: 1350px) and (min-width:601px){
+    .Error{
+        margin: -75px 0 0 -100px;
+        width: 200px;
+        height: 150px;
+    }
+    
+    .Success{
+        margin: -75px 0 0 -100px;
+        width: 200px;
+        height: 150px;
+    }
+    
+    .Trailer{
+        margin: -30vh 0 0 -45vw;
+        width: 90vw;
+        height: 60vh;
     }
     .SuccessIcon{
         width: 40px !important;

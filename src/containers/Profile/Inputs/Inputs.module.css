@@ -1,0 +1,59 @@
+.UserProfile{
+    background-color: var(--colorlight);
+    width: 50%;
+    height: fit-content;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.EditButton{
+    width: 200px;
+    height: 200px;
+    transition: 0.3s
+}
+
+.EditButtonInactive{
+    color: var(--color3);
+}
+
+.EditButtonInactive:hover{
+    color: var(--colordark);
+}
+
+.EditButtonActive{
+    color: var(--colordark);
+}
+
+.EditButtonActive:hover{
+    color: var(--color3);
+}
+
+.GotoWLContainer{
+    width: 100%;
+}
+
+.GotoWLContainer .GotoWL{
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    outline: none;
+    color: var(--colordark);
+    font-size: 16px;
+}
+
+.GotoWLContainer .GotoWL:hover{
+    color: var(--color1)
+}
+
+@media(max-width: 600px) {
+    .UserProfile{
+        width: 90%;
+    }
+}
