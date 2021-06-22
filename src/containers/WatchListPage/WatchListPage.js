@@ -23,8 +23,10 @@ const WatchListPage = props => {
     let watchList = <div className={classes.spinner}><Spinner /></div>
     if(!props.loading && props.watchList){
         watchList = props.watchList.map(movie => {
+            console.log(movie)
             return (
                 <MoviesItem
+                    watched = {movie.watched}
                     clicked = {(movieId) => showTrailer(movieId, setShowingTrailer, setTrailerPath)}
                     movie = {movie}
                     poster = {imgPath + 'w' + imgWidth + movie.posterPath}
@@ -42,6 +44,7 @@ const WatchListPage = props => {
                         <Trailer trailerPath = {trailerPath}/>
                 </Modal>
             </div>
+            <p className={classes.headline}>Your WatchList</p>
             {watchList}
         </div>
     )
@@ -50,7 +53,8 @@ const WatchListPage = props => {
 const mapStateToProps = state => {
     return {
         watchList: state.watchListState.watchList,
-        loading: state.watchListState.loading
+        loading: state.watchListState.loading,
+        userData: state.authState.userData
     }
 }
 

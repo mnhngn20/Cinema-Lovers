@@ -18,7 +18,6 @@ const imgPath = 'https://image.tmdb.org/t/p/';
 const Movie = ({match, watchList, fetchWatchList, isAuthenticated, userId, isLoading}) => {
     const [movie, setMovie] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [aorLoading, setAorLoading] = useState(false);
     const [showingTrailer, setShowingTrailer] = useState(false);
     const [trailerPath, setTrailerPath] = useState('');
     const [isInWatchList, setIsInWatchList] = useState(false);
@@ -59,12 +58,18 @@ const Movie = ({match, watchList, fetchWatchList, isAuthenticated, userId, isLoa
         setShowingTrailer(false);
         setTrailerPath('');
     }
-
+    const refactorMovie = (movie) => {
+        const refactoredMovie = {
+            ...movie, 
+            genres: movie.genres.map((genre) => genre.id)
+        }
+        return refactoredMovie
+    }
     let addOrRemoveButton = <FavoriteButton isAuthenticated={isAuthenticated} isInWatchList={isInWatchList}
-                                toolTipPlacement="right" isLoading={aorLoading} 
+                                toolTipPlacement="right"  
                                 clicked={isInWatchList
-                                    ? () => removeFromWatchList(userId, movie.id, setAorLoading, fetchWatchList)
-                                    : () => addToWatchList(userId, {...movie, genres: movie.genres.map((genre) => genre.id)}, setAorLoading, fetchWatchList)}
+                                    ? () => removeFromWatchList(userId, movie.id, fetchWatchList)
+                                    : () => addToWatchList(userId, refactorMovie(movie), fetchWatchList)}
                                     type= "MovieType"/>
     
     return (

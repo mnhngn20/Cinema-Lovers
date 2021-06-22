@@ -1,4 +1,6 @@
 import axios from 'axios';
+import {database} from '../instance/Firebase';
+
 export const updateObject = (oldObject, updatedProperties) => {
     return {
         ...oldObject,...updatedProperties
@@ -101,29 +103,21 @@ export const getGenre = code => {
     }
     return genre;
 }
-export const addToWatchList = (userId, movie, setIsLoading, fetchWatchList) => {
+export const addToWatchList = (userId, movie, fetchWatchList) => {
     if(movie){
-        setIsLoading(true);
-        axios.post('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/'+ userId +'/WatchList/'+ movie.id +'.json', movie)
-        .then(res => { 
-            fetchWatchList(userId);
-            setIsLoading(false);
-        })
-        .catch(err => {
-            console.log(err);
+        const postMovie = {
+            ...movie, 
+            watched: 'no'
+        }
+        database.ref("UserData/"+ localStorage.getItem("userId") + "/WatchList/" + movie.id).set(postMovie).then(snapshot => {
+            fetchWatchList();
         })
     }
 }
 
-export const removeFromWatchList = (userId, movieId, setIsLoading, fetchWatchList) => {
-    setIsLoading(true);
-    axios.delete('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData/'+ userId +'/WatchList/'+ movieId +'.json')
-    .then(res => { 
+export const removeFromWatchList = (userId, movieId, fetchWatchList) => {
+    database.ref("UserData/"+ localStorage.getItem("userId") + "/WatchList/" + movieId).remove().then(snapshot => {
         fetchWatchList(userId);
-        setIsLoading(false);
-    })
-    .catch(err => {
-        console.log(err);
     })
 }
 
@@ -137,5 +131,15 @@ export const showTrailer = (movieId, setShowingTrailer, setTrailerPath) => {
     })
     .catch(err => {
         console.log(err);
+    })
+}
+
+export const updateWatchList = (movie, watched, fetchWatchList) => {
+    const postMovie = {
+        ...movie, 
+        watched: watched
+    }
+    database.ref("UserData/"+localStorage.getItem("userId") + "/WatchList/" + movie.id).set(postMovie).then(snapshot => {
+        fetchWatchList();
     })
 }

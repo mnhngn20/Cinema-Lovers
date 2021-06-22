@@ -160,7 +160,25 @@
     width: 100%;
     height: fit-content;
 }
+.no{
+    width: 70px !important;
+    height: 70px !important;
+    color: var(--colordark);
+}
 
+.no:hover{
+    opacity: 0.8;
+}
+
+.yes{
+    width: 70px !important;
+    height: 70px !important;
+    color: var(--color3);
+}
+
+.yes:hover{
+    opacity: 0.8;
+}
 @media (max-width: 399px){
     .Items {
         height: 250px;
@@ -221,6 +239,14 @@
     .Score{
         display: none;
     }
+    .no{
+        width: 30px !important;
+        height: 30px !important;
+    }
+    .yes{
+        width: 30px !important;
+        height: 30px !important;
+    }
 }
 
 @media (max-width: 600px) and (min-width: 400px){
@@ -275,6 +301,14 @@
     }
     .Score{
         display: none;
+    }
+    .no{
+        width: 50px !important;
+        height: 50px !important;
+    }
+    .yes{
+        width: 50px !important;
+        height: 50px !important;
     }
 }
 

@@ -7,21 +7,21 @@ import Chip from '@material-ui/core/Chip';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteButton from '../UI/FavoriteButton/FavoriteButton';
 import * as actions from '../../store/actions/index';
-import { checkIsInWatchList, getGenre, addToWatchList, removeFromWatchList} from '../../shared/ultility';
+import { checkIsInWatchList, getGenre, addToWatchList, removeFromWatchList, updateWatchList} from '../../shared/ultility';
 import Score from '../UI/Score/Score';
-const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, clicked, poster}) => {
-    const [isInWatchList, setIsInWatchList] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
+const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, clicked, poster, watched}) => {
+    const [isInWatchList, setIsInWatchList] = useState(false);
     useEffect(() => {
         setIsInWatchList(checkIsInWatchList(movie.id, watchList))
     }, [watchList, movie])
 
     let addOrRemoveButton =  <FavoriteButton isAuthenticated={isAuthenticated} isInWatchList={isInWatchList}
-                                toolTipPlacement="top" isLoading={isLoading} 
+                                toolTipPlacement="top" 
                                 clicked={isInWatchList
-                                    ? () => removeFromWatchList(userId, movie.id, setIsLoading, fetchWatchList)
-                                    : () => addToWatchList(userId, movie, setIsLoading, fetchWatchList)} 
+                                    ? () => removeFromWatchList(userId, movie.id, fetchWatchList)
+                                    : () => addToWatchList(userId, movie, fetchWatchList)} 
                                 type="MovieItemType"/>
 
     const genres = movie.genres.map(genre => {
@@ -62,6 +62,7 @@ const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, 
                     {genres}
                 </div>
                 <div className={classes.FButton}>
+                    {watched ? <VisibilityIcon className={classes[watched]} onClick={()=>updateWatchList(movie, watched === 'yes' ? 'no' : 'yes', fetchWatchList)} /> : null}
                     {addOrRemoveButton}
                 </div>
             </div>
@@ -77,7 +78,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     fetchWatchList: (userId)=> dispatch(actions.fetchWatchList(userId))
-
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesItem);

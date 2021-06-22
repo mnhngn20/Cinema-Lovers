@@ -13,7 +13,6 @@ import blankImg from '../../../assets/imageErrorPoster.jpg';
 
 const Items = ({watchList, movie, isAuthenticated, userId, fetchWatchList, poster, clicked}) => {
     const [isInWatchList, setIsInWatchList] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
     useEffect(()=>{
         setIsInWatchList(checkIsInWatchList(movie.id, watchList))
     }, [watchList, movie])
@@ -35,11 +34,11 @@ const Items = ({watchList, movie, isAuthenticated, userId, fetchWatchList, poste
                         <PlayCircleFilledIcon className={classes.PlayTrailerButton} onClick={() => clicked(movie.id)}/>
                     </Tooltip>
                     <div className={classes.FavContainer}>
-                        <FavoriteButton isAuthenticated={isAuthenticated} isLoading={isLoading} 
+                        <FavoriteButton isAuthenticated={isAuthenticated}
                             isInWatchList={isInWatchList} toolTipPlacement="top"
                             clicked={isInWatchList
-                                ? () => removeFromWatchList(userId, movie.id, setIsLoading, fetchWatchList)
-                                : () => addToWatchList(userId, movie, setIsLoading, fetchWatchList)}
+                                ? () => removeFromWatchList(userId, movie.id, fetchWatchList)
+                                : () => addToWatchList(userId, movie, fetchWatchList)}
                             type="ItemType"/>
                     </div>
                 </div>
