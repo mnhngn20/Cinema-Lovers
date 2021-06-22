@@ -1,6 +1,4 @@
 import axios from 'axios';
-import '../instance/Firebase';
-
 export const updateObject = (oldObject, updatedProperties) => {
     return {
         ...oldObject,...updatedProperties

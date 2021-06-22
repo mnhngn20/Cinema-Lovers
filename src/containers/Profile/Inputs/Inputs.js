@@ -9,9 +9,12 @@ import Tooltip from '@material-ui/core/Tooltip';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import * as actions from '../../../store/actions/index';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
-
-const Inputs = ({setAvatar, userData, onFetchProfile, onUpdateUserData, isLoading, isInEditMode, switchMode, setEditSuccess}) => {
+import blank from '../../../assets/blank.png';
+import { downloadImage } from '../../../shared/storage';
+const Inputs = ({userId , setAvatar, userData, onFetchProfile, onUpdateUserData, isLoading, isInEditMode, switchMode, setEditSuccess}) => {
     const [canSubmitForm, setCanSubmitForm] = useState(false);
+    const [userAvatar, setUserAvatar] = useState(false);
+    const [img, setImg] = useState(blank)
     const [fName, setFName] = useState({
         value: isLoading ? 'Loading...' : userData.firstName, 
         isValid: true, 
@@ -63,6 +66,11 @@ const Inputs = ({setAvatar, userData, onFetchProfile, onUpdateUserData, isLoadin
         setDescription(updateObject(description, {
             value: userData.description
         }))
+        if(userData.avatar){
+            setUserAvatar(userData.avatar);
+            downloadImage(userId,setImg);
+            onFetchProfile();
+        }
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
     useEffect(() => {
         if(userData){
@@ -101,6 +109,7 @@ const Inputs = ({setAvatar, userData, onFetchProfile, onUpdateUserData, isLoadin
     }
 
     const onChangeHandler = (event, typeInput, setInput) => {
+        console.log(img)
         const newInput = event.target.value;
         const updatedInput = updateObject(typeInput,{
             value: newInput,
@@ -112,7 +121,7 @@ const Inputs = ({setAvatar, userData, onFetchProfile, onUpdateUserData, isLoadin
     return (
         <form className={classes.UserProfile} onSubmit={(event) => updateProfile(event, fName.value, lName.value, bDay.value, description.value)}>
             <div className={classes.SetAvatarContainer}><CameraAltIcon className={classes.SetAvatar} onClick={() => setAvatar(true)}/></div>
-            <Tooltip title={isInEditMode ? 'Turn off edit' : 'Click here to Edit Your Profile'} placement='top'>
+            {!userAvatar ?<Tooltip title={isInEditMode ? 'Turn off edit' : 'Click here to Edit Your Profile'} placement='top'>
                 <AccountCircleIcon 
                     className={
                         isInEditMode 
@@ -121,6 +130,8 @@ const Inputs = ({setAvatar, userData, onFetchProfile, onUpdateUserData, isLoadin
                     } 
                     onClick={switchMode}/>
             </Tooltip>
+            : <div className={classes.AvatarContainer}><div className={classes.Rouneded}><img src={img} className={classes.Avatar} alt="avatar" /></div></div>
+            }
             <Input 
                 label = "First Name:"
                 elementType = "input"
@@ -178,7 +189,8 @@ const Inputs = ({setAvatar, userData, onFetchProfile, onUpdateUserData, isLoadin
 const mapStateToProps = state => ({
         isLoading: state.authState.loading,
         error: state.authState.error,
-        userData: state.authState.userData
+        userData: state.authState.userData,
+        userId: state.authState.userId
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -7,7 +7,7 @@ import CropFreeIcon from '@material-ui/icons/CropFree';
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
 
-const FilePicker = ({clicked}) => {
+const FilePicker = ({close, uploadImage}) => {
     const [img, setImg] = useState(blank);
     const [crop, setCrop] = useState(false);
     const picker = useRef();
@@ -19,10 +19,10 @@ const FilePicker = ({clicked}) => {
         var url = reader.readAsDataURL(file);
         reader.onloadend = (event) => {
             setImg(reader.result)
+            console.log(reader.result)
         }
     }
     const cropImg = useCallback(() => {
-        // image in dataUrl
         cropped.current = (cropper.current.cropper.getCroppedCanvas().toDataURL('image/jpg'))
     }, [cropper])
 
@@ -32,9 +32,9 @@ const FilePicker = ({clicked}) => {
         setImg(cropped.current)
     }
     return (
-        <div className={[classes.FilePicker, crop ? classes.IsCrop : null].join(' ')}>
-            <div className={classes.CloseContainer}>
-                <ExpandLessIcon className={classes.Close} onClick={clicked}/>
+        <div className={classes.FilePicker}>
+            <div className={classes.CloseContainer} onClick={close}>
+                <ExpandLessIcon className={classes.Close} />
             </div>
             {
                 crop ? 
@@ -54,11 +54,15 @@ const FilePicker = ({clicked}) => {
                     <img src={img} className={classes.Preview}/>
                 </div>
             }
-            {!crop ? <div>
-                    <input id="file" type="file" onChange={event => onChangeHandler(event)} ref={picker} accept="image/*"/>
-                    <label htmlFor="file">Choose a file</label>
-                </div>
-                :null}
+            {
+                crop 
+                    ? null 
+                    :<div className={classes.Buttons}>
+                        <input id="file" type="file" onChange={event => onChangeHandler(event)} ref={picker} accept="image/*"/>
+                        <label htmlFor="file">Choose a file</label>
+                        <label onClick={() => uploadImage(img)}>Done</label>
+                    </div>
+            }
         </div>
     )
 }
