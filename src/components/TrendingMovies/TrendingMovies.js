@@ -17,7 +17,9 @@ const options = {
     speed: '500',
     pauseOnHover: true,
     rewind: true,
-    classes: {arrows: classes.arrows, pagination: classes.pagination} 
+    classes: {arrows: classes.arrows, pagination: classes.pagination},
+    lazyLoad: 'nearby',
+    preloadPages: 2
 };
 
 const TrendingMovies = ({onFetchTrendingMovies, isloading, isError, fetchedTrendingMovies, clicked}) => {

@@ -28,11 +28,6 @@
     left: 50%px;
 }
 
-.pagination .is-active{
-    background: black;
-}
-
-
 @media(max-width: 400px){
     .arrows{
         display: none;
