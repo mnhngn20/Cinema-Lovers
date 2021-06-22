@@ -1,0 +1,26 @@
+.root{
+    width: 80px;
+    height: 52px;
+}
+
+.switchBase{
+    padding: 13px;
+}
+
+.track{
+    border-radius: 50px;
+}
+
+.switchBase.checked{
+    transform: translateX(29px);
+    color: var(--color3)
+}
+
+.switchBase.checked+ .track{
+    background-color: rgb(31, 77, 121);
+}
+
+.thumb{
+    width: 25px;
+    height: 25px;
+}

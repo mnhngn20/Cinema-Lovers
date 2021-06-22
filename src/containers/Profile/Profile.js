@@ -9,7 +9,7 @@ import { uploadImage } from '../../shared/storage';
 import * as actions from '../../store/actions/index';
 import { updateObject} from '../../shared/ultility';
 
-const Profile = ({ error, userId, userData, onUpdateUserData, onFetchProfile }) => {
+const Profile = ({ error, userId, userData, onUpdateUserData }) => {
     const [editSuccess, setEditSuccess] = useState(false);
     const [isInEditMode, setIsInEditMode] = useState(false);
     const [showingError, setShowingError] = useState(false);
@@ -55,7 +55,7 @@ const Profile = ({ error, userId, userData, onUpdateUserData, onFetchProfile }) 
                 modalType = "Avatar">
                     <FilePicker close={hideModal} uploadImage={(img) => upload(img, userId, userData)}/>
             </Modal>
-            <Inputs switchMode={switchMode} isInEditMode={false} setEditSuccess={setEditSuccess} setAvatar={setAvatar}/>
+            <Inputs switchMode={switchMode} isInEditMode={isInEditMode} setEditSuccess={setEditSuccess} setAvatar={setAvatar}/>
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useCallback} from 'react'
 import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import classes from './Inputs.module.css';
 import Input from '../../../components/UI/Input/Input';
@@ -11,6 +12,8 @@ import * as actions from '../../../store/actions/index';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import blank from '../../../assets/blank.png';
 import { downloadImage } from '../../../shared/storage';
+import SwitchButton from '../../../components/UI/SwitchButton/SwitchButton';
+
 const Inputs = ({userId , setAvatar, userData, onFetchProfile, onUpdateUserData, isLoading, isInEditMode, switchMode, setEditSuccess}) => {
     const [canSubmitForm, setCanSubmitForm] = useState(false);
     const [userAvatar, setUserAvatar] = useState(false);
@@ -120,8 +123,11 @@ const Inputs = ({userId , setAvatar, userData, onFetchProfile, onUpdateUserData,
     }
     return (
         <form className={classes.UserProfile} onSubmit={(event) => updateProfile(event, fName.value, lName.value, bDay.value, description.value)}>
-            <div className={classes.SetAvatarContainer}><CameraAltIcon className={classes.SetAvatar} onClick={() => setAvatar(true)}/></div>
-            {!userAvatar ?<Tooltip title={isInEditMode ? 'Turn off edit' : 'Click here to Edit Your Profile'} placement='top'>
+            <Tooltip title={isInEditMode ? 'Turn off edit' : 'Click here to Edit Your Profile'} placement='right'>
+                <div className={classes.SwitchButton}><SwitchButton switchMode={switchMode}/></div>
+            </Tooltip>
+            {isInEditMode ? <div className={classes.SetAvatarContainer}><CameraAltIcon className={classes.SetAvatar} onClick={() => setAvatar(true)}/></div> : null}
+            {!userAvatar ?
                 <AccountCircleIcon 
                     className={
                         isInEditMode 
@@ -129,10 +135,9 @@ const Inputs = ({userId , setAvatar, userData, onFetchProfile, onUpdateUserData,
                         : [classes.EditButton, classes.EditButtonInactive].join(' ')
                     } 
                     onClick={switchMode}/>
-            </Tooltip>
             : <div className={classes.AvatarContainer}><div className={classes.Rouneded}><img src={img} className={classes.Avatar} alt="avatar" /></div></div>
             }
-            <Input 
+            {isInEditMode ? <div className={classes.Inputs}><Input 
                 label = "First Name:"
                 elementType = "input"
                 elementConfig = {{type: "text"}}
@@ -162,7 +167,7 @@ const Inputs = ({userId , setAvatar, userData, onFetchProfile, onUpdateUserData,
                 invalid = {bDay.isValid}
                 changed = {event => onChangeHandler(event, bDay, setbDay)}
                 disabled = {isInEditMode ? false : true}
-            />
+            /></div> : <p>{fName.value+" "+lName.value} </p>}
             <Input 
                 label = "Description:"
                 elementType = "textarea"
@@ -180,7 +185,7 @@ const Inputs = ({userId , setAvatar, userData, onFetchProfile, onUpdateUserData,
                     : null
             }
             <div className={classes.GotoWLContainer}>
-                <a className={classes.GotoWL} href='/watchlist'>{">>>Go to WatchList"}</a>
+                <Link className={classes.GotoWL} to='/watchlist'>{">>>Go to WatchList"}</Link>
             </div>
         </form>
     )

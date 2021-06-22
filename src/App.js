@@ -45,7 +45,7 @@ const App = props => {
     routes = (
       <Switch>
         <Route path = '/watchlist' render={props => <WatchListPage {...props} />} />
-        <Route path = '/profile' render={proSps => <Profile {...props} />}/>
+        <Route path = '/profile' render={props => <Profile {...props} />}/>
         <Route path = '/movies/:id' render={props => <Movie {...props}/> } />
         <Route path = '/trending' component={TrendingPage}/>
         <Route path = '/' exact component={MainContent} />S

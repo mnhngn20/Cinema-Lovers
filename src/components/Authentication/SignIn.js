@@ -38,7 +38,7 @@ const SignIn = ({error, isLoading, onAuth, history, modalClosed}) => {
     useEffect(()=>{
         if(isSubmitted && error && !isLoading){
             setShowError(true);
-        } else if(isSubmitted && !error){
+        } else if(isSubmitted && !error && !isLoading){
             setShowModal(true)
         }
     }, [isSubmitted, error, isLoading])
