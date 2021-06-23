@@ -1,16 +1,32 @@
+.container{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
 .UserProfile{
     position: relative;
-    background-color: var(--colorlight);
     width: 50%;
     height: fit-content;
-    border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.5);
     margin: 0 auto;
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    opacity: 0.92;
+}
+
+.Background{
+    height: 100%;
+    width: 50%;
+    background-color: var(--colorlight);
+    opacity: 0.5;
+    position: absolute;
+    border-radius: 20px;
+    z-index: -20;
 }
 
 .UserProfile p{
@@ -44,7 +60,7 @@
 }
 
 .GotoWLContainer .GotoWL:hover{
-    color: var(--color1)
+    color: var(--color3)
 }
 
 .SetAvatarContainer{
@@ -75,11 +91,16 @@
     .UserProfile{
         width: 90%;
     }
+    .Background{
+        width: 90%;
+    }
 }
 
 @media(max-width: 1100px) and (min-width: 801px){
     .UserProfile{
         width: 90%;
-        border-radius: 20px;
+    }
+    .Background{
+        width: 90%;
     }
 }

@@ -9,6 +9,7 @@
     font-weight: bold;
     color: var(--textcolor);
     font-family: 'Bebas Neue', cursive;
+    letter-spacing: 2px;
 }
 .headline:hover{
     text-shadow: 0px 0px 30px var(--color3);

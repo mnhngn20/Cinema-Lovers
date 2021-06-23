@@ -315,7 +315,7 @@
 
 @media(min-width: 601px) and (max-width: 1100px){
     .Items{
-        width: 95%;
+        width: 90%;
     }
     .Items .MovieInfos{
         width: 57%;

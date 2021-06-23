@@ -8,7 +8,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import {showTrailer} from '../../shared/ultility';
 import Items from './WatchListItems/WatchListItems';
 
-const WatchListPage = props => {
+const WatchListPage = ({userId, loading, watchList, userData}) => {
     const [showingTrailer, setShowingTrailer] = useState(false);
     const [trailerPath, setTrailerPath] = useState('');
 
@@ -17,10 +17,10 @@ const WatchListPage = props => {
         setTrailerPath('');
     }
 
-    let watchList = <div className={classes.spinner}><Spinner /></div>
-    if(!props.loading && props.watchList){
-        watchList = <Items clicked={(movieId) => showTrailer(movieId, setShowingTrailer, setTrailerPath)}
-            watchList = {props.watchList} />
+    let movies = <div className={classes.spinner}><Spinner /></div>
+    if(!loading && watchList){
+        movies = <Items clicked={(movieId) => showTrailer(movieId, setShowingTrailer, setTrailerPath)}
+            watchList = {watchList} userData={userData} userId={userId}/>
     }
     return (
         <div className={classes.WatchListPage}>
@@ -32,7 +32,7 @@ const WatchListPage = props => {
                 </Modal>
             </div>
             <p className={classes.headline}>Your WatchList</p>
-            {watchList}
+            {movies}
         </div>
     )
 }
@@ -41,7 +41,8 @@ const mapStateToProps = state => {
     return {
         watchList: state.watchListState.watchList,
         loading: state.watchListState.loading,
-        userData: state.authState.userData
+        userData: state.authState.userData,
+        userId: state.authState.userId
     }
 }
 

@@ -3,12 +3,11 @@
     flex-flow: row;
     height: 100%;
     width: fit-content;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
-    margin-right: 10px;
 }
 
-@media (max-width: 499px){
+@media (max-width: 600px){
     .NavigationItems{
         margin-bottom: 50px;
         display:flex;

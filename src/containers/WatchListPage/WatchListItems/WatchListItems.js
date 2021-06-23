@@ -1,14 +1,14 @@
 import React from 'react';
-import {connect} from 'react-redux';
 
 import classes from './WatchListItems.module.css';
 import MoviesItem from '../../../components/TrendingMovies/MoviesItem/MoviesItem';
 import Blank from '../../../assets/blank.png';
+import UserAvatar from '../../../components/UI/UserAvatar/UserAvatar';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
 const imgWidth = 300;
 
-const WatchListItems = ({watchList, clicked}) => {
+const WatchListItems = ({watchList, clicked, userId, userData}) => {
     const watchlist = watchList.map(movie => {
         return (
             <MoviesItem
@@ -22,7 +22,9 @@ const WatchListItems = ({watchList, clicked}) => {
     })
     return (
         <div className = {classes.WatchListItems}>
+            <div className={classes.Background}></div>
             <div className={classes.OptionBox}>
+                <UserAvatar userId={userId} userData={userData} />
             </div>
             <div>
                 {watchlist}
@@ -30,8 +32,5 @@ const WatchListItems = ({watchList, clicked}) => {
         </div>
     )
 }
-const mapStateToProps = state => ({
-    userData: state.authState.userData
-})
 
-export default connect(mapStateToProps, null)(WatchListItems);
+export default WatchListItems;
