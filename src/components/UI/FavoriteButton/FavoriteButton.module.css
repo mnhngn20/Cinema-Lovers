@@ -15,7 +15,7 @@
     margin-right: 10px;
 }
 .Icon{
-    transition: all 0.3s ease-out
+    transition: all 0.5s ease-in-out;
 }
 .Icon:hover{
     opacity: 0.8;

@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes';
-import axios from '../../axios-movies';
 import { database } from '../../instance/Firebase'
 
 export const fetchWLStart = () => {
@@ -25,6 +24,7 @@ export const fetchWLFail = (err) => {
 export const fetchWatchList = () => {
     return dispatch => {
         dispatch(fetchWLStart());
+        console.log("fetchWL")
         let watchList = [];
         database.ref("UserData/"+localStorage.getItem("userId") + "/WatchList/").get().then(snapshot => {
             for(let movieId in snapshot.val()){
@@ -36,3 +36,9 @@ export const fetchWatchList = () => {
     }
 }
 
+export const updateWatchList = watchList => {
+    return dispatch => {
+        dispatch(fetchWLStart());
+        dispatch(fetchWLSuccess(watchList))
+    }
+}

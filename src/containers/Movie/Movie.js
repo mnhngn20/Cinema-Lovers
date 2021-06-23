@@ -15,7 +15,7 @@ import MovieInfo from './MovieInfo/MovieInfo';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
 
-const Movie = ({match, watchList, fetchWatchList, isAuthenticated, userId, isLoading}) => {
+const Movie = ({match, watchList, fetchWatchList, isAuthenticated, userId, onUpdateWatchList}) => {
     const [movie, setMovie] = useState(null);
     const [loading, setLoading] = useState(false);
     const [showingTrailer, setShowingTrailer] = useState(false);
@@ -68,8 +68,8 @@ const Movie = ({match, watchList, fetchWatchList, isAuthenticated, userId, isLoa
     let addOrRemoveButton = <FavoriteButton isAuthenticated={isAuthenticated} isInWatchList={isInWatchList}
                                 toolTipPlacement="right"  
                                 clicked={isInWatchList
-                                    ? () => removeFromWatchList(userId, movie.id, fetchWatchList)
-                                    : () => addToWatchList(userId, refactorMovie(movie), fetchWatchList)}
+                                    ? () => removeFromWatchList(watchList, onUpdateWatchList, movie.id, setIsInWatchList)
+                                    : () => addToWatchList(watchList, onUpdateWatchList ,refactorMovie(movie), setIsInWatchList)}
                                     type= "MovieType"/>
     
     return (
@@ -111,7 +111,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchWatchList: (userId)=> dispatch(actions.fetchWatchList(userId))
+        fetchWatchList: (userId)=> dispatch(actions.fetchWatchList(userId)),
+        onUpdateWatchList: (watchList) => dispatch(actions.updateWatchList(watchList))
     }
 }
 

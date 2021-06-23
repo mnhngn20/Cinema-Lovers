@@ -7,11 +7,12 @@ import Chip from '@material-ui/core/Chip';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteButton from '../../UI/FavoriteButton/FavoriteButton';
 import * as actions from '../../../store/actions/index';
-import { checkIsInWatchList, getGenre, addToWatchList, removeFromWatchList, updateWatchList} from '../../../shared/ultility';
+import { checkIsInWatchList, getGenre, addToWatchList, removeFromWatchList, setWatchForWatchList} from '../../../shared/ultility';
 import Score from '../../UI/Score/Score';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import imageErrorPoster from '../../../assets/blank.png';
 
-const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, clicked, poster, watched}) => {
+const MoviesItem = ({watchList, movie, isAuthenticated, clicked, poster, watched, onUpdateWatchList}) => {
     const [isInWatchList, setIsInWatchList] = useState(false);
     const [isWatched, setIsWatched] = useState(false);
     useEffect(() => {
@@ -25,15 +26,15 @@ const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, 
     }, [watched, movie])
 
     const updateWL = (movie, watched) => {
-        updateWatchList(movie, watched);
+        setWatchForWatchList(movie, watched);
         setIsWatched(watched);
     }
 
     let addOrRemoveButton =  <FavoriteButton isAuthenticated={isAuthenticated} isInWatchList={isInWatchList}
                                 toolTipPlacement="top" 
                                 clicked={isInWatchList
-                                    ? () => removeFromWatchList(userId, movie.id, fetchWatchList)
-                                    : () => addToWatchList(userId, movie, fetchWatchList)} 
+                                    ? () => removeFromWatchList(watchList, onUpdateWatchList, movie.id, setIsInWatchList)
+                                    : () => addToWatchList(watchList, onUpdateWatchList, movie, setIsInWatchList)} 
                                 type="MovieItemType"/>
 
     const genres = movie.genres.map(genre => {
@@ -55,7 +56,7 @@ const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, 
         <div className= {classes.Items}>
             <div className = {classes.BtnPosterContainer}>
                 <PlayCircleFilledIcon className={classes.PlayTrailerButton} onClick={() => clicked(movie.id)}/>
-                <img className={classes.Poster} src={poster} alt="img"/>
+                <img className={classes.Poster} src={movie.posterPath ? poster : imageErrorPoster} alt="img"/>
             </div>
             <div className= {classes.MovieInfos}>
                 <div className={classes.Title}>
@@ -83,13 +84,12 @@ const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, 
 }
 
 const mapStateToProps = state => ({
-    userId: state.authState.userId,
     watchList: state.watchListState.watchList,
     isAuthenticated: state.authState.isAuth
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchWatchList: (userId)=> dispatch(actions.fetchWatchList(userId))
+    onUpdateWatchList: (watchList) => dispatch(actions.updateWatchList(watchList))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesItem);

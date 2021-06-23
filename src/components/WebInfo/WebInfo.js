@@ -14,9 +14,9 @@ const WebInfo = props => {
         <div className={classes.Webinfo}>
             <p>cinema-Lovers Created by mnhngn20</p>
             <div className={classes.ContacIcons}>
-                <a href="https://www.facebook.com/minh.quang.77770/" target="_blank"><FacebookIcon style={style} className={classes.icons}/></a>
-                <a href="https://www.instagram.com/mnhngn20/" target="_blank"><InstagramIcon style={style} className={classes.icons}/></a>
-                <a href="https://github.com/mnhngn20" target="_blank"><GitHubIcon style={style} className={classes.icons}/></a>
+                <a rel="noreferrer" href="https://www.facebook.com/minh.quang.77770/" target="_blank"><FacebookIcon style={style} className={classes.icons}/></a>
+                <a rel="noreferrer" href="https://www.instagram.com/mnhngn20/" target="_blank"><InstagramIcon style={style} className={classes.icons}/></a>
+                <a rel="noreferrer" href="https://github.com/mnhngn20" target="_blank"><GitHubIcon style={style} className={classes.icons}/></a>
             </div>
         </div>
     )

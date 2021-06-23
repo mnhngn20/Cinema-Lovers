@@ -27,6 +27,7 @@
     box-shadow: 0 3px 6px rgba(0,0,0,0.5);
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+    overflow: hidden;
 }
 
 .BtnPosterContainer:hover .PlayTrailerButton{

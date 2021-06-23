@@ -49,7 +49,7 @@ const FilePicker = ({close, uploadImage}) => {
                 </div>
                 : <div className={classes.PreviewContainer}>
                     <div className={classes.Crop}><CropFreeIcon className={classes.CropIcon} onClick={() => setCrop(true)}/></div>
-                    <img src={img} className={classes.Preview}/>
+                    <img src={img} className={classes.Preview} alt="placeholder"/>
                 </div>
             }
             {

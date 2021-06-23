@@ -9,9 +9,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 import FavoriteButton from '../../UI/FavoriteButton/FavoriteButton';
 import * as actions from '../../../store/actions/index';
 import { checkIsInWatchList, getGenre, addToWatchList, removeFromWatchList} from '../../../shared/ultility';
-import blankImg from '../../../assets/imageErrorPoster.jpg';
+import blankImg from '../../../assets/blank.png';
 
-const Items = ({watchList, movie, isAuthenticated, userId, fetchWatchList, poster, clicked}) => {
+const Items = ({watchList, movie, isAuthenticated, poster, clicked, onUpdateWatchList}) => {
     const [isInWatchList, setIsInWatchList] = useState(false);
     useEffect(()=>{
         setIsInWatchList(checkIsInWatchList(movie.id, watchList))
@@ -37,8 +37,8 @@ const Items = ({watchList, movie, isAuthenticated, userId, fetchWatchList, poste
                         <FavoriteButton isAuthenticated={isAuthenticated}
                             isInWatchList={isInWatchList} toolTipPlacement="top"
                             clicked={isInWatchList
-                                ? () => removeFromWatchList(userId, movie.id, fetchWatchList)
-                                : () => addToWatchList(userId, movie, fetchWatchList)}
+                                ? () => removeFromWatchList(watchList, onUpdateWatchList, movie.id, setIsInWatchList)
+                                : () => addToWatchList(watchList, onUpdateWatchList, movie, setIsInWatchList)}
                             type="ItemType"/>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
     return {
-        fetchWatchList: (userId)=> dispatch(actions.fetchWatchList(userId))
+        onUpdateWatchList: (watchList) => dispatch(actions.updateWatchList(watchList))
     }
 }
 

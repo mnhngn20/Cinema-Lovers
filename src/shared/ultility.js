@@ -103,22 +103,32 @@ export const getGenre = code => {
     }
     return genre;
 }
-export const addToWatchList = (userId, movie, fetchWatchList) => {
+export const addToWatchList = (watchList, updateWatchList ,movie, setIsInWatchList) => {
     if(movie){
-        const postMovie = {
+        const newMovie = {
             ...movie, 
             watched: 'no'
         }
-        database.ref("UserData/"+ localStorage.getItem("userId") + "/WatchList/" + movie.id).set(postMovie).then(snapshot => {
-            fetchWatchList();
-        })
+        watchList.push(newMovie);
+        console.log(watchList)
+        updateWatchList(watchList);
+        database.ref("UserData/"+ localStorage.getItem("userId") + "/WatchList/" + movie.id).set(newMovie);
+        setIsInWatchList(true);
     }
 }
 
-export const removeFromWatchList = (userId, movieId, fetchWatchList) => {
-    database.ref("UserData/"+ localStorage.getItem("userId") + "/WatchList/" + movieId).remove().then(snapshot => {
-        fetchWatchList(userId);
-    })
+export const removeFromWatchList = (watchList, updateWatchList, movieId, setIsInWatchList) => {
+    let position = 0;
+    for(let key in watchList){
+        if(watchList[key].id === movieId){
+            break;
+        }
+        else position++;
+    }
+    watchList.splice(position, 1);
+    updateWatchList(watchList);
+    database.ref("UserData/"+ localStorage.getItem("userId") + "/WatchList/" + movieId).remove()
+    setIsInWatchList(false);
 }
 
 export const showTrailer = (movieId, setShowingTrailer, setTrailerPath) => {
@@ -134,10 +144,10 @@ export const showTrailer = (movieId, setShowingTrailer, setTrailerPath) => {
     })
 }
 
-export const updateWatchList = (movie, watched) => {
+export const setWatchForWatchList = (movie, watched) => {
     const postMovie = {
         ...movie, 
         watched: watched
     }
-    database.ref("UserData/"+localStorage.getItem("userId") + "/WatchList/" + movie.id).set(postMovie);
+    database.ref("UserData/"+ localStorage.getItem("userId") + "/WatchList/" + movie.id).set(postMovie);
 }
