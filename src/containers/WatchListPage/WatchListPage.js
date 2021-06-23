@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import classes from './WatchListPage.module.css';
-import MoviesItem from '../../components/MoviesItem/MoviesItem';
+import MoviesItem from '../../components/TrendingMovies/MoviesItem/MoviesItem';
 import Modal from '../../components/UI/Modal/Modal';
 import Trailer from '../../components/Trailer/Trailer';
 import Spinner from '../../components/UI/Spinner/Spinner';
@@ -23,7 +23,6 @@ const WatchListPage = props => {
     let watchList = <div className={classes.spinner}><Spinner /></div>
     if(!props.loading && props.watchList){
         watchList = props.watchList.map(movie => {
-            console.log(movie)
             return (
                 <MoviesItem
                     watched = {movie.watched}

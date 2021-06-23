@@ -5,17 +5,30 @@ import { Link } from 'react-router-dom';
 import classes from './MoviesItem.module.css';
 import Chip from '@material-ui/core/Chip';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
-import FavoriteButton from '../UI/FavoriteButton/FavoriteButton';
-import * as actions from '../../store/actions/index';
-import { checkIsInWatchList, getGenre, addToWatchList, removeFromWatchList, updateWatchList} from '../../shared/ultility';
-import Score from '../UI/Score/Score';
+import FavoriteButton from '../../UI/FavoriteButton/FavoriteButton';
+import * as actions from '../../../store/actions/index';
+import { checkIsInWatchList, getGenre, addToWatchList, removeFromWatchList, updateWatchList} from '../../../shared/ultility';
+import Score from '../../UI/Score/Score';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
 const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, clicked, poster, watched}) => {
     const [isInWatchList, setIsInWatchList] = useState(false);
+    const [isWatched, setIsWatched] = useState(false);
     useEffect(() => {
         setIsInWatchList(checkIsInWatchList(movie.id, watchList))
     }, [watchList, movie])
+
+    useEffect(()=> {
+        if(watched){
+            setIsWatched(watched);
+        }
+    }, [watched, movie])
+
+    const updateWL = (movie, watched) => {
+        console.log(watched)
+        updateWatchList(movie, watched);
+        setIsWatched(watched);
+    }
 
     let addOrRemoveButton =  <FavoriteButton isAuthenticated={isAuthenticated} isInWatchList={isInWatchList}
                                 toolTipPlacement="top" 
@@ -62,7 +75,7 @@ const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, 
                     {genres}
                 </div>
                 <div className={classes.FButton}>
-                    {watched ? <VisibilityIcon className={classes[watched]} onClick={()=>updateWatchList(movie, watched === 'yes' ? 'no' : 'yes', fetchWatchList)} /> : null}
+                    {isWatched ? <VisibilityIcon className={classes[isWatched]} onClick={()=>updateWL(movie, isWatched === 'yes' ? 'no' : 'yes')} /> : null}
                     {addOrRemoveButton}
                 </div>
             </div>

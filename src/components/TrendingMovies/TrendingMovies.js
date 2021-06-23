@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 
 import classes from './TrendingMovies.module.css';
-import MoviesItem from '../MoviesItem/MoviesItem';
+import MoviesItem from './MoviesItem/MoviesItem';
 import * as actions from '../../store/actions/index';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import Spinner from '../UI/Spinner/Spinner';

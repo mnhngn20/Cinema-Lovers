@@ -72,7 +72,6 @@ export const autoSignIn = () => {
             axios.get('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData.json')
             .then(res => {
                 for(let id in res.data){
-                    console.log("aaaa");
                     if (id === localStorage.getItem('userId')) {
                         dispatch(authSuccess(localStorage.getItem('token'), localStorage.getItem('userId')));
                         dispatch(fetchUserProfile());

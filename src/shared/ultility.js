@@ -134,12 +134,10 @@ export const showTrailer = (movieId, setShowingTrailer, setTrailerPath) => {
     })
 }
 
-export const updateWatchList = (movie, watched, fetchWatchList) => {
+export const updateWatchList = (movie, watched) => {
     const postMovie = {
         ...movie, 
         watched: watched
     }
-    database.ref("UserData/"+localStorage.getItem("userId") + "/WatchList/" + movie.id).set(postMovie).then(snapshot => {
-        fetchWatchList();
-    })
+    database.ref("UserData/"+localStorage.getItem("userId") + "/WatchList/" + movie.id).set(postMovie);
 }

@@ -55,31 +55,27 @@ const Inputs = ({userId , setAvatar, userData, onFetchProfile, onUpdateUserData,
     useEffect(()=>{
         if(!userData) onFetchProfile();
     })
-    
-    const updateInputs = useCallback((userData) => {
-        setFName(updateObject(fName, {
-            value: userData.firstName
-        }));
-        setLName(updateObject(lName, {
-            value: userData.lastName
-        }));
-        setbDay(updateObject(bDay, {
-            value: userData.birthDay
-        }))
-        setDescription(updateObject(description, {
-            value: userData.description
-        }))
-        if(userData.avatar){
-            setUserAvatar(userData.avatar);
-            downloadImage(userId,setImg);
-            onFetchProfile();
-        }
-    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  
     useEffect(() => {
         if(userData){
-            updateInputs(userData);
+            setFName(updateObject(fName, {
+                value: userData.firstName
+            }));
+            setLName(updateObject(lName, {
+                value: userData.lastName
+            }));
+            setbDay(updateObject(bDay, {
+                value: userData.birthDay
+            }))
+            setDescription(updateObject(description, {
+                value: userData.description
+            }))
+            if(userData.avatar){
+                setUserAvatar(userData.avatar);
+                downloadImage(userId, setImg);
+            }
         }
-    }, [userData, updateInputs])
+    }, [userData])// eslint-disable-line react-hooks/exhaustive-deps
     useEffect(() => {
         if(fName.isValid && lName.isValid){
             setCanSubmitForm(true);

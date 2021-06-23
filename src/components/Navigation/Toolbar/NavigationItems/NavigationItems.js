@@ -7,6 +7,7 @@ import NavigationItem from './NavigationItem/NavigationItem';
 import HomeIcon from '@material-ui/icons/Home';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ListIcon from '@material-ui/icons/List';
 
 const NavigationItems = ({isAuthenticated, clicked, logout}) => {
     return (
@@ -17,6 +18,10 @@ const NavigationItems = ({isAuthenticated, clicked, logout}) => {
                 {isAuthenticated 
                 ? <NavigationItem clicked={clicked} link='/profile' title="Profile">
                         <AccountCircleIcon />
+                </NavigationItem> : null}
+                {isAuthenticated 
+                ? <NavigationItem clicked={clicked} link='/watchlist' title="Your Watchlist">
+                        <ListIcon />
                 </NavigationItem> : null}
                 {isAuthenticated 
                     ? <NavigationItem logout={logout} title="Log out">

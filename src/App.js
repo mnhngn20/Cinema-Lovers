@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import Spinner from './components/UI/Spinner/Spinner';
 import MainContent from './containers/MainContent/MainContent';
-import TrendingPage from './containers/TrendingPage/TrendingPage';
 import Layout from './hoc/Layout/Layout';
 import * as actions from './store/actions/index';
 
@@ -36,7 +35,6 @@ const App = props => {
       <Route path = '/signup' exact render={props => <SignUp {...props} />} />
       <Route path = '/signin' exact render={props => <SignIn {...props} />} />
       <Route path = '/movies/:id' render={props => <Movie {...props}  />}/>
-      <Route path = '/trending' component={TrendingPage}/>
       <Route path = '/' component={MainContent} />
       <Redirect to ='/' />
     </Switch>
@@ -47,8 +45,7 @@ const App = props => {
         <Route path = '/watchlist' render={props => <WatchListPage {...props} />} />
         <Route path = '/profile' render={props => <Profile {...props} />}/>
         <Route path = '/movies/:id' render={props => <Movie {...props}/> } />
-        <Route path = '/trending' component={TrendingPage}/>
-        <Route path = '/' exact component={MainContent} />S
+        <Route path = '/' exact component={MainContent} />
       <Redirect to ='/' />
       </Switch>
     )
