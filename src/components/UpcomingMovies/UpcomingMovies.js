@@ -21,7 +21,7 @@ const UpcomingMovies = ({onFetchUpcomingMovies, isError, fetchedUpcomingMovies, 
         type: 'loop',
         speed: '500',
         rewind: true,
-        classes: {arrows: classes.arrows},
+        classes: {arrows: classes.arrows, pagination: classes.pagination},
         fixedWidth: '100vw',
         perPage: 3
     };

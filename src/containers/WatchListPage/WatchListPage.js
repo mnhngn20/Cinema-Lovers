@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import classes from './WatchListPage.module.css';
-import MoviesItem from '../../components/TrendingMovies/MoviesItem/MoviesItem';
 import Modal from '../../components/UI/Modal/Modal';
 import Trailer from '../../components/Trailer/Trailer';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import {showTrailer} from '../../shared/ultility';
-
-const imgPath = 'https://image.tmdb.org/t/p/';
-const imgWidth = 300;
+import Items from './WatchListItems/WatchListItems';
 
 const WatchListPage = props => {
     const [showingTrailer, setShowingTrailer] = useState(false);
@@ -22,17 +19,8 @@ const WatchListPage = props => {
 
     let watchList = <div className={classes.spinner}><Spinner /></div>
     if(!props.loading && props.watchList){
-        watchList = props.watchList.map(movie => {
-            return (
-                <MoviesItem
-                    watched = {movie.watched}
-                    clicked = {(movieId) => showTrailer(movieId, setShowingTrailer, setTrailerPath)}
-                    movie = {movie}
-                    poster = {imgPath + 'w' + imgWidth + movie.posterPath}
-                    key={movie.id} 
-                    title = {movie.title}></MoviesItem>
-            )
-        })
+        watchList = <Items clicked={(movieId) => showTrailer(movieId, setShowingTrailer, setTrailerPath)}
+            watchList = {props.watchList} />
     }
     return (
         <div className={classes.WatchListPage}>

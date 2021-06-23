@@ -22,6 +22,14 @@
     display: none;
 }
 
+.pagination{
+    width: 100%;
+    padding: 0 0;
+    margin: 0 auto;
+    display: inline-flex;
+    justify-content: center;
+    list-style: none;
+}
 @media(max-width: 700px){
     .arrows{
         display: none;

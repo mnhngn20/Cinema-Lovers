@@ -7,17 +7,13 @@ import Input from '../../../components/UI/Input/Input';
 import { updateObject, checkValidity } from '../../../shared/ultility';
 import Button from '../../../components/UI/Button/Button';
 import Tooltip from '@material-ui/core/Tooltip';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import * as actions from '../../../store/actions/index';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
-import blank from '../../../assets/blank.png';
-import { downloadImage } from '../../../shared/storage';
 import SwitchButton from '../../../components/UI/SwitchButton/SwitchButton';
+import UserAvatar from '../../../components/UI/UserAvatar/UserAvatar';
 
 const Inputs = ({userId , setAvatar, userData, onFetchProfile, onUpdateUserData, isLoading, isInEditMode, switchMode, setEditSuccess}) => {
     const [canSubmitForm, setCanSubmitForm] = useState(false);
-    const [userAvatar, setUserAvatar] = useState(false);
-    const [img, setImg] = useState(blank)
     const [fName, setFName] = useState({
         value: isLoading ? 'Loading...' : userData.firstName, 
         isValid: true, 
@@ -37,7 +33,7 @@ const Inputs = ({userId , setAvatar, userData, onFetchProfile, onUpdateUserData,
         }
     });
     const [bDay, setbDay] = useState({
-        value: isLoading ? '2000-01-01' : userData.birthDay ? userData.birthDay : "" ,
+        value: isLoading ? '2000-01-01' : userData.birthDay ? userData.birthDay : "2000-01-01" ,
         isValid: true,
         touched: false,
         rules: {
@@ -70,10 +66,6 @@ const Inputs = ({userId , setAvatar, userData, onFetchProfile, onUpdateUserData,
             setDescription(updateObject(description, {
                 value: userData.description
             }))
-            if(userData.avatar){
-                setUserAvatar(userData.avatar);
-                downloadImage(userId, setImg);
-            }
         }
     }, [userData])// eslint-disable-line react-hooks/exhaustive-deps
     useEffect(() => {
@@ -108,7 +100,6 @@ const Inputs = ({userId , setAvatar, userData, onFetchProfile, onUpdateUserData,
     }
 
     const onChangeHandler = (event, typeInput, setInput) => {
-        console.log(img)
         const newInput = event.target.value;
         const updatedInput = updateObject(typeInput,{
             value: newInput,
@@ -123,16 +114,7 @@ const Inputs = ({userId , setAvatar, userData, onFetchProfile, onUpdateUserData,
                 <div className={classes.SwitchButton}><SwitchButton switchMode={switchMode}/></div>
             </Tooltip>
             {isInEditMode ? <div className={classes.SetAvatarContainer}><CameraAltIcon className={classes.SetAvatar} onClick={() => setAvatar(true)}/></div> : null}
-            {!userAvatar ?
-                <AccountCircleIcon 
-                    className={
-                        isInEditMode 
-                        ? [classes.EditButton, classes.EditButtonActive].join(' ')
-                        : [classes.EditButton, classes.EditButtonInactive].join(' ')
-                    } 
-                    onClick={switchMode}/>
-            : <div className={classes.AvatarContainer}><div className={classes.Rouneded}><img src={img} className={classes.Avatar} alt="avatar" /></div></div>
-            }
+            <UserAvatar userId = {userId} userData={userData} />
             {isInEditMode ? <div className={classes.Inputs}><Input 
                 label = "First Name:"
                 elementType = "input"
