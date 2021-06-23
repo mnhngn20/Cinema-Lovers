@@ -1,32 +1,82 @@
 .WatchListItems{
     width: 100%;
-    height: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+.Box{
+    width: 100%;
+    height: fit-content;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     position: relative;
+    margin-bottom: 40px;
 }
-
 .Background{
-    height: 300px;
-    width: 1200px;
+    height: 100%;
+    width: 700px;
     background-color: var(--colorlight);
     opacity: 0.5;
     position: absolute;
     border-radius: 20px;
     z-index: -20;
 }
-
-.OptionBox{
-    width: 1200px;
-    height: 300px;
-    margin-bottom: 40px;
-    box-shadow: 0px 3px 6px rgba(0,0,0,0.5);
+.Name{
+    font-size: 20px;
+    color: var(--textcolor);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
-
+.Options{
+    width: 700px;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.Option{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+.Quote{
+    font-size: 17px;
+    color: var(--textcolor);
+}
 @media(max-width: 1100px) {
+    .Box{
+        width: 100%;
+        margin-bottom: 40px;
+        padding: 0px 5px;
+    }
     .Background{
+        height: 100%;
         width: 90%;
+    }
+    .Name{
+        text-align: center;
+    }
+    .Option{
+        align-items: center;
+    }
+    .Options{
+        width: 90%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .Quote{
+        font-size: 17px;
+        color: var(--textcolor);
     }
 }

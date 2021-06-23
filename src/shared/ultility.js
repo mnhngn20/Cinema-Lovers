@@ -144,10 +144,19 @@ export const showTrailer = (movieId, setShowingTrailer, setTrailerPath) => {
     })
 }
 
-export const setWatchForWatchList = (movie, watched) => {
-    const postMovie = {
+export const setWatchForWatchList = (watchList, updateWatchList, movie, watched) => {
+    const newMovie = {
         ...movie, 
         watched: watched
     }
-    database.ref("UserData/"+ localStorage.getItem("userId") + "/WatchList/" + movie.id).set(postMovie);
+    let position = 0;
+    for(let key in watchList){
+        if(watchList[key].id === movie.id){
+            break;
+        }
+        else position++;
+    }
+    watchList.splice(position, 1, newMovie);
+    updateWatchList(watchList);
+    database.ref("UserData/"+ localStorage.getItem("userId") + "/WatchList/" + movie.id).set(newMovie);
 }

@@ -16,7 +16,7 @@ const UserAvatar = ({userData, userId}) => {
                 downloadImage(userId, setImg);
             }
         }
-    })
+    }, [userData, userId])
     return (
         <div>
             {!userAvatar ?

@@ -12,7 +12,7 @@ import Score from '../../UI/Score/Score';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import imageErrorPoster from '../../../assets/blank.png';
 
-const MoviesItem = ({watchList, movie, isAuthenticated, clicked, poster, watched, onUpdateWatchList}) => {
+const MoviesItem = ({watchList, movie, isAuthenticated, clicked, poster, watched, onUpdateWatchList, setCountMovie}) => {
     const [isInWatchList, setIsInWatchList] = useState(false);
     const [isWatched, setIsWatched] = useState(false);
     useEffect(() => {
@@ -26,8 +26,15 @@ const MoviesItem = ({watchList, movie, isAuthenticated, clicked, poster, watched
     }, [watched, movie])
 
     const updateWL = (movie, watched) => {
-        setWatchForWatchList(movie, watched);
+        setWatchForWatchList(watchList, onUpdateWatchList, movie, watched);
         setIsWatched(watched);
+        let count = 0;
+        for(let key in watchList){
+            if(watchList[key].watched === 'yes'){
+                count++;
+            }
+        }
+        setCountMovie(count)
     }
 
     let addOrRemoveButton =  <FavoriteButton isAuthenticated={isAuthenticated} isInWatchList={isInWatchList}
