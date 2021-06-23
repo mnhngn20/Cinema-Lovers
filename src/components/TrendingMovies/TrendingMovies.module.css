@@ -17,7 +17,7 @@
 }
 
 .pagination{
-    width: 100%;
+    width: 100vw;
     padding: 0 auto;
     margin: 0 auto;
     display: inline-flex;
@@ -40,7 +40,7 @@
     }
 }
 
-@media(min-width: 401px) and (max-width: 600px){
+@media(min-width: 401px) and (max-width: 1100px){
     .pagination{
         display: none;
     }
@@ -49,14 +49,5 @@
     }
     .Spinner{
         height: 300px;
-    }
-}
-
-@media(min-width: 601px) and(max-width: 1100px){
-    .pagination{
-        display: none;
-    }
-    .arrows{
-        display: none;
     }
 }
