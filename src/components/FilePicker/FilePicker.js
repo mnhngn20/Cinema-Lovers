@@ -19,7 +19,6 @@ const FilePicker = ({close, uploadImage}) => {
         var url = reader.readAsDataURL(file);
         reader.onloadend = (event) => {
             setImg(reader.result)
-            console.log(reader.result)
         }
     }
     const cropImg = useCallback(() => {
@@ -27,7 +26,6 @@ const FilePicker = ({close, uploadImage}) => {
     }, [cropper])
 
     const croppedImg = () => {
-        console.log(cropped)
         setCrop(false)
         setImg(cropped.current)
     }

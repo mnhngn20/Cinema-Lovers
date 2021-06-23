@@ -25,7 +25,6 @@ const MoviesItem = ({watchList, movie, isAuthenticated, userId, fetchWatchList, 
     }, [watched, movie])
 
     const updateWL = (movie, watched) => {
-        console.log(watched)
         updateWatchList(movie, watched);
         setIsWatched(watched);
     }

@@ -9,7 +9,7 @@ import { uploadImage } from '../../shared/storage';
 import * as actions from '../../store/actions/index';
 import { updateObject} from '../../shared/ultility';
 
-const Profile = ({ error, userId, userData, onUpdateUserData }) => {
+const Profile = ({ error, userId, userData, onUpdateUserData, onFetchProfile }) => {
     const [editSuccess, setEditSuccess] = useState(false);
     const [isInEditMode, setIsInEditMode] = useState(false);
     const [showingError, setShowingError] = useState(false);
@@ -68,8 +68,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    onUpdateUserData: (updatedUserData) => dispatch(actions.updateUserProfile(updatedUserData)),
-    onFetchProfile: () => dispatch(actions.fetchUserProfile())
+    onUpdateUserData: (updatedUserData) => dispatch(actions.updateUserProfile(updatedUserData))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -17,7 +17,6 @@ export const downloadImage = (userId, setImg) => {
     const userRef = imagesRef.child(userId);
     const avatarRef = userRef.child("avatar");
     avatarRef.getDownloadURL().then(url => {
-        console.log("aaa")
         setImg(url)
     })
 }

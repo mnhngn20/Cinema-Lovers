@@ -124,7 +124,9 @@ export const fetchUserProfile = () => {
 export const updateUserProfile = (userData) => {
     return dispatch => {
         dispatch(fetchUserStart());
-        database.ref("UserData/"+localStorage.getItem("userId") + "/Info").set(userData);
-        dispatch(fetchUserSuccess(userData));
+        database.ref("UserData/"+localStorage.getItem("userId") + "/Info").set(userData).then(snapshot => {
+            dispatch(fetchUserSuccess(userData));
+            dispatch(fetchUserProfile());
+        });
     }
 }
