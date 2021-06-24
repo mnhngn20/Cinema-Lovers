@@ -12,7 +12,7 @@ import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import SwitchButton from '../../../components/UI/SwitchButton/SwitchButton';
 import UserAvatar from '../../../components/UI/UserAvatar/UserAvatar';
 
-const Inputs = ({img, userId , setAvatar, userData, onFetchProfile, onUpdateUserData, isLoading, isInEditMode, switchMode, setEditSuccess}) => {
+const Inputs = ({img , setAvatar, userData, onFetchProfile, onUpdateUserData, isLoading, isInEditMode, switchMode, setEditSuccess}) => {
     const [canSubmitForm, setCanSubmitForm] = useState(false);
     const [fName, setFName] = useState({
         value: isLoading ? 'Loading...' : userData.firstName, 

@@ -70,7 +70,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    onAutoSignIn: () => dispatch(actions.autoSignIn())
+    onAutoSignIn: () => dispatch(actions.autoSignIn()),
   }
 }
 

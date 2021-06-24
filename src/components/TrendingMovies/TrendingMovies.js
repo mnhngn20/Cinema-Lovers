@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 
 import classes from './TrendingMovies.module.css';
 import MoviesItem from './MoviesItem/MoviesItem';
-import * as actions from '../../store/actions/index';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import Spinner from '../UI/Spinner/Spinner';
+import * as actions from '../../store/actions/index';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
 const imgWidth = 300;
@@ -22,33 +22,35 @@ const options = {
     preloadPages: 2
 };
 
-const TrendingMovies = ({onFetchTrendingMovies, isloading, isError, fetchedTrendingMovies, clicked}) => {
-    useEffect(()=>{
-        onFetchTrendingMovies();
-    }, [onFetchTrendingMovies])
+const TrendingMovies = ({isError, fetchedTrendingMovies, onFetchTrendingMovies, clicked}) => {
     const slideRef = useRef();
-    let trendingMoviesList = null
-    if(!isloading && !isError){
-        trendingMoviesList = fetchedTrendingMovies.map((movie) => {
-            return (
-                <SplideSlide key={movie.id}>
-                    <MoviesItem
-                        clicked = {clicked}
-                        movie = {movie}
-                        poster = {imgPath + 'w' + imgWidth + movie.posterPath}
-                        title = {movie.title}></MoviesItem>
-                </SplideSlide>
-            )
-        })
-    }
+    const [trendingMovies, setTrendingMovies] = useState();
+    useEffect(()=>{
+        if(fetchedTrendingMovies.length === 0) onFetchTrendingMovies();
+    }, [onFetchTrendingMovies]);
+    useEffect(()=>{
+        if(fetchedTrendingMovies){
+            setTrendingMovies(fetchedTrendingMovies.map((movie) => {
+                return (
+                    <SplideSlide key={movie.id}>
+                        <MoviesItem
+                            clicked = {clicked}
+                            movie = {movie}
+                            poster = {imgPath + 'w' + imgWidth + movie.posterPath}
+                            title = {movie.title}></MoviesItem>
+                    </SplideSlide>
+                )
+            }))
+        }
+    })
     return (
-        isloading ? <div className={classes.Spinner}><Spinner /></div>
+        fetchedTrendingMovies.length === 0 ? <div className={classes.Spinner}><Spinner /></div>
         : <div className= {classes.TrendingMovies}>
             {
                 isError 
                 ? <p className={classes.Error}>Could not load Trending Movies</p> 
                 : <Splide options = {options} ref={slideRef}>
-                    {trendingMoviesList}
+                    {trendingMovies}
                 </Splide>
             }
         </div>
@@ -60,9 +62,8 @@ const mapState = state => ({
     fetchedTrendingMovies: state.trendingMoviesState.trendingMovies,
     isError: state.trendingMoviesState.error
 })
-
-const mapDispatch = dispatch => ({
-    onFetchTrendingMovies: () => dispatch(actions.fetchTrendingMovies()) 
-
+const mapDispatchToProps = dispatch => ({
+      onFetchTrendingMovies: () => dispatch(actions.fetchTrendingMovies()),
 })
-export default connect(mapState, mapDispatch)(TrendingMovies);
+  
+export default connect(mapState, mapDispatchToProps)(TrendingMovies);
