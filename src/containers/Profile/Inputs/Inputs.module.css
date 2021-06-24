@@ -7,47 +7,114 @@
     flex-direction: column;
     position: relative;
 }
+.Top{
+    width: 100%;
+    background-color: var(--colorlight);
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    transition: all 0.3s ease-in-out;
+}
+.Expand{
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.Edit{
+    height: 900px;
+}
+.NotEdit{
+    height: 0px;
+}
+@keyframes changeHeight {
+    from {
+      height: 0;
+    }
+    to {
+      height: 100%;
+    }
+  }
+.Background{
+    min-height: 20px;
+    width: 80%;
+    background-color: var(--color3);
+    opacity: 0.5;
+    position: absolute;
+    border-radius: 20px;
+    z-index: -20;
+    animation-duration: 0.5s;
+    animation-name: changeHeight;
+    transition: height 0.5s;
+}
+
 .UserProfile{
     position: relative;
-    width: 50%;
+    width: 80%;
     height: fit-content;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.5);
     margin: 0 auto;
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
 }
-
-.Background{
+.Profile{
+    margin-top: 25px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     height: 100%;
-    width: 50%;
-    background-color: var(--colorlight);
-    opacity: 0.5;
-    position: absolute;
-    border-radius: 20px;
-    z-index: -20;
 }
-
-.UserProfile p{
-    font-size: 20px;
+.Avatar{
+    margin: 0px 10px;
+}
+.Name{
+    font-size: 40px;
+    margin: 0px 0px;
+    color: var(--color3);
+    width: 80%;
+    overflow: hidden;
+    height: 60px;
     font-weight: bold;
 }
-
-.Inputs{
-    width: 100%;
-    height: -100px;
+.Info{
+    width: 50%;
+    height: fit-content;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: 0.3s all ease-in-out;
+    justify-content: flex-start;
+}
+.AboutMe{
+    font-weight: bold;
+    font-size: 26px;
+    margin: 5px 0px;
+    color: var(--color3);
+    text-decoration: underline;
+}
+.Description{
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.Description::-webkit-scrollbar-track{
+    background-color: var(--colorlight);
+    border-radius: 5px;
 }
 
+.Description::-webkit-scrollbar{
+	width: 6px;
+	opacity: 0;
+}
+
+.Description::-webkit-scrollbar-thumb{
+	border-radius: 10px;
+	background-color: var(--color3);
+    margin-left: 5px;
+    margin-right: 5px;
+}
 .GotoWLContainer{
     width: 100%;
 }
-
 .GotoWLContainer .GotoWL{
     float: right;
     margin-right: 20px;
@@ -55,18 +122,39 @@
     margin-bottom: 20px;
     border-radius: 20px;
     outline: none;
-    color: var(--colordark);
+    color: var(--color3);
     font-size: 16px;
 }
-
 .GotoWLContainer .GotoWL:hover{
     color: var(--color3)
 }
+.SwitchButton{
+    position: absolute;
+    width: 95%;
+    top: 20px;
+    display: flex;
+    justify-content: flex-end;
+
+}
+.Inputs{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 1.5s all ease-in-out;
+    opacity: 0;
+}
+.InputsShow{
+    opacity: 1;
+    transition: all 1s ease-in-out;
+}
+
 
 .SetAvatarContainer{
-    width: 200px !important;
+    width: 250px !important;
     position: absolute;
-    top: 170px;
+    top: 220px;
 }
 .SetAvatar{
     width: 30px !important;
@@ -76,23 +164,50 @@
 }
 
 .SetAvatar:hover{
-    background-color: rgb(218, 213, 213);
-    border-radius: 5px;
+    color: var(--color2)
 }
-.SwitchButton{
-    position: absolute;
-    width: 90%;
-    top: 20px;
-    display: flex;
-    justify-content: flex-end;
 
-}
 @media(max-width: 800px) {
-    .UserProfile{
-        width: 90%;
-    }
     .Background{
+        width: 95%;
+    }
+    .Edit{
+        height: 1110px;
+    }
+    .UserProfile{
+        width: 95%;
+    }
+    .Profile{
+        flex-direction: column;
+    }
+    .Name{
+        font-size: 30px;
+        color: var(--color3);
+        width: 100%;
+        height: fit-content;
+        text-align: center;
+    }
+    .Info{
         width: 90%;
+        height: fit-content;
+        justify-content: center;
+        align-items: center;
+    }
+    .AboutMe{
+        font-weight: bold;
+        font-size: 20px;
+        margin: 5px 0px;
+        color: var(--color2);
+        text-decoration: none;
+    }
+    .Description{
+        width: 100%;
+    }
+    .SwitchButton{
+        width: 100%;
+    }
+    .Inputs{
+        width: 100%;
     }
 }
 
@@ -101,6 +216,10 @@
         width: 90%;
     }
     .Background{
+        width: 90%;
+    }
+    .Background2{
+        height: 300px;
         width: 90%;
     }
 }

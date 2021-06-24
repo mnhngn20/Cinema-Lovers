@@ -2,7 +2,7 @@ import React from 'react';
 
 import classes from './Input.module.css';
 
-const Input = ({invalid, shouldValidate, touched, elementType, elementConfig, value, changed, disabled, label}) => {
+const Input = ({labelWhite, invalid, shouldValidate, touched, elementType, elementConfig, value, changed, disabled, label}) => {
     let inputElement = null;
     const inputClasses = [classes.InputElement];
     let validationError = null;
@@ -10,6 +10,9 @@ const Input = ({invalid, shouldValidate, touched, elementType, elementConfig, va
     if(invalid && shouldValidate && touched){
         inputClasses.push(classes.Invalid);
         validationError = <p className={classes.ValidationError}>Please enter a valid value!</p>;
+    }
+    if(disabled){
+        inputClasses.push(classes.Disabled)
     }
     switch (elementType){
         case ('input'):
@@ -52,7 +55,7 @@ const Input = ({invalid, shouldValidate, touched, elementType, elementConfig, va
 
     return (
         <div className={classes.Input}>
-            <label className={classes.Label}>{label}</label>
+            <label className={[classes.Label, labelWhite ? classes.labelWhite : null].join(' ')}>{label}</label>
             {inputElement}
             {validationError}
         </div>

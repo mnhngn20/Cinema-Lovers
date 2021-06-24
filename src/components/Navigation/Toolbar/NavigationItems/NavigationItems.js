@@ -13,7 +13,7 @@ const NavigationItems = ({isAuthenticated, clicked, logout}) => {
     return (
             <div className={classes.NavigationItems}>
                 <NavigationItem clicked={clicked} link="/" exact title="Home">
-                        <HomeIcon />
+                        {isAuthenticated ? <HomeIcon /> : "HOME"}
                 </NavigationItem>
                 {isAuthenticated 
                 ? <NavigationItem clicked={clicked} link='/profile' title="Profile">

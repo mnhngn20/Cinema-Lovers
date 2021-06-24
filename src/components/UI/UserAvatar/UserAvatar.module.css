@@ -1,16 +1,17 @@
 .AvatarContainer{
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .Rouneded{
-    width: 150px;
-    height: 150px;
+    width: 210px;
+    height: 210px;
     border-radius: 50%;
     box-shadow: 0px 3px 6px rgba(0,0,0,0.5);
     overflow: hidden;
+    background-color: var(--colorlight);
 }
 .Avatar{
     width: 100%;
@@ -20,9 +21,10 @@
 .Avatar:hover{
     opacity: 0.9;
 }
+
 .PlaceHolderAvatar{
-    width: 200px !important;
-    height: 200px !important;
+    width: 250px !important;
+    height: 250px !important;
     color: var(--color3);
 }
 

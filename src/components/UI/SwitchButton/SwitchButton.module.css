@@ -13,18 +13,24 @@
 
 .switchBase.checked{
     transform: translateX(29px);
-    color: var(--color3);
 }
 .switchBase.checked+ .track{
     background-color: rgb(31, 77, 121);
 }
-
-.thumb{
-    width: 25px;
-    height: 25px;
+.switchBase.checked .thumb{
     background-image: url('../../../assets//edit.png');
     background-size: 15px 15px;
     background-repeat: no-repeat;
     background-position: center;
-    color: var(--color2);
+    color: var(--color3);
+
+}
+.thumb{
+    width: 25px;
+    height: 25px;
+    background-image: url('../../../assets//edit-black.png');
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.3s ease-in-out;
 }

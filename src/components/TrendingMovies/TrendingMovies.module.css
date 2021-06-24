@@ -25,7 +25,6 @@
     position: absolute;
     list-style: none;
     top: 465px;
-    left: 50%px;
 }
 
 @media(max-width: 400px){

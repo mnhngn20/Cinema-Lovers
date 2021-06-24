@@ -11,10 +11,11 @@ body {
   --color1: #706c61;
   --color2: #333333;
   --color3: rgb(21, 61, 99);
-  --colordark: black;
+  --colordark: rgb(0, 0, 0);
   --colorlight: #ffffff;
   --textcolor: #e1f4f3;
   overflow-x: hidden;
+  height: auto;
 }
 
 code {

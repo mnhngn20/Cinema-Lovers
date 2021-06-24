@@ -17,13 +17,13 @@ const WatchListPage = ({userId, loading, watchList, userData}) => {
         setTrailerPath('');
     }
 
-    let movies = <div className={classes.spinner}><Spinner /></div>
-    if(!loading && watchList){
+    let movies = null;
+    if(!loading && watchList && userData){
         movies = <Items clicked={(movieId) => showTrailer(movieId, setShowingTrailer, setTrailerPath)}
             watchList = {watchList} userData={userData} userId={userId}/>
     }
     return (
-        <div className={classes.WatchListPage}>
+            <div className={classes.WatchListPage}>
             <div>
                 <Modal show={showingTrailer}
                     modalType = "Trailer"
@@ -31,8 +31,11 @@ const WatchListPage = ({userId, loading, watchList, userData}) => {
                         <Trailer trailerPath = {trailerPath}/>
                 </Modal>
             </div>
-            <p className={classes.headline}>Your WatchList</p>
-            {movies}
+            <div>
+                <p className={classes.headline}>Your WatchList</p>
+                {loading ? <div className={classes.Spinner}><Spinner /></div>
+                : movies}
+            </div>
         </div>
     )
 }

@@ -110,53 +110,71 @@ const Inputs = ({userId , setAvatar, userData, onFetchProfile, onUpdateUserData,
     }
     return (
         <div className={classes.container}>
-            <div className={classes.Background}></div>
+            <div className={[classes.Background, isInEditMode ? classes.Edit : classes.NotEdit].join(' ')}></div>
             <form className={classes.UserProfile} onSubmit={(event) => updateProfile(event, fName.value, lName.value, bDay.value, description.value)}>
-                <Tooltip title={isInEditMode ? 'Turn off edit' : 'Click here to Edit Your Profile'} placement='right'>
-                    <div className={classes.SwitchButton}><SwitchButton switchMode={switchMode}/></div>
-                </Tooltip>
-                {isInEditMode ? <div className={classes.SetAvatarContainer}><CameraAltIcon className={classes.SetAvatar} onClick={() => setAvatar(true)}/></div> : null}
-                <UserAvatar userId = {userId} userData={userData} />
-                {isInEditMode ? <div className={classes.Inputs}><Input 
-                    label = "First Name:"
-                    elementType = "input"
-                    elementConfig = {{type: "text"}}
-                    value = {fName.value}
-                    invalid = {!fName.isValid}
-                    shouldValidate
-                    touched = {fName.touched}
-                    changed = {event => onChangeHandler(event, fName, setFName)}
-                    disabled = {isInEditMode ? false : true}
-                />
-                <Input 
-                    label = "Last Name:"
-                    elementType = "input"
-                    elementConfig = {{type: "text"}}
-                    value = {lName.value}
-                    invalid = {!lName.isValid}
-                    shouldValidate
-                    touched = {lName.touched}
-                    changed = {event => onChangeHandler(event, lName, setLName)}
-                    disabled = {isInEditMode ? false : true}
-                />
-                <Input 
-                    label = "Date of Birth:"
-                    elementType = "input"
-                    elementConfig = {{type: "date"}}
-                    value = {bDay.value}
-                    invalid = {bDay.isValid}
-                    changed = {event => onChangeHandler(event, bDay, setbDay)}
-                    disabled = {isInEditMode ? false : true}
-                /></div> : <p>{fName.value+" "+lName.value} </p>}
-                <Input 
-                    label = "Description:"
-                    elementType = "textarea"
-                    value = {description.value}
-                    invalid = {!description.isValid}
-                    touched = {description.touched}
-                    changed = {event => onChangeHandler(event, description, setDescription)}
-                    disabled = {isInEditMode ? false : true}
-                />
+                <div className={[classes.Top, isInEditMode  ? classes.Expand : null].join(' ')}>
+                    <Tooltip title={isInEditMode ? 'Turn off edit' : 'Click here to Edit Your Profile'} placement='right'>
+                        <div className={classes.SwitchButton}><SwitchButton switchMode={switchMode}/></div>
+                    </Tooltip>
+                    <div className={classes.Profile}>
+                        <div className={classes.Avatar}>
+                            {isInEditMode ? <div className={classes.SetAvatarContainer}><CameraAltIcon className={classes.SetAvatar} onClick={() => setAvatar(true)}/></div> : null}
+                            <UserAvatar userId = {userId} userData={userData} />
+                        </div>
+                        <div className={classes.Info}>
+                            <p className={classes.Name}>{userData ? userData.firstName+" "+userData.lastName : "Name"} </p>
+                            <p className={classes.AboutMe}>About Me:</p>
+                            <p className={classes.Description}>{userData ? userData.description : ""}</p>
+                        </div>
+                    </div>
+                    <div className={classes.GotoWLContainer}>
+                        <Link className={classes.GotoWL} to='/watchlist'>{">>>Go to WatchList"}</Link>
+                    </div>
+                </div>
+                
+                    <div className={[classes.Inputs,isInEditMode ? classes.InputsShow : null].join(' ')}>
+                        <Input 
+                            labelWhite
+                            label = "First Name:"
+                            elementType = "input"
+                            elementConfig = {{type: "text"}}
+                            value = {fName.value}
+                            invalid = {!fName.isValid}
+                            shouldValidate
+                            touched = {fName.touched}
+                            changed = {event => onChangeHandler(event, fName, setFName)}
+                            disabled = {isInEditMode ? false : true}/>
+                        <Input 
+                            labelWhite
+                            label = "Last Name:"
+                            elementType = "input"
+                            elementConfig = {{type: "text"}}
+                            value = {lName.value}
+                            invalid = {!lName.isValid}
+                            shouldValidate
+                            touched = {lName.touched}
+                            changed = {event => onChangeHandler(event, lName, setLName)}
+                            disabled = {isInEditMode ? false : true}/>
+                        <Input 
+                            labelWhite
+                            label = "Date of Birth:"
+                            elementType = "input"
+                            elementConfig = {{type: "date"}}
+                            value = {bDay.value}
+                            invalid = {bDay.isValid}
+                            changed = {event => onChangeHandler(event, bDay, setbDay)}
+                            disabled = {isInEditMode ? false : true}/>
+                        <Input 
+                            labelWhite
+                            label = "Description:"
+                            elementType = "textarea"
+                            value = {description.value}
+                            invalid = {!description.isValid}
+                            touched = {description.touched}
+                            changed = {event => onChangeHandler(event, description, setDescription)}
+                            disabled = {isInEditMode ? false : true}/>
+                    </div> 
+                    
                 {   
                     isInEditMode
                         ?<Button 
@@ -164,9 +182,7 @@ const Inputs = ({userId , setAvatar, userData, onFetchProfile, onUpdateUserData,
                         disabled={!canSubmitForm}>UPDATE</Button>
                         : null
                 }
-                <div className={classes.GotoWLContainer}>
-                    <Link className={classes.GotoWL} to='/watchlist'>{">>>Go to WatchList"}</Link>
-                </div>
+                
             </form>
         </div>
     )

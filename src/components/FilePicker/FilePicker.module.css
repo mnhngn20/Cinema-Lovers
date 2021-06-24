@@ -5,23 +5,30 @@
     align-items: center;
     height: 100%;
     width: 100%;
+    border-radius: 15px !important;
 }
 
 .PreviewContainer{
     height: 200px;
     box-shadow: 0px 3px 6px rgba(0,0,0,0.5);
     margin-bottom: 25px;
-    overflow:hidden;
+    overflow: hidden;
     position: relative;
     display: flex;
+    justify-content: center;
     flex-direction: column;
+    border-radius: 15px;
 }
 
 .Preview{
     width: 200px;
     height: auto;
 }
-
+.FileName{
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--colordark);
+}
 .FilePicker input{
     width: fit-content;
 }
@@ -34,7 +41,6 @@
 	z-index: -1;
 }
 .FilePicker label {
-    margin-bottom: 10px;
     font-size: 13px;
     line-height: 20px;
     border-radius: 25px;
@@ -49,10 +55,11 @@
     background-color: var(--color3);
     box-shadow: 0px 3px 6px rgba(0,0,0,0.5);
     transition: all 0.3s ease-in;
+    margin: 10px 10px;
 }
 
 .FilePicker label:hover{
-    background-color: rgb(15, 48, 78);
+    background-color: rgb(61, 117, 168);
 }
 .CloseContainer{
     width: 100%;
@@ -61,6 +68,8 @@
     justify-content: center;
     margin-bottom: 10px;
     transition: all 0.3s ease-in-out;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px ;
 }
 
 .CloseContainer:hover{
@@ -105,7 +114,7 @@
     width: 100%;
     height: fit-content;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 

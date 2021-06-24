@@ -71,9 +71,11 @@ const WatchListItems = ({watchList, clicked, userId, userData}) => {
                     <UserAvatar userId={userId} userData={userData} />
                     <div className={classes.Option}>
                         <p className={classes.Name}>{userData.firstName +" "+ userData.lastName + "'s WatchList"}</p>
-                        <p className={classes.Quote}>{watchList.length === 0 
-                        ? watchList.length === 1 ? "You only have one movie in your Watchlist? That's terrible!" :"You haven't added any favorite movie, let's go to main page to add one :)."
-                        : "You have watched "+ countMovie +"/"+ watchList.length +" films of your Watchlist."
+                        <p className={classes.Quote}>{
+                            watchList.length === 0 
+                            ? "You haven't added any favorite movie, let's go to main page to add one :)." 
+                            :watchList.length === 1 ? "You only have one movie in your Watchlist? That's terrible!" 
+                            :"You have watched "+ countMovie +"/"+ watchList.length +" films of your Watchlist." 
                         }</p>
                         <div className={classes.Select}>
                             <Select handleChange={sortChange}

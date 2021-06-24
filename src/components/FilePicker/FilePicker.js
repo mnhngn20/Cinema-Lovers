@@ -9,6 +9,7 @@ import 'cropperjs/dist/cropper.css';
 
 const FilePicker = ({close, uploadImage}) => {
     const [img, setImg] = useState(blank);
+    const [fileName, setFileName] = useState("No file selected.")
     const [crop, setCrop] = useState(false);
     const picker = useRef();
     const cropper = useRef();
@@ -19,6 +20,7 @@ const FilePicker = ({close, uploadImage}) => {
         var url = reader.readAsDataURL(file);
         reader.onloadend = (event) => {
             setImg(reader.result)
+            setFileName(file.name)
         }
     }
     const cropImg = useCallback(() => {
@@ -34,6 +36,7 @@ const FilePicker = ({close, uploadImage}) => {
             <div className={classes.CloseContainer} onClick={close}>
                 <ExpandLessIcon className={classes.Close} />
             </div>
+            {crop ? null :<p className={classes.FileName}>{fileName}</p>}
             {
                 crop ? 
                 <div className={classes.CropContainer}>

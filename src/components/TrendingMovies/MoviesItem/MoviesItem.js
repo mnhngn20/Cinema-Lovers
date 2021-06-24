@@ -26,6 +26,7 @@ const MoviesItem = ({watchList, movie, isAuthenticated, clicked, poster, watched
     }, [watched, movie])
 
     const updateWL = (movie, watched) => {
+        console.log(watchList);
         setWatchForWatchList(watchList, onUpdateWatchList, movie, watched);
         setIsWatched(watched);
         let count = 0;
@@ -40,7 +41,16 @@ const MoviesItem = ({watchList, movie, isAuthenticated, clicked, poster, watched
     let addOrRemoveButton =  <FavoriteButton isAuthenticated={isAuthenticated} isInWatchList={isInWatchList}
                                 toolTipPlacement="top" 
                                 clicked={isInWatchList
-                                    ? () => removeFromWatchList(watchList, onUpdateWatchList, movie.id, setIsInWatchList)
+                                    ? () => {removeFromWatchList(watchList, onUpdateWatchList, movie.id, setIsInWatchList)
+                                    if(isWatched){
+                                        let count = 0;
+                                        for(let key in watchList){
+                                            if(watchList[key].watched === 'yes'){
+                                                count++;
+                                            }
+                                        }
+                                        setCountMovie(count)
+                                    }}
                                     : () => addToWatchList(watchList, onUpdateWatchList, movie, setIsInWatchList)} 
                                 type="MovieItemType"/>
 

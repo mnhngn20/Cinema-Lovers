@@ -14,7 +14,8 @@ const SwitchButton = ({ switchMode}) => {
                 switchBase: classes.switchBase,
                 thumb: classes.thumb,
                 track: classes.track,
-                checked: classes.checked}}
+                checked: classes.checked,
+                }}
         />
     )
 }

@@ -11,7 +11,10 @@
     color: var(--colordark);
     text-align: center;
 }
-
+.labelWhite{
+    color: var(--colorlight) !important;
+    font-size: 20px;
+}
 .InputElement {
     outline: none;
     border: 1px solid #ccc;
@@ -28,7 +31,6 @@
 .Textarea{
     height: 200px;
     overflow-y: auto;
-
 }
 
 .InputElement:focus{
@@ -45,3 +47,6 @@
     margin: 5px 0;
     font: inherit;
 } 
+.Disabled{
+    border: none;
+}
