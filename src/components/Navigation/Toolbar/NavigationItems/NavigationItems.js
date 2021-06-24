@@ -12,7 +12,7 @@ import ListIcon from '@material-ui/icons/List';
 const NavigationItems = ({isAuthenticated, clicked, logout}) => {
     return (
             <div className={classes.NavigationItems}>
-                <NavigationItem clicked={clicked} link="/" exact title="Home">
+                <NavigationItem clicked={clicked} link="/" exact title="Home" mobile={true}>
                         {isAuthenticated ? <HomeIcon /> : "HOME"}
                 </NavigationItem>
                 {isAuthenticated 

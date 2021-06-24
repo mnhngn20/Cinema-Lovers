@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import classes from './NavigationItem.module.css'
 import Tooltip from '@material-ui/core/Tooltip';
 
-const NavigationItem = ({clicked, link, children, title, exact, logout}) => {
+const NavigationItem = ({clicked, link, children, title, exact, logout, mobile}) => {
     return (
         <li className={classes.NavigationItem} onClick={clicked ? clicked : logout}>
             <NavLink 
@@ -12,7 +12,10 @@ const NavigationItem = ({clicked, link, children, title, exact, logout}) => {
                 to = {link ? link : ''}
                 exact={exact}>
                     {title 
-                        ?<Tooltip title={title} placement='bottom'>
+                        ? mobile ?<div className={classes.NavItem}>
+                            <p>{children}</p>
+                        </div>
+                        :<Tooltip title={title} placement='bottom'>
                             <div className={classes.NavItem}>
                                 <p>{children}</p>
                                 <p className={classes.NavItemTitle}>{title}</p>

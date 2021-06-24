@@ -42,7 +42,7 @@ const TrendingMovies = ({isError, fetchedTrendingMovies, onFetchTrendingMovies, 
                 )
             }))
         }
-    })
+    },[fetchedTrendingMovies])
     return (
         fetchedTrendingMovies.length === 0 ? <div className={classes.Spinner}><Spinner /></div>
         : <div className= {classes.TrendingMovies}>
