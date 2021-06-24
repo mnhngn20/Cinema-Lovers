@@ -5,21 +5,30 @@ import classes from './Profile.module.css';
 import Modal from '../../components/UI/Modal/Modal';
 import Inputs from './Inputs/Inputs';
 import FilePicker from '../../components/FilePicker/FilePicker';
-import { uploadImage } from '../../shared/storage';
+import { uploadImage, deleteImage } from '../../shared/storage';
 import * as actions from '../../store/actions/index';
 import { updateObject} from '../../shared/ultility';
+import { downloadImage } from '../../shared/storage';
 
-const Profile = ({ error, userId, userData, onUpdateUserData, onFetchProfile }) => {
+const Profile = ({ error, userId, userData, onUpdateUserData }) => {
     const [editSuccess, setEditSuccess] = useState(false);
     const [isInEditMode, setIsInEditMode] = useState(false);
     const [showingError, setShowingError] = useState(false);
     const [avatar, setAvatar] = useState(false);
-
+    const [img, setImg] = useState(false)
     useEffect(()=>{
         if(error){
             setShowingError(true)
         }
     }, [error])
+
+    useEffect(()=>{
+        if(userData){
+            if(userData.avatar){
+                downloadImage(userId, setImg);
+            }
+        }
+    }, [userData, userId])
 
     const hideModal = () =>{
         setShowingError(false);
@@ -31,10 +40,15 @@ const Profile = ({ error, userId, userData, onUpdateUserData, onFetchProfile }) 
         setIsInEditMode(!isInEditMode);
     }
     const upload = (img, userId, userData) => {
-        uploadImage(img, userId);
+        if (img){
+            uploadImage(img, userId);
+        } else {
+            deleteImage(userId);
+        }
         let updatedUserData = updateObject(userData,{
             avatar: img
         })
+        setImg(img);
         onUpdateUserData(updatedUserData);
         hideModal();
     }
@@ -53,9 +67,9 @@ const Profile = ({ error, userId, userData, onUpdateUserData, onFetchProfile }) 
             <Modal show={avatar}
                 modalClosed={hideModal}
                 modalType = "Avatar">
-                    <FilePicker close={hideModal} uploadImage={(img) => upload(img, userId, userData)}/>
+                    <FilePicker close={hideModal} haveAvatar={userData ? userData.avatar : null} uploadImage={(img) => upload(img, userId, userData)}/>
             </Modal>
-            <Inputs switchMode={switchMode} isInEditMode={isInEditMode} setEditSuccess={setEditSuccess} setAvatar={setAvatar}/>
+            <Inputs img={img} switchMode={switchMode} isInEditMode={isInEditMode} setEditSuccess={setEditSuccess} setAvatar={setAvatar}/>
         </div>
     )
 }

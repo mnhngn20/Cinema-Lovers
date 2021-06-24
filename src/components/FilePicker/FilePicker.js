@@ -7,7 +7,7 @@ import CropFreeIcon from '@material-ui/icons/CropFree';
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
 
-const FilePicker = ({close, uploadImage}) => {
+const FilePicker = ({close, uploadImage, haveAvatar}) => {
     const [img, setImg] = useState(blank);
     const [fileName, setFileName] = useState("No file selected.")
     const [crop, setCrop] = useState(false);
@@ -40,7 +40,10 @@ const FilePicker = ({close, uploadImage}) => {
             {
                 crop ? 
                 <div className={classes.CropContainer}>
-                    <label onClick={croppedImg}>Crop</label>
+                    <div className={classes.Buttons}>
+                        <label onClick={croppedImg}>Crop</label>
+                        <label className={classes.Red} onClick={() => setCrop(false)}>Cancel</label>
+                    </div>
                     <Cropper
                         ref={cropper}
                         src= {img}
@@ -61,6 +64,7 @@ const FilePicker = ({close, uploadImage}) => {
                     :<div className={classes.Buttons}>
                         <input id="file" type="file" onChange={event => onChangeHandler(event)} ref={picker} accept="image/*"/>
                         <label htmlFor="file">Choose a file</label>
+                        {haveAvatar? <label className={classes.Red} onClick={() => uploadImage(false)}>Delete Avatar</label> : null}
                         <label onClick={() => uploadImage(img)}>Done</label>
                     </div>
             }

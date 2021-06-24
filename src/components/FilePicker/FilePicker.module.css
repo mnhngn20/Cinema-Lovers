@@ -117,7 +117,9 @@
     justify-content: center;
     align-items: center;
 }
-
+.Red{
+    background-color: rgba(218, 32, 32, 0.918) !important;
+}
 @media (max-width: 800px){
     .PreviewContainer{
         height: 250px;

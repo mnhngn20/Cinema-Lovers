@@ -4,6 +4,7 @@ import classes from './WatchListItems.module.css';
 import MoviesItem from '../../../components/TrendingMovies/MoviesItem/MoviesItem';
 import UserAvatar from '../../../components/UI/UserAvatar/UserAvatar';
 import Select from '../Select/Select';
+import {downloadImage} from '../../../shared/storage';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
 const imgWidth = 300;
@@ -11,6 +12,16 @@ const imgWidth = 300;
 const WatchListItems = ({watchList, clicked, userId, userData}) => {
     const [countMovie, setCountMovie] = useState(0);
     const [select, setSelect] = useState(1);
+    const [img, setImg] = useState(false);
+
+    useEffect(()=>{
+        if(userData){
+            if(userData.avatar){
+                downloadImage(userId, setImg);
+            }
+        }
+    }, [userData, userId])
+
     const watchlist = watchList.map(movie => {
         if(select === 1){
             if(movie.watched === 'yes'){
@@ -68,7 +79,7 @@ const WatchListItems = ({watchList, clicked, userId, userData}) => {
             <div className={classes.Box}>
                 <div className={classes.Background}></div>
                 <div className={classes.Options}>
-                    <UserAvatar userId={userId} userData={userData} />
+                    <UserAvatar image={img} />
                     <div className={classes.Option}>
                         <p className={classes.Name}>{userData.firstName +" "+ userData.lastName + "'s WatchList"}</p>
                         <p className={classes.Quote}>{

@@ -35,15 +35,12 @@
     }
   }
 .Background{
-    min-height: 20px;
     width: 80%;
     background-color: var(--color3);
     opacity: 0.5;
     position: absolute;
     border-radius: 20px;
     z-index: -20;
-    animation-duration: 0.5s;
-    animation-name: changeHeight;
     transition: height 0.5s;
 }
 

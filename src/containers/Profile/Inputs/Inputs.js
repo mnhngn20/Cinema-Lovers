@@ -12,7 +12,7 @@ import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import SwitchButton from '../../../components/UI/SwitchButton/SwitchButton';
 import UserAvatar from '../../../components/UI/UserAvatar/UserAvatar';
 
-const Inputs = ({userId , setAvatar, userData, onFetchProfile, onUpdateUserData, isLoading, isInEditMode, switchMode, setEditSuccess}) => {
+const Inputs = ({img, userId , setAvatar, userData, onFetchProfile, onUpdateUserData, isLoading, isInEditMode, switchMode, setEditSuccess}) => {
     const [canSubmitForm, setCanSubmitForm] = useState(false);
     const [fName, setFName] = useState({
         value: isLoading ? 'Loading...' : userData.firstName, 
@@ -119,7 +119,7 @@ const Inputs = ({userId , setAvatar, userData, onFetchProfile, onUpdateUserData,
                     <div className={classes.Profile}>
                         <div className={classes.Avatar}>
                             {isInEditMode ? <div className={classes.SetAvatarContainer}><CameraAltIcon className={classes.SetAvatar} onClick={() => setAvatar(true)}/></div> : null}
-                            <UserAvatar userId = {userId} userData={userData} />
+                            <UserAvatar image={img}/>
                         </div>
                         <div className={classes.Info}>
                             <p className={classes.Name}>{userData ? userData.firstName+" "+userData.lastName : "Name"} </p>
