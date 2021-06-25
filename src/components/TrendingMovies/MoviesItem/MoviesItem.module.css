@@ -89,8 +89,7 @@
 
 .Items .MovieInfos .OverView::-webkit-scrollbar-track{
     background-color: #f0e3ca;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-radius: 5px;
 }
 
 .Items .MovieInfos .OverView::-webkit-scrollbar{

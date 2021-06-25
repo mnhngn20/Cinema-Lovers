@@ -11,7 +11,7 @@ import * as actions from '../../../store/actions/index';
 import { checkIsInWatchList, getGenre, addToWatchList, removeFromWatchList} from '../../../shared/ultility';
 import blankImg from '../../../assets/blank.png';
 
-const Items = ({watchList, movie, isAuthenticated, poster, clicked, onUpdateWatchList}) => {
+const Items = ({noTrailer, watchList, movie, isAuthenticated, poster, clicked, onUpdateWatchList}) => {
     const [isInWatchList, setIsInWatchList] = useState(false);
     useEffect(()=>{
         setIsInWatchList(checkIsInWatchList(movie.id, watchList))
@@ -30,16 +30,16 @@ const Items = ({watchList, movie, isAuthenticated, poster, clicked, onUpdateWatc
             <div className = {classes.Container}>
                 <p className={classes.OverView}>{movie.overView}</p>
                 <div className={classes.BtnContainer}>
-                    <Tooltip title="Play Trailer" placement="top">
+                    {noTrailer ? null :<Tooltip title="Play Trailer" placement="top">
                         <PlayCircleFilledIcon className={classes.PlayTrailerButton} onClick={() => clicked(movie.id)}/>
-                    </Tooltip>
+                    </Tooltip>}
                     <div className={classes.FavContainer}>
-                        <FavoriteButton isAuthenticated={isAuthenticated}
+                        {noTrailer ? null : <FavoriteButton isAuthenticated={isAuthenticated}
                             isInWatchList={isInWatchList} toolTipPlacement="top"
                             clicked={isInWatchList
                                 ? () => removeFromWatchList(watchList, onUpdateWatchList, movie.id, setIsInWatchList)
                                 : () => addToWatchList(watchList, onUpdateWatchList, movie, setIsInWatchList)}
-                            type="ItemType"/>
+                            type="ItemType"/>}
                     </div>
                 </div>
                 <img className={classes.Poster} src={poster !== '' ? poster : blankImg} alt="img"/>

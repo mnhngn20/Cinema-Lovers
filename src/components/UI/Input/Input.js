@@ -2,7 +2,7 @@ import React from 'react';
 
 import classes from './Input.module.css';
 
-const Input = ({labelWhite, invalid, shouldValidate, touched, elementType, elementConfig, value, changed, disabled, label}) => {
+const Input = ({labelBlue, invalid, shouldValidate, touched, elementType, elementConfig, value, changed, disabled, label}) => {
     let inputElement = null;
     const inputClasses = [classes.InputElement];
     let validationError = null;
@@ -55,7 +55,7 @@ const Input = ({labelWhite, invalid, shouldValidate, touched, elementType, eleme
 
     return (
         <div className={classes.Input}>
-            <label className={[classes.Label, labelWhite ? classes.labelWhite : null].join(' ')}>{label}</label>
+            <label className={[classes.Label, labelBlue ? classes.labelWhite : null].join(' ')}>{label}</label>
             {inputElement}
             {validationError}
         </div>

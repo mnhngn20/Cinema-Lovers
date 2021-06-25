@@ -6,6 +6,7 @@
     align-items: center;
 }
 .Rouneded{
+    border: 10px solid var(--color3);
     width: 210px;
     height: 210px;
     border-radius: 50%;

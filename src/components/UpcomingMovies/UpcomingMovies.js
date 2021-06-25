@@ -5,13 +5,10 @@ import classes from './UpcomingMovies.module.css';
 import * as actions from '../../store/actions/index';
 import Items from './Items/Items';
 import Spinner from '../UI/Spinner/Spinner'
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
-
 const imgWidth = 300;
-
 const options = {
     type: 'loop',
     speed: '500',

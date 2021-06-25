@@ -19,10 +19,10 @@
 .Background{
     height: 100%;
     width: 700px;
-    background-color: var(--colorlight);
+    background-color: var(--colordark);
     opacity: 0.5;
     position: absolute;
-    border-radius: 20px;
+    border-radius: 15px;
     z-index: -20;
 }
 .Name{

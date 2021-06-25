@@ -1,0 +1,25 @@
+.select{
+    background-color: var(--color3)
+}
+.root {
+    background-color: var(--colorlight);
+    color: var(--color3);
+    font-weight: bold;
+    font-family: 'DM Sans', sans-serif;
+}
+.root:focus{
+    background-color: var(--colorlight);
+    border-radius: 5px;
+    border: none;
+}
+.outlined{
+    color: var(--color3);
+}
+
+.label{
+    color: var(--colorlight)
+}
+
+.itemRoot{  
+    font-family: 'DM Sans', sans-serif
+}

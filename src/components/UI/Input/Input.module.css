@@ -12,14 +12,13 @@
     text-align: center;
 }
 .labelWhite{
-    color: var(--colorlight) !important;
-    font-size: 20px;
+    color: var(--color3) !important;
 }
 .InputElement {
     outline: none;
     border: 1px solid #ccc;
     background-color: var(--colorlight);
-    border-radius: 10px;
+    border-radius: 15px;
     font: inherit;
     padding: 6px 10px;
     display: block;
@@ -41,7 +40,6 @@
 	width: 10px;
 	opacity: 0;
     height: 50px;
-
 }
 
 .Textarea::-webkit-scrollbar-thumb{

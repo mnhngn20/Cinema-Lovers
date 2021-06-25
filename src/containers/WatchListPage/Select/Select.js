@@ -3,35 +3,30 @@ import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select'
 import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import classes from './Select.module.css';
+
 const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: theme.spacing(1),
       minWidth: 120,
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
+    }
+
   }));
 
 const SelectSort = ({select, handleChange}) => {
-    const classes = useStyles();
+    const formClasses = useStyles();
     return (
-        <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel id="demo-simple-select-outlined-label">Sort By</InputLabel>
+        <FormControl variant="outlined" className={formClasses.formControl}>
+          <label className={classes.label}>Sort By</label>
             <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
+                classes = {{root: classes.root, outlined: classes.outlined, filled: classes.filled, focused: classes.focus}}
                 value={select}
                 onChange={handleChange}
                 label="Sort By">
-                {/* <MenuItem value="">
-                    <em>None</em>
-                </MenuItem> */}
-                <MenuItem value={0}>All</MenuItem>
-                <MenuItem value={1}>Watched</MenuItem>
-                <MenuItem value={2}>Not watched</MenuItem>
+                <MenuItem classes={{root: classes.itemRoot}} value={0}>All</MenuItem>
+                <MenuItem classes={{root: classes.itemRoot}} value={1}>Watched</MenuItem>
+                <MenuItem classes={{root: classes.itemRoot}} value={2}>Not watched</MenuItem>
             </Select>
       </FormControl>
     )

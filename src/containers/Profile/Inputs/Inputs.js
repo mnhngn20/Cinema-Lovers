@@ -11,8 +11,9 @@ import * as actions from '../../../store/actions/index';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import SwitchButton from '../../../components/UI/SwitchButton/SwitchButton';
 import UserAvatar from '../../../components/UI/UserAvatar/UserAvatar';
+import Favorites from '../Favorites/Favorites';
 
-const Inputs = ({img , setAvatar, userData, onFetchProfile, onUpdateUserData, isLoading, isInEditMode, switchMode, setEditSuccess}) => {
+const Inputs = ({watchlist,img , setAvatar, userData, onFetchProfile, onUpdateUserData, isLoading, isInEditMode, switchMode, setEditSuccess}) => {
     const [canSubmitForm, setCanSubmitForm] = useState(false);
     const [fName, setFName] = useState({
         value: isLoading ? 'Loading...' : userData.firstName, 
@@ -75,31 +76,33 @@ const Inputs = ({img , setAvatar, userData, onFetchProfile, onUpdateUserData, is
             setCanSubmitForm(false);
         }
     }, [fName, lName]); 
-    const updateProfile = (event, firstName, lastName, birthDay, description) => {
+    const updateProfile = (event, firstName, lastName, birthDay, des) => {
         event.preventDefault();
         let updatedUserData = updateObject(userData, {
             firstName: firstName,
             lastName: lastName,
             birthDay: birthDay,
-            description: description
+            description: des
         })
         setFName(updateObject(fName, {
-            value: userData.firstName
+            value: firstName
         }));
         setLName(updateObject(lName, {
-            value: userData.lastName
+            value: lastName
         }));
         setbDay(updateObject(bDay, {
-            value: userData.birthDay
+            value: birthDay
         }))
         setDescription(updateObject(description, {
-            value: userData.description
+            value: des
         }))
+        console.log(updatedUserData)
         onUpdateUserData(updatedUserData);
         setEditSuccess(true);
     }
 
     const onChangeHandler = (event, typeInput, setInput) => {
+        console.log(typeInput)
         const newInput = event.target.value;
         const updatedInput = updateObject(typeInput,{
             value: newInput,
@@ -110,9 +113,7 @@ const Inputs = ({img , setAvatar, userData, onFetchProfile, onUpdateUserData, is
     }
     return (
         <div className={classes.container}>
-            <div className={[classes.Background, isInEditMode ? classes.Edit : classes.NotEdit].join(' ')}></div>
-            <form className={classes.UserProfile} onSubmit={(event) => updateProfile(event, fName.value, lName.value, bDay.value, description.value)}>
-                <div className={[classes.Top, isInEditMode  ? classes.Expand : null].join(' ')}>
+            <form className={[classes.UserProfile, isInEditMode ? classes.InputsShow : classes.InfoShow].join(' ')} onSubmit={(event) => updateProfile(event, fName.value, lName.value, bDay.value, description.value)}>
                     <Tooltip title={isInEditMode ? 'Turn off edit' : 'Click here to Edit Your Profile'} placement='right'>
                         <div className={classes.SwitchButton}><SwitchButton switchMode={switchMode}/></div>
                     </Tooltip>
@@ -121,69 +122,66 @@ const Inputs = ({img , setAvatar, userData, onFetchProfile, onUpdateUserData, is
                             {isInEditMode ? <div className={classes.SetAvatarContainer}><CameraAltIcon className={classes.SetAvatar} onClick={() => setAvatar(true)}/></div> : null}
                             <UserAvatar image={img}/>
                         </div>
-                        <div className={classes.Info}>
-                            <p className={classes.Name}>{userData ? userData.firstName+" "+userData.lastName : "Name"} </p>
-                            <p className={classes.AboutMe}>About Me:</p>
-                            <p className={classes.Description}>{userData ? userData.description : ""}</p>
-                        </div>
+                            {isInEditMode ? <div className={classes.Inputs}>
+                                <h1>Edit your Profile</h1>
+                                <Input
+                                    labelBlue 
+                                    label = "First Name:"
+                                    elementType = "input"
+                                    elementConfig = {{type: "text"}}
+                                    value = {fName.value}
+                                    invalid = {!fName.isValid}
+                                    shouldValidate
+                                    touched = {fName.touched}
+                                    changed = {event => onChangeHandler(event, fName, setFName)}
+                                    disabled = {isInEditMode ? false : true}/>
+                                <Input
+                                    labelBlue 
+                                    label = "Last Name:"
+                                    elementType = "input"
+                                    elementConfig = {{type: "text"}}
+                                    value = {lName.value}
+                                    invalid = {!lName.isValid}
+                                    shouldValidate
+                                    touched = {lName.touched}
+                                    changed = {event => onChangeHandler(event, lName, setLName)}
+                                    disabled = {isInEditMode ? false : true}/>
+                                <Input 
+                                    labelBlue
+                                    label = "Date of Birth:"
+                                    elementType = "input"
+                                    elementConfig = {{type: "date"}}
+                                    value = {bDay.value}
+                                    invalid = {bDay.isValid}
+                                    changed = {event => onChangeHandler(event, bDay, setbDay)}
+                                    disabled = {isInEditMode ? false : true}/>
+                                <Input 
+                                    labelBlue
+                                    label = "Description:"
+                                    elementType = "textarea"
+                                    value = {description.value}
+                                    invalid = {!description.isValid}
+                                    touched = {description.touched}
+                                    changed = {event => onChangeHandler(event, description, setDescription)}
+                                    disabled = {isInEditMode ? false : true}/>
+                                <Button 
+                                    labelBlue
+                                    btnType="Success" 
+                                    disabled={!canSubmitForm}>UPDATE</Button>
+                            </div>
+                            : <div className={classes.Info}>
+                                <p className={classes.Name}>{userData ? userData.firstName+" "+userData.lastName : "Name"} </p>
+                                <p className={classes.AboutMe}>About me:</p>
+                                <p className={classes.Description}>{userData ? userData.description : ""}</p>
+                            </div>}
                     </div>
                     <div className={classes.GotoWLContainer}>
                         <Link className={classes.GotoWL} to='/watchlist'>{">>>Go to WatchList"}</Link>
                     </div>
-                </div>
-                
-                    <div className={[classes.Inputs,isInEditMode ? classes.InputsShow : null].join(' ')}>
-                        <Input 
-                            labelWhite
-                            label = "First Name:"
-                            elementType = "input"
-                            elementConfig = {{type: "text"}}
-                            value = {fName.value}
-                            invalid = {!fName.isValid}
-                            shouldValidate
-                            touched = {fName.touched}
-                            changed = {event => onChangeHandler(event, fName, setFName)}
-                            disabled = {isInEditMode ? false : true}/>
-                        <Input 
-                            labelWhite
-                            label = "Last Name:"
-                            elementType = "input"
-                            elementConfig = {{type: "text"}}
-                            value = {lName.value}
-                            invalid = {!lName.isValid}
-                            shouldValidate
-                            touched = {lName.touched}
-                            changed = {event => onChangeHandler(event, lName, setLName)}
-                            disabled = {isInEditMode ? false : true}/>
-                        <Input 
-                            labelWhite
-                            label = "Date of Birth:"
-                            elementType = "input"
-                            elementConfig = {{type: "date"}}
-                            value = {bDay.value}
-                            invalid = {bDay.isValid}
-                            changed = {event => onChangeHandler(event, bDay, setbDay)}
-                            disabled = {isInEditMode ? false : true}/>
-                        <Input 
-                            labelWhite
-                            label = "Description:"
-                            elementType = "textarea"
-                            value = {description.value}
-                            invalid = {!description.isValid}
-                            touched = {description.touched}
-                            changed = {event => onChangeHandler(event, description, setDescription)}
-                            disabled = {isInEditMode ? false : true}/>
-                    </div> 
-                    
-                {   
-                    isInEditMode
-                        ?<Button 
-                        btnType="Success" 
-                        disabled={!canSubmitForm}>UPDATE</Button>
-                        : null
-                }
-                
             </form>
+            {watchlist ? <div className={classes.Favorites}>
+                <Favorites watchlist={watchlist} />
+            </div> : null}
         </div>
     )
 }
@@ -192,7 +190,8 @@ const mapStateToProps = state => ({
         isLoading: state.authState.loading,
         error: state.authState.error,
         userData: state.authState.userData,
-        userId: state.authState.userId
+        userId: state.authState.userId,
+        watchlist: state.watchListState.watchList
 })
 
 const mapDispatchToProps = dispatch => ({
