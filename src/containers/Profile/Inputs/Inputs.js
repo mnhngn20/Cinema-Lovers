@@ -11,7 +11,7 @@ import * as actions from '../../../store/actions/index';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import SwitchButton from '../../../components/UI/SwitchButton/SwitchButton';
 import UserAvatar from '../../../components/UI/UserAvatar/UserAvatar';
-import Favorites from '../Favorites/Favorites';
+import Favorites from '../../../components/ListMovie/ListMovie';
 
 const Inputs = ({watchlist,img , setAvatar, userData, onFetchProfile, onUpdateUserData, isLoading, isInEditMode, switchMode, setEditSuccess}) => {
     const [canSubmitForm, setCanSubmitForm] = useState(false);
@@ -180,7 +180,7 @@ const Inputs = ({watchlist,img , setAvatar, userData, onFetchProfile, onUpdateUs
                     </div>
             </form>
             {watchlist ? <div className={classes.Favorites}>
-                <Favorites watchlist={watchlist} />
+                <Favorites quantity={10} list={watchlist} title="Favorites"/>
             </div> : null}
         </div>
     )

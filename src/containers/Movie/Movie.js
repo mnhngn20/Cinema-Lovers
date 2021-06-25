@@ -12,17 +12,22 @@ import FavoriteButton from '../../components/UI/FavoriteButton/FavoriteButton';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Score from '../../components/UI/Score/Score';
 import MovieInfo from './MovieInfo/MovieInfo';
+import ListMovie from '../../components/ListMovie/ListMovie';
+import Pagination from '../../components/TrendingMovies/MoviesItem/Pagination/Pagination';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
 
-const Movie = ({match, watchList, fetchWatchList, isAuthenticated, userId, onUpdateWatchList}) => {
-    const [movie, setMovie] = useState(null);
+const Movie = ({match, watchList, isAuthenticated, onUpdateWatchList}) => {
+    const [movie, setMovie] = useState();
     const [loading, setLoading] = useState(false);
     const [showingTrailer, setShowingTrailer] = useState(false);
     const [trailerPath, setTrailerPath] = useState('');
     const [isInWatchList, setIsInWatchList] = useState(false);
+    const [page, setPage] = useState(1);
+    const [list, setList] = useState();
+    const [listLoading, setListLoading] = useState(false);
     const movieId = match.params.id;
-
+    const [numberOfPage, setNumberOfPage] = useState(0);
     useEffect(()=>{
         if(movie){
             setIsInWatchList(checkIsInWatchList(movie.id, watchList))
@@ -53,7 +58,34 @@ const Movie = ({match, watchList, fetchWatchList, isAuthenticated, userId, onUpd
             console.log(err);
         })
     }, [movieId]);
-
+    useEffect(()=>{
+        setListLoading(true);
+        axios.get('/movie/'+ movieId+'/similar?api_key=ccc040ef39e5eace4f5cd8028421f9f1&language=en-US&page=' +page).then(
+            res => {
+                let fetchedMovies = [];
+                let fetchedMovie = null;
+                for(let key in res.data.results){
+                    fetchedMovie = {
+                        id: res.data.results[key].id,
+                        title: res.data.results[key].title? res.data.results[key].title : res.data.results[key].name,
+                        overView: res.data.results[key].overview,
+                        posterPath: res.data.results[key].poster_path,
+                        releaseDay: res.data.results[key].release_date,
+                        genres: res.data.results[key].genre_ids,
+                        popularity: res.data.results[key].popularity,
+                        voteAverage: res.data.results[key].vote_average,
+                        voteCount: res.data.results[key].vote_count,
+                        originalLanguage: res.data.results[key].original_language,
+                    }
+                    fetchedMovies.push(fetchedMovie);
+                }
+                setList(fetchedMovies);
+                setListLoading(false);
+                console.log(res.data.total_pages)
+                setNumberOfPage(res.data.total_pages)
+            }
+        ).catch(err => console.log(err))
+    },[movieId, page])
     const hideModal = () => {
         setShowingTrailer(false);
         setTrailerPath('');
@@ -97,6 +129,8 @@ const Movie = ({match, watchList, fetchWatchList, isAuthenticated, userId, onUpd
                     </div>
                 </div>
             } 
+            { listLoading || !list ? <div className={classes.Spinner}><Spinner /></div> : <ListMovie quantity={20} list={list} title="You might also like"/>}
+            <div className={classes.Pagination}><Pagination quantity={numberOfPage} currentPage={page} setPage={setPage} /></div>
         </div>
     )
 }
@@ -111,7 +145,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchWatchList: (userId)=> dispatch(actions.fetchWatchList(userId)),
         onUpdateWatchList: (watchList) => dispatch(actions.updateWatchList(watchList))
     }
 }

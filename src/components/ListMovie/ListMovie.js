@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Item from '../../../components/UpcomingMovies/Items/Items';
-import classes from './Favorites.module.css'
+import Item from '../UpcomingMovies/Items/Items';
+import classes from './ListMovie.module.css'
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
@@ -14,9 +14,9 @@ const options = {
     fixedWidth: '100vw',
     perPage: 3
 };
-const Favorites = ({watchlist}) => {
-    let clone = [...watchlist];
-    const favorites= clone.splice(0, clone.length < 11 ? clone.length - 1 : 10).map(movie => {
+const ListMovie = ({list, title, quantity}) => {
+    let clone = [...list];
+    const favorites= clone.splice(0, clone.length < quantity + 1 ? clone.length - 1 : quantity).map(movie => {
         return (
             <SplideSlide key={movie.id}>
                 <Item 
@@ -33,7 +33,7 @@ const Favorites = ({watchlist}) => {
     
     return (
         <div className={classes.container}>
-            <h1>Favorites</h1>
+            <h1>{title}</h1>
             <div className={classes.Favorites}>
                 {favorites}
             </div>
@@ -46,4 +46,4 @@ const Favorites = ({watchlist}) => {
     )
 }
 
-export default Favorites;
+export default ListMovie;

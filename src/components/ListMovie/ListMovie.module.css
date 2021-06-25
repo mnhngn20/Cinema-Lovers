@@ -16,7 +16,9 @@
     height: 100%;
 }
 .container h1{
-    color: var(--colorlight) !important
+    color: var(--colorlight) !important;
+    text-align: center;
+    letter-spacing: 2px;
 }
 .FavoritesMobile{
     display: none;

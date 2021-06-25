@@ -31,7 +31,7 @@
 .MovieContainer .BackGround{
     position: absolute;
     width: 1000px;
-    height: 290px;
+    height: 283px;
     background-color: rgb(0, 0, 0);
     opacity: 0.5;
     left: 50%;
@@ -60,7 +60,10 @@
 .MobileOnly{
     display: none;
 }
-
+.Pagination{
+    width: 100%;
+    margin-top: 30px;
+}
 @media(max-width: 1100px){  
     .MovieContainer .BackdropContainer{
         width: 100%;
