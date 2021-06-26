@@ -41,7 +41,7 @@
     color: var(--colorlight)
 }
 
-@media (max-width: 499px){
+@media (max-width: 300px){
     .SearchDropDownItem img{
         display: none;
     }

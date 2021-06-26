@@ -4,7 +4,7 @@
     height: auto;
     max-height: 460px;
     overflow-y: auto;
-    width: 45%;
+    width: 48%;
     z-index: 90;
     background-color: var(--colordark);
     opacity: 1 !important;
@@ -44,8 +44,20 @@
     align-items: center;
 }
 
-@media (max-width: 499px){
+@media (max-width: 850px){
     .SearchDropDownItems{
-        width: 200px;
+        position: fixed;
+        margin-top: 15px;
+        height: auto;
+        left: 0;
+        max-height: 100vh;
+        width: 100vw;
+        border-radius: 0px;
+    }
+    .NoResults{
+        text-align: center;
+        color: var(--colorlight);
+        font-size: 20px;
+        font-weight: bold;
     }
 }

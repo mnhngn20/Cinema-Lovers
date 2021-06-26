@@ -1,0 +1,65 @@
+.SearchBar{
+    height: fit-content;
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: fit-content !important;
+    margin-right: 5vw;
+}
+.Bar{
+    display: flex;
+    background-color: var(--color3);
+    justify-content: flex-end;
+    width: fit-content;
+    border-radius: 30px;
+    max-width: 90vw;
+}
+
+.SearchBar .CustomSearchBar{
+    height: auto;
+    font-size: 15px;
+    border: none;
+    background-color: transparent;
+    font-weight: 400;
+    transition: all 0.5s ease-in-out;
+    color: var(--colorlight);
+}
+
+.SearchBar .CustomSearchBar:focus{
+    outline: none;
+}
+.SearchBarShow{
+    width: 100vw;
+    padding-left: 5vw;
+}
+.SearchBarHide{
+    width: 0px;
+    padding: 0px 0px;
+}
+.SearchBar .SearchIcon{
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    background-color: var(--color3);
+    padding: 2px 2px;
+    z-index: 30;
+}
+
+@media (max-width: 499px) and (min-width: 282px){
+    .SearchBar{
+        height: auto;
+        width: 200px;
+    }
+}
+
+@media (max-width: 281px){
+    .SearchBar{
+        height: auto;
+        width: 200px;
+    }
+    .SearchBarShow{
+        width: 70vw;
+    }
+}

@@ -10,7 +10,6 @@
     top: 0;
     opacity: 0.95;
 }
-
 .Toolbar .Logo {
     margin-left: 20px;
     width: 72px;
@@ -50,7 +49,17 @@
 .MobileOnly{
     display: none;
 }
-
+.SearchBarForDesktop{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.SearchBarForMobile{
+    height: 100%;
+    display: none;
+}
 @media (max-width: 850px){
     .DesktopOnly{
         display: none;
@@ -59,16 +68,29 @@
         display: block;
     }
     .Toolbar{
-        justify-content: space-around;
+        justify-content: space-between;
         height: 60px;
     }
+    .CenterSearchBar{
+        justify-content: center !important;
+    }
     .Toolbar .Logo {
-        margin-left: 0;
+        margin-left: 10px;
+        z-index: 20;
     }
     .Toolbar .LogoMain{
         font-size: 30px;
-        margin-bottom: 0px;
-        margin-top: 0px;
+        margin: 0px 0px;
+    }
+    .SearchBarForDesktop{
+        display: none;
+    }
+    .SearchBarForMobile{
+        position: absolute;
+        width: 100vw;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
     }
 }
 

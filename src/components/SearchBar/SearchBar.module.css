@@ -1,6 +1,6 @@
 .SearchBar{
     height: auto;
-    width: 45%;
+    width: 80%;
 }
 
 .SearchBar .Items{
@@ -16,7 +16,7 @@
 }
 
 .SearchBar .CustomSearchBar{
-    width: 100%;
+    width: 80%;
     height: 30px;
     box-sizing: border-box;
     font-size: 15px;
@@ -42,10 +42,10 @@
     margin-top: 3px;
     margin-left: 8px;
 }
-
+/* 
 @media (max-width: 499px){
     .SearchBar{
         height: auto;
         width: 200px;
     }
-}
+} */
