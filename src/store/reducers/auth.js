@@ -22,7 +22,7 @@ const authSuccess = (state, action) => {
         error: null,
         token: action.token,
         loading: false,
-        isAuth: true
+        isAuth: action.isAuth
     });
 }
 

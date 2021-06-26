@@ -11,12 +11,15 @@ export const authStart = () => {
 }
 
 export const authSuccess = (token, userId, isSignUp) => {
-    localStorage.setItem('token', token);
-    localStorage.setItem('userId', userId);
+    if(!isSignUp){
+        localStorage.setItem('token', token);
+        localStorage.setItem('userId', userId); 
+    }   
     return {
         type: actionTypes.AUTH_SUCCESS,
         token: isSignUp ? null : token, 
-        userId: isSignUp ? null : userId
+        userId: isSignUp ? null : userId,
+        isAuth: isSignUp ? false : true
     }
 }
 
