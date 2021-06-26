@@ -17,7 +17,7 @@
 }
 
 .Container .Poster{
-    height: auto;
+    height: 375px;
     width: 250px;
     border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.5);

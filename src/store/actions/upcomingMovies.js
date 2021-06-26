@@ -21,10 +21,10 @@ export const fetchUpcomingMoviesFail = (error) => {
     }
 }
 
-export const fetchUpcomingMovies  = () => {
+export const fetchUpcomingMovies  = (page, setNumberOfPage, setTotalResults) => {
     return dispatch => {
         dispatch(fetchUpcomingMoviesStart());
-        axios.get('movie/upcoming?api_key=ccc040ef39e5eace4f5cd8028421f9f1&language=en-US&page=2') 
+        axios.get('movie/upcoming?api_key=ccc040ef39e5eace4f5cd8028421f9f1&page='+ page) 
         .then(res => {
             let fetchedUpcomingMovies = [];
             let fetchedUpcomingMovie = null;
@@ -42,6 +42,8 @@ export const fetchUpcomingMovies  = () => {
                     originalLanguage: res.data.results[key].original_language,
                 }
                 fetchedUpcomingMovies.push(fetchedUpcomingMovie);
+                setTotalResults(res.data.total_results)
+                setNumberOfPage(res.data.total_pages)
             }
             dispatch(fetchUpcomingMoviesSuccess(fetchedUpcomingMovies));
         })

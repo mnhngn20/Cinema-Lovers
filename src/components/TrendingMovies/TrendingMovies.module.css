@@ -18,13 +18,16 @@
 
 .pagination{
     width: 100vw;
-    padding: 0 auto;
+    padding: 0 0;
     margin: 0 auto;
     display: inline-flex;
     justify-content: center;
     position: absolute;
     list-style: none;
     top: 465px;
+}
+.active{
+    background-color: var(--colordark) !important;
 }
 
 @media(max-width: 400px){

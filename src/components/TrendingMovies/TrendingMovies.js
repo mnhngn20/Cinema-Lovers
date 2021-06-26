@@ -7,27 +7,32 @@ import MoviesItem from './MoviesItem/MoviesItem';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import Spinner from '../UI/Spinner/Spinner';
 import * as actions from '../../store/actions/index';
-
+import Pagination from './MoviesItem/Pagination/Pagination';
 const imgPath = 'https://image.tmdb.org/t/p/';
 const imgWidth = 300;
 const options = {
     type: 'loop',
-    autoplay: false,
+    autoplay: true,
     interval: '3000',
     speed: '500',
     pauseOnHover: true,
     rewind: true,
-    classes: {arrows: classes.arrows, pagination: classes.pagination},
+    classes: {arrows: classes.arrows, pagination: classes.pagination, isActive : classes.active},
     lazyLoad: 'nearby',
     preloadPages: 2
 };
 
-const TrendingMovies = ({isError, fetchedTrendingMovies, onFetchTrendingMovies, clicked}) => {
+const TrendingMovies = ({isError, fetchedTrendingMovies, onFetchTrendingMovies, clicked, isloading}) => {
     const slideRef = useRef();
     const [trendingMovies, setTrendingMovies] = useState();
+    const [page, setPage] = useState(1);
+    const [numberOfPage, setNumberOfPage] = useState(0);
+    const [totalResults, setTotalResults] = useState(0);
+
     useEffect(()=>{
-        if(fetchedTrendingMovies.length === 0) onFetchTrendingMovies();
-    }, [onFetchTrendingMovies]);
+        console.log(page)
+        onFetchTrendingMovies(page, setNumberOfPage, setTotalResults);
+    },[onFetchTrendingMovies, page, setNumberOfPage, setTotalResults])
     useEffect(()=>{
         if(fetchedTrendingMovies){
             setTrendingMovies(fetchedTrendingMovies.map((movie) => {
@@ -44,7 +49,7 @@ const TrendingMovies = ({isError, fetchedTrendingMovies, onFetchTrendingMovies, 
         }
     },[fetchedTrendingMovies])
     return (
-        fetchedTrendingMovies.length === 0 ? <div className={classes.Spinner}><Spinner /></div>
+        fetchedTrendingMovies.length === 0 || isloading ? <div className={classes.Spinner}><Spinner /></div>
         : <div className= {classes.TrendingMovies}>
             {
                 isError 
@@ -53,6 +58,7 @@ const TrendingMovies = ({isError, fetchedTrendingMovies, onFetchTrendingMovies, 
                     {trendingMovies}
                 </Splide>
             }
+            <div className={classes.Pagination}><Pagination totalResults={totalResults} quantity={numberOfPage} currentPage={page} setPage={setPage} /></div>
         </div>
     )
 }
@@ -63,7 +69,7 @@ const mapState = state => ({
     isError: state.trendingMoviesState.error
 })
 const mapDispatchToProps = dispatch => ({
-      onFetchTrendingMovies: () => dispatch(actions.fetchTrendingMovies()),
+      onFetchTrendingMovies: (page , setNumberOfPage, setTotalResults) => dispatch(actions.fetchTrendingMovies(page , setNumberOfPage, setTotalResults)),
 })
   
 export default connect(mapState, mapDispatchToProps)(TrendingMovies);

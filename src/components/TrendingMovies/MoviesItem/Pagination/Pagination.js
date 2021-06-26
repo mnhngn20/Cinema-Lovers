@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import classes from './Pagination.module.css';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
-const Pagination = ({quantity, currentPage, setPage}) =>{
+const Pagination = ({quantity, currentPage, setPage, totalResults}) =>{
     const [group, setGroup] = useState(0)
     let pagination = [];
     let number = window.outerWidth < 600 ? 5 :10
@@ -35,11 +35,13 @@ const Pagination = ({quantity, currentPage, setPage}) =>{
     }
   
     return (
-        <div className={classes.Pagination}>
-            <ArrowLeftIcon className={classes.Icon} onClick={() => changeGroup("backward")}/>
-            {pagination}
-            <ArrowRightIcon className={classes.Icon} onClick={()=> changeGroup("forward")}/>
-        </div>
+        totalResults !== 0
+            ?<div className={classes.Pagination}>
+                <ArrowLeftIcon className={classes.Icon} onClick={() => changeGroup("backward")}/>
+                {pagination}
+                <ArrowRightIcon className={classes.Icon} onClick={()=> changeGroup("forward")}/>
+            </div>
+            :null
     )
 }
 

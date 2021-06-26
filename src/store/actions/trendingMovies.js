@@ -21,10 +21,10 @@ export const fetchTrendingMoviesFail = (error) => {
     }
 }
 
-export const fetchTrendingMovies  = () => {
+export const fetchTrendingMovies  = (page, setNumberOfPage, setTotalResults) => {
     return dispatch => {
         dispatch(fetchTrendingMoviesStart());
-        axios.get('trending/all/day?api_key=ccc040ef39e5eace4f5cd8028421f9f1') 
+        axios.get('trending/all/day?api_key=ccc040ef39e5eace4f5cd8028421f9f1&page=' + page) 
         .then(res => {
             let fetchedTrendingMovies = [];
             let fetchedTrendingMovie = null;
@@ -44,6 +44,8 @@ export const fetchTrendingMovies  = () => {
                 }
                 fetchedTrendingMovies.push(fetchedTrendingMovie);
             }
+            setNumberOfPage(res.data.total_pages);
+            setTotalResults(res.data.total_results);
             dispatch(fetchTrendingMoviesSuccess(fetchedTrendingMovies));
         })
         .catch(err => {

@@ -25,6 +25,7 @@ const Movie = ({match, watchList, isAuthenticated, onUpdateWatchList}) => {
     const [isInWatchList, setIsInWatchList] = useState(false);
     const [page, setPage] = useState(1);
     const [list, setList] = useState();
+    const [totalResults, setTotalResults] = useState(0);
     const [listLoading, setListLoading] = useState(false);
     const movieId = match.params.id;
     const [numberOfPage, setNumberOfPage] = useState(0);
@@ -81,8 +82,8 @@ const Movie = ({match, watchList, isAuthenticated, onUpdateWatchList}) => {
                 }
                 setList(fetchedMovies);
                 setListLoading(false);
-                console.log(res.data.total_pages)
                 setNumberOfPage(res.data.total_pages)
+                setTotalResults(res.data.total_results)
             }
         ).catch(err => console.log(err))
     },[movieId, page])
@@ -129,8 +130,8 @@ const Movie = ({match, watchList, isAuthenticated, onUpdateWatchList}) => {
                     </div>
                 </div>
             } 
-            { listLoading || !list ? <div className={classes.Spinner}><Spinner /></div> : <ListMovie quantity={20} list={list} title="You might also like"/>}
-            <div className={classes.Pagination}><Pagination quantity={numberOfPage} currentPage={page} setPage={setPage} /></div>
+            { totalResults!==0 ? listLoading || !list ? <div className={classes.Spinner}><Spinner /></div> : <ListMovie quantity={20} list={list} title="You might also like"/> : null}
+            <div className={classes.Pagination}><Pagination totalResults={totalResults} quantity={numberOfPage} currentPage={page} setPage={setPage} /></div>
         </div>
     )
 }

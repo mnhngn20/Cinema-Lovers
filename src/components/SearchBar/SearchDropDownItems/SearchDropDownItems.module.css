@@ -4,7 +4,7 @@
     height: auto;
     max-height: 460px;
     overflow-y: auto;
-    width: 30%;
+    width: 45%;
     z-index: 90;
     background-color: var(--colordark);
     opacity: 1 !important;

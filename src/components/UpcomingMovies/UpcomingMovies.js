@@ -6,6 +6,7 @@ import * as actions from '../../store/actions/index';
 import Items from './Items/Items';
 import Spinner from '../UI/Spinner/Spinner'
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import Pagination from '../TrendingMovies/MoviesItem/Pagination/Pagination';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
 const imgWidth = 300;
@@ -20,10 +21,13 @@ const options = {
 
 const UpcomingMovies = ({isError, fetchedUpcomingMovies, clicked, onFetchUpcomingMovies}) => {
     const [upcomingMovies, setUpcomingMovies] = useState();
-
+    const [page, setPage] = useState(1);
+    const [numberOfPage, setNumberOfPage] = useState(0);
+    const [totalResults, setTotalResults] = useState(0);
     useEffect(()=>{
-        if(fetchedUpcomingMovies.length === 0) onFetchUpcomingMovies();
-    }, [onFetchUpcomingMovies]);
+        onFetchUpcomingMovies(page, setNumberOfPage, setTotalResults);
+    }, [onFetchUpcomingMovies, page, setNumberOfPage, setTotalResults]);
+
     useEffect(()=>{
         if(fetchedUpcomingMovies){
             setUpcomingMovies(fetchedUpcomingMovies.map((movie) => {
@@ -59,6 +63,7 @@ const UpcomingMovies = ({isError, fetchedUpcomingMovies, clicked, onFetchUpcomin
                     </div>
                 </div>
             }
+        <div className={classes.Pagination}><Pagination totalResults={totalResults} quantity={numberOfPage} currentPage={page} setPage={setPage} /></div>
         </div>
         
     )
@@ -67,12 +72,13 @@ const UpcomingMovies = ({isError, fetchedUpcomingMovies, clicked, onFetchUpcomin
 const mapStateToProps = state => {
     return {
         fetchedUpcomingMovies: state.upcomingMoviesState.upcomingMovies,
-        isError: state.upcomingMoviesState.error
+        isError: state.upcomingMoviesState.error,
+        isLoading: state.upcomingMoviesState.loading
     }
 }
 const mapDispatchToProps = dispatch => {
     return{
-      onFetchUpcomingMovies: () => dispatch(actions.fetchUpcomingMovies())
+      onFetchUpcomingMovies: (page, setNumberOfPage, setTotalResults) => dispatch(actions.fetchUpcomingMovies(page, setNumberOfPage, setTotalResults))
     }
   }
 export default connect(mapStateToProps, mapDispatchToProps)(UpcomingMovies);

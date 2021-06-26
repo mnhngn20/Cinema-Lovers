@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import classes from './SearchDropDownItem.module.css';
-import imageErrorPoster from '../../../../assets/blank.png';
+import imageErrorPoster from '../../../../assets/imageErrorPoster.jpg';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
 const imgWidth = 300;
