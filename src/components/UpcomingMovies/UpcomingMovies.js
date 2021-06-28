@@ -12,7 +12,7 @@ const imgPath = 'https://image.tmdb.org/t/p/';
 const imgWidth = 300;
 const options = {
     type: 'loop',
-    speed: '500',
+    speed: '200',
     rewind: true,
     classes: {arrows: classes.arrows, pagination: classes.pagination},
     fixedWidth: '100vw',
@@ -24,6 +24,7 @@ const UpcomingMovies = ({isError, fetchedUpcomingMovies, clicked, onFetchUpcomin
     const [page, setPage] = useState(1);
     const [numberOfPage, setNumberOfPage] = useState(0);
     const [totalResults, setTotalResults] = useState(0);
+    
     useEffect(()=>{
         onFetchUpcomingMovies(page, setNumberOfPage, setTotalResults);
     }, [onFetchUpcomingMovies, page, setNumberOfPage, setTotalResults]);
@@ -63,7 +64,7 @@ const UpcomingMovies = ({isError, fetchedUpcomingMovies, clicked, onFetchUpcomin
                     </div>
                 </div>
             }
-        <div className={classes.Pagination}><Pagination totalResults={totalResults} quantity={numberOfPage} currentPage={page} setPage={setPage} /></div>
+            <div className={classes.Pagination}><Pagination totalResults={totalResults} quantity={numberOfPage} currentPage={page} setPage={setPage} /></div>
         </div>
         
     )

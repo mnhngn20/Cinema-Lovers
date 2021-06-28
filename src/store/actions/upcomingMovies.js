@@ -42,9 +42,9 @@ export const fetchUpcomingMovies  = (page, setNumberOfPage, setTotalResults) => 
                     originalLanguage: res.data.results[key].original_language,
                 }
                 fetchedUpcomingMovies.push(fetchedUpcomingMovie);
-                setTotalResults(res.data.total_results)
-                setNumberOfPage(res.data.total_pages)
             }
+            setTotalResults(res.data.total_results)
+            setNumberOfPage(res.data.total_pages)
             dispatch(fetchUpcomingMoviesSuccess(fetchedUpcomingMovies));
         })
         .catch(err => {

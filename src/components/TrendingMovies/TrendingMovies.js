@@ -8,13 +8,14 @@ import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import Spinner from '../UI/Spinner/Spinner';
 import * as actions from '../../store/actions/index';
 import Pagination from './MoviesItem/Pagination/Pagination';
+
 const imgPath = 'https://image.tmdb.org/t/p/';
 const imgWidth = 300;
 const options = {
     type: 'loop',
     autoplay: true,
     interval: '3000',
-    speed: '500',
+    speed: '200',
     pauseOnHover: true,
     rewind: true,
     classes: {arrows: classes.arrows, pagination: classes.pagination, isActive : classes.active},
@@ -33,6 +34,7 @@ const TrendingMovies = ({isError, fetchedTrendingMovies, onFetchTrendingMovies, 
         console.log(page)
         onFetchTrendingMovies(page, setNumberOfPage, setTotalResults);
     },[onFetchTrendingMovies, page, setNumberOfPage, setTotalResults])
+
     useEffect(()=>{
         if(fetchedTrendingMovies){
             setTrendingMovies(fetchedTrendingMovies.map((movie) => {
@@ -49,17 +51,20 @@ const TrendingMovies = ({isError, fetchedTrendingMovies, onFetchTrendingMovies, 
         }
     },[fetchedTrendingMovies])
     return (
-        fetchedTrendingMovies.length === 0 || isloading ? <div className={classes.Spinner}><Spinner /></div>
-        : <div className= {classes.TrendingMovies}>
-            {
-                isError 
-                ? <p className={classes.Error}>Could not load Trending Movies</p> 
-                : <Splide options = {options} ref={slideRef}>
-                    {trendingMovies}
-                </Splide>
-            }
-            <div className={classes.Pagination}><Pagination totalResults={totalResults} quantity={numberOfPage} currentPage={page} setPage={setPage} /></div>
+        fetchedTrendingMovies.length === 0 ? <div className={classes.Spinner}><Spinner /></div>
+        : <div>
+                {
+                    isError 
+                    ? <p className={classes.Error}>Could not load Trending Movies</p> 
+                    : <div className= {classes.TrendingMovies}>
+                        <Splide options = {options} ref={slideRef}>
+                            {trendingMovies}
+                        </Splide>
+                    </div>
+                }
+                <div className={classes.Pagination}><Pagination totalResults={totalResults} quantity={numberOfPage} currentPage={page} setPage={setPage} /></div>
         </div>
+        
     )
 }
 

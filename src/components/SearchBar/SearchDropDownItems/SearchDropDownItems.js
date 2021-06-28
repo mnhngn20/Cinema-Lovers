@@ -6,7 +6,7 @@ import * as actions from '../../../store/actions/index';
 import classes from './SearchDropDownItems.module.css';
 import Spinner from '../../UI/Spinner/Spinner';
 
-const SearchDropDownItems = ({onSearching, query, isLoading, searchData, onSearchMore, moreLoading}) => {
+const SearchDropDownItems = ({onSearching, query, isLoading, searchData, onSearchMore, moreLoading, hideItems}) => {
     const [page, setPage] = useState(1);
     const [numberOfPage, setNumberOfPage] = useState(0);
     const [totalResults, setTotalResults] = useState(0)
@@ -26,7 +26,7 @@ const SearchDropDownItems = ({onSearching, query, isLoading, searchData, onSearc
         }
     }
 
-    let searchItems = <div className={classes.Spinner}><Spinner /></div>
+    let searchItems = null
     if(!isLoading){
         searchItems = searchData.map(item => {
             return <SearchDropDownItem
@@ -35,6 +35,7 @@ const SearchDropDownItems = ({onSearching, query, isLoading, searchData, onSearc
                 key = {item.id}
                 title={item.title}
                 releaseDate={item.releaseDate}
+                hideItems = {hideItems}
             />
         })
     }
@@ -44,7 +45,7 @@ const SearchDropDownItems = ({onSearching, query, isLoading, searchData, onSearc
             {searchData.length > 0 
                 ? totalResults === searchData.length 
                     ? <p className={classes.NoResults}>End Of Result</p> 
-                    : null 
+                    : <div className={classes.Spinner}><Spinner /></div>
                 : <p className={classes.NoResults}>No result match your search...</p>}
         </div>
     )

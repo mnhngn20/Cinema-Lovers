@@ -43,7 +43,7 @@ const SearchBarForMobile = ({setShowSearchBar}) => {
                 <img className={classes.SearchIcon} onClick={showSearchBar} src={searchIcon} alt="img"/>
             </div>
             {query !== '' && show ? <div className={classes.Items}>
-                <SearchDropDownItems  query={query}/>
+                <SearchDropDownItems hideItems={showSearchBar} query={query}/>
             </div> : null}
         </div>
     )

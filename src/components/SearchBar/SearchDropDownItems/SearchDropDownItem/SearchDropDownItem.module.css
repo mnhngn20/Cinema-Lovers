@@ -30,6 +30,10 @@
     font-weight: 700;
     text-decoration: none;
     color: var(--textcolor);
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .SearchDropDownItem .MovieInfo a:hover{
@@ -41,8 +45,8 @@
     color: var(--colorlight)
 }
 
-@media (max-width: 300px){
-    .SearchDropDownItem img{
-        display: none;
+@media (max-width: 750px){
+    .SearchDropDownItem .MovieInfo a{
+        width: 70vw;
     }
 }

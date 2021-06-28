@@ -44,13 +44,13 @@
     align-items: center;
 }
 
-@media (max-width: 850px){
+@media (max-width: 750px){
     .SearchDropDownItems{
         position: fixed;
         margin-top: 15px;
         height: auto;
         left: 0;
-        max-height: 100vh;
+        max-height: 90vh;
         width: 100vw;
         border-radius: 0px;
     }

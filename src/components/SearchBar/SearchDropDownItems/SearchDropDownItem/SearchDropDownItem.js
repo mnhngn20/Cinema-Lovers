@@ -7,9 +7,9 @@ import imageErrorPoster from '../../../../assets/imageErrorPoster.jpg';
 const imgPath = 'https://image.tmdb.org/t/p/';
 const imgWidth = 300;
 
-const SearchDropDownItem = ({posterPath, clicked, title, movieId, releaseDate})=> {
+const SearchDropDownItem = ({posterPath, clicked, title, movieId, releaseDate, hideItems})=> {
     return (
-        <div className={classes.SearchDropDownItem} >
+        <div className={classes.SearchDropDownItem} onClick = {hideItems}>
             <img src={posterPath ? imgPath + 'w' + imgWidth + posterPath : imageErrorPoster} alt="img"/>
             <div className={classes.MovieInfo} onClick = {clicked}>
                 <Link

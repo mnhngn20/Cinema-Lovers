@@ -44,8 +44,8 @@ export const fetchTrendingMovies  = (page, setNumberOfPage, setTotalResults) => 
                 }
                 fetchedTrendingMovies.push(fetchedTrendingMovie);
             }
-            setNumberOfPage(res.data.total_pages);
-            setTotalResults(res.data.total_results);
+            setTotalResults(res.data.total_results)
+            setNumberOfPage(res.data.total_pages)
             dispatch(fetchTrendingMoviesSuccess(fetchedTrendingMovies));
         })
         .catch(err => {
