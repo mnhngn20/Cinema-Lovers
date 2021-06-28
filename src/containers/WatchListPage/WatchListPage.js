@@ -20,7 +20,7 @@ const WatchListPage = ({userId, loading, watchList, userData}) => {
     let movies = null;
     if(!loading && watchList && userData){
         movies = <Items clicked={(movieId) => showTrailer(movieId, setShowingTrailer, setTrailerPath)}
-            watchList = {watchList} userData={userData} userId={userId}/>
+            watchList = {[]} userData={userData} userId={userId}/>
     }
     return (
         <div className={classes.WatchListPage}>

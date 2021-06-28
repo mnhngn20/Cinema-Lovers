@@ -22,7 +22,6 @@
     background-color: var(--colordark);
     opacity: 0.5;
     position: absolute;
-    border-radius: 15px;
     z-index: -20;
 }
 .Name{

@@ -31,7 +31,6 @@
 }
 .Textarea::-webkit-scrollbar-track{
     background-color: var(--colorlight);
-    border-radius: 20px;
 }
 
 .Textarea::-webkit-scrollbar{
@@ -41,7 +40,6 @@
 }
 
 .Textarea::-webkit-scrollbar-thumb{
-	border-radius: 10px;
 	background-color: var(--color3);
     margin-left: 5px;
     margin-right: 5px;
@@ -63,4 +61,19 @@
 } 
 .Disabled{
     border: none;
+}
+
+@media(min-width: 701px) and (max-width: 1100px){
+    .Label {
+        font-size: 25px;
+    }
+    .InputElement {
+        height: 45px;
+        font-size: 20px;
+    }
+    
+    .Textarea{
+        height: 250px;
+        overflow-y: auto;
+    }
 }

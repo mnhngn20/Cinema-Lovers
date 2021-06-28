@@ -54,7 +54,7 @@
     transform: translateX(0);
 }
 
-@media (min-width:600px){
+@media (min-width:800px){
     .SideDrawer{
         display: none;
     }

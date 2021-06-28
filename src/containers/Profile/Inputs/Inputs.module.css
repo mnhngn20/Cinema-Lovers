@@ -166,7 +166,7 @@
 
 @media(max-width: 1100px) and (min-width: 501px){
     .UserProfile{
-        width: 95%;
+        width: 70vw;
     }
     .Info{
         width: 95%;
