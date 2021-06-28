@@ -28,11 +28,11 @@ const SearchDropDownItems = ({onSearching, query, isLoading, searchData, onSearc
 
     let searchItems = null
     if(!isLoading){
-        searchItems = searchData.map(item => {
+        searchItems = searchData.map((item, index) => {
             return <SearchDropDownItem
                 posterPath = {item.posterPath}
                 movieId = {item.id}
-                key = {item.id}
+                key = {item.id + index}
                 title={item.title}
                 releaseDate={item.releaseDate}
                 hideItems = {hideItems}

@@ -6,7 +6,7 @@ import * as actions from '../../store/actions/index';
 import Items from './Items/Items';
 import Spinner from '../UI/Spinner/Spinner'
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import Pagination from '../TrendingMovies/MoviesItem/Pagination/Pagination';
+import Pagination from '../Pagination/Pagination';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
 const imgWidth = 300;
@@ -45,7 +45,7 @@ const UpcomingMovies = ({isError, fetchedUpcomingMovies, clicked, onFetchUpcomin
                 )
             }))
         }
-    }, [fetchedUpcomingMovies])
+    }, [fetchedUpcomingMovies, clicked])
 
     return (
         fetchedUpcomingMovies.length === 0 ? <div className={classes.spinner}><Spinner /></div>

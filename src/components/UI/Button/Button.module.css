@@ -5,11 +5,9 @@
     font: inherit;
     padding: 10px;
     font-weight: bold;
-    border-radius: 20px;
     width: 80px;
     font-size: 12px;
     transition: 0.3s
-
 }
 
 .Button:disabled{

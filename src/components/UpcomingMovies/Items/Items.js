@@ -42,7 +42,7 @@ const Items = ({noTrailer, watchList, movie, isAuthenticated, poster, clicked, o
                             type="ItemType"/>}
                     </div>
                 </div>
-                <img className={classes.Poster} src={poster !== '' ? poster : blankImg} alt="img"/>
+                <img className={classes.Poster} src={poster !== '' ? poster : blankImg} alt="img" loading="lazy"/>
             </div>
             <div className={classes.Title}>
                 <Link

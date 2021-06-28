@@ -14,7 +14,7 @@
     justify-content: flex-end;
     width: fit-content;
     border-radius: 30px;
-    max-width: 90vw;
+    max-width: 85vw;
 }
 
 .SearchBar .CustomSearchBar{
@@ -23,7 +23,7 @@
     border: none;
     background-color: transparent;
     font-weight: 400;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
     color: var(--colorlight);
 }
 
@@ -45,6 +45,7 @@
     background-color: var(--color3);
     padding: 2px 2px;
     z-index: 30;
+    color: var(--colorlight)
 }
 
 @media (max-width: 499px) and (min-width: 282px){
@@ -59,7 +60,12 @@
         height: auto;
         width: 200px;
     }
+    .SearchBar .SearchIcon{
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+    }
     .SearchBarShow{
-        width: 70vw;
+        width: 68vw;
     }
 }

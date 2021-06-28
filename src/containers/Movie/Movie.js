@@ -13,7 +13,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import Score from '../../components/UI/Score/Score';
 import MovieInfo from './MovieInfo/MovieInfo';
 import ListMovie from '../../components/ListMovie/ListMovie';
-import Pagination from '../../components/TrendingMovies/MoviesItem/Pagination/Pagination';
+import Pagination from '../../components/Pagination/Pagination';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
 
@@ -120,7 +120,7 @@ const Movie = ({match, watchList, isAuthenticated, onUpdateWatchList}) => {
                     </div>
                     <div className={classes.BackdropContainer}>
                         <MovieInfo movie={movie} addOrRemoveButton={addOrRemoveButton} showTrailer={(movieId) => showTrailer(movieId, setShowingTrailer, setTrailerPath)}/>
-                        <img className={classes.Backdrop} src={movie.backdropPath ? imgPath + 'original' + movie.backdropPath : imageError} alt="img"/> 
+                        <img className={classes.Backdrop} src={movie.backdropPath ? imgPath + 'original' + movie.backdropPath : imageError} alt="img" loading="lazy"/> 
                         <div className={classes.TopInfo}>
                             <div className={classes.Rate}>
                                 <Score voteCount={movie.voteCount} voteAverage={movie.voteAverage} />

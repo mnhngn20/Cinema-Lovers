@@ -60,6 +60,11 @@
     height: 100%;
     display: none;
 }
+.Close{
+    height: auto;
+    width: 5vw;
+    color: var(--color3)
+}
 @media (max-width: 750px){
     .DesktopOnly{
         display: none;
@@ -99,4 +104,5 @@
         width: 100vw;
     }
 }
+
   

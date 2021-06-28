@@ -13,13 +13,11 @@
     justify-content: center;
     background-color: rgb(54, 54, 54);
     margin: 20px auto;
-    border-radius: 10px;
 }
 
 .Container .Poster{
     height: 375px;
     width: 250px;
-    border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.5);
     opacity: 1;
     animation: onHover 1s ease-out;
@@ -61,7 +59,6 @@
 .Container .OverView::-webkit-scrollbar-track
 {
     background-color: #f0e3ca;
-    border-radius: 5px;
 }
 
 .Container .OverView::-webkit-scrollbar
@@ -72,7 +69,6 @@
 
 .Container .OverView::-webkit-scrollbar-thumb
 {
-	border-radius: 10px;
 	background-color: #1b1a17;
     margin-left: 5px;
     margin-right: 5px;

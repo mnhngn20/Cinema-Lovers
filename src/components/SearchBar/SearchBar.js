@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import classes from './SearchBar.module.css';
 import SearchDropDownItems from './SearchDropDownItems/SearchDropDownItems';
-import searchIcon from '../../assets/search-icon.png';
+import SearchIcon from '@material-ui/icons/Search';
 
 const SearchBar = props => {
     const [searchInput, setSearchInput] = useState('');
@@ -27,7 +27,7 @@ const SearchBar = props => {
 
     return (
         <div className={classes.SearchBar}>
-            <img className={classes.SearchIcon} src={searchIcon} alt="img"/>
+            <SearchIcon className={classes.SearchIcon}/>
             <input
                 ref = {inputRef}
                 onChange = {(event)=> inputChangeHandler(event)}

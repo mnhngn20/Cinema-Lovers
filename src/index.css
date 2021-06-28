@@ -17,6 +17,11 @@ body {
   overflow-x: hidden;
   height: auto;
 }
+/* 
+img{
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

@@ -9,7 +9,6 @@
     display: block;
     margin-bottom: 8px;
     color: var(--colordark);
-    text-align: center;
 }
 .labelWhite{
     color: var(--color3) !important;
@@ -18,7 +17,6 @@
     outline: none;
     border: 1px solid #ccc;
     background-color: var(--colorlight);
-    border-radius: 15px;
     font: inherit;
     padding: 6px 10px;
     display: block;

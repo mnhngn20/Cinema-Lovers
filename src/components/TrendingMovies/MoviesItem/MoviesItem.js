@@ -73,7 +73,7 @@ const MoviesItem = ({watchList, movie, isAuthenticated, clicked, poster, watched
         <div className= {classes.Items}>
             <div className = {classes.BtnPosterContainer}>
                 <PlayCircleFilledIcon className={classes.PlayTrailerButton} onClick={() => clicked(movie.id)}/>
-                <img className={classes.Poster} src={movie.posterPath ? poster : imageErrorPoster} alt="img"/>
+                <img className={classes.Poster} src={movie.posterPath ? poster : imageErrorPoster} alt="img" loading="lazy"/>
             </div>
             <div className= {classes.MovieInfos}>
                 <div className={classes.Title}>

@@ -59,7 +59,7 @@ const WatchListItems = ({watchList, clicked, userId, userData}) => {
                 key={movie.id} 
                 title = {movie.title}></MoviesItem>
         )
-        
+        return null;
     });
     useEffect(()=>{
         let count = 0;
@@ -69,8 +69,7 @@ const WatchListItems = ({watchList, clicked, userId, userData}) => {
             }
         }
         setCountMovie(count);
-        console.log(watchList.length)
-    }, [])
+    }, [watchList])
     const sortChange = (event) => {
         setSelect(event.target.value)
     }

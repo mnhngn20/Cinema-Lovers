@@ -2,12 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import classes from './SearchBarForMobile.module.css';
 import SearchDropDownItems from './SearchDropDownItems/SearchDropDownItems';
-import searchIcon from '../../assets/search-icon.png';
+import SearchIcon from '@material-ui/icons/Search';
 
-const SearchBarForMobile = ({setShowSearchBar}) => {
+const SearchBarForMobile = ({setShowSearchBar, show}) => {
     const [searchInput, setSearchInput] = useState('');
     const [query, setQuery] = useState('');
-    const [show, setShow] = useState(false);
     let inputRef = useRef();
 
     useEffect(()=>{
@@ -27,7 +26,7 @@ const SearchBarForMobile = ({setShowSearchBar}) => {
     };
     const showSearchBar = () => {
         const isShow = show
-        setShow(!isShow);
+        // setShow(!isShow);
         setShowSearchBar(!isShow)
     }
     return (
@@ -40,7 +39,7 @@ const SearchBarForMobile = ({setShowSearchBar}) => {
                     className={[classes.CustomSearchBar, show ? classes.SearchBarShow : classes.SearchBarHide].join(' ')} 
                     type = 'text' 
                     placeholder="" />
-                <img className={classes.SearchIcon} onClick={showSearchBar} src={searchIcon} alt="img"/>
+                <SearchIcon className={classes.SearchIcon} onClick={showSearchBar} />
             </div>
             {query !== '' && show ? <div className={classes.Items}>
                 <SearchDropDownItems hideItems={showSearchBar} query={query}/>

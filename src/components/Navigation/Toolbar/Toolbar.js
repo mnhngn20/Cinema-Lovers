@@ -6,6 +6,7 @@ import SearchBarForMobile from '../../SearchBar/SearchBarForMobile';
 import NavigationItems from './NavigationItems/NavigationItems';
 import classes from './Toolbar.module.css';
 import Modal from '../../UI/Modal/Modal';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import * as actions from '../../../store/actions/index';
  
 const Toolbar = props => {
@@ -36,7 +37,8 @@ const Toolbar = props => {
                     <SearchBar />
                 </div>
                 <div className={classes.SearchBarForMobile}>
-                    <SearchBarForMobile setShowSearchBar={setShowSearchBar}/>
+                    {showSearchBar ? <ArrowBackIosIcon className={classes.Close} onClick={() => setShowSearchBar(!showSearchBar)}/> : null}
+                    <SearchBarForMobile show={showSearchBar} setShowSearchBar={setShowSearchBar}/>
                 </div>
                 <div className={classes.DesktopOnly}>
                     <NavigationItems logout={() => setLogoutModal(true)}/>

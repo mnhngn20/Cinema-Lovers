@@ -21,6 +21,7 @@ const FilePicker = ({close, uploadImage, haveAvatar}) => {
         reader.onloadend = (event) => {
             setImg(reader.result)
             setFileName(file.name)
+            console.log(url)
         }
     }
     const cropImg = useCallback(() => {

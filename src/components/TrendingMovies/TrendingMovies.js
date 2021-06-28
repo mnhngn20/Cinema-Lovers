@@ -7,7 +7,6 @@ import MoviesItem from './MoviesItem/MoviesItem';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import Spinner from '../UI/Spinner/Spinner';
 import * as actions from '../../store/actions/index';
-import Pagination from './MoviesItem/Pagination/Pagination';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
 const imgWidth = 300;
@@ -26,14 +25,10 @@ const options = {
 const TrendingMovies = ({isError, fetchedTrendingMovies, onFetchTrendingMovies, clicked, isloading}) => {
     const slideRef = useRef();
     const [trendingMovies, setTrendingMovies] = useState();
-    const [page, setPage] = useState(1);
-    const [numberOfPage, setNumberOfPage] = useState(0);
-    const [totalResults, setTotalResults] = useState(0);
 
     useEffect(()=>{
-        console.log(page)
-        onFetchTrendingMovies(page, setNumberOfPage, setTotalResults);
-    },[onFetchTrendingMovies, page, setNumberOfPage, setTotalResults])
+        onFetchTrendingMovies();
+    },[onFetchTrendingMovies])
 
     useEffect(()=>{
         if(fetchedTrendingMovies){
@@ -49,7 +44,8 @@ const TrendingMovies = ({isError, fetchedTrendingMovies, onFetchTrendingMovies, 
                 )
             }))
         }
-    },[fetchedTrendingMovies])
+    },[fetchedTrendingMovies, clicked, setTrendingMovies]);
+
     return (
         fetchedTrendingMovies.length === 0 ? <div className={classes.Spinner}><Spinner /></div>
         : <div>
@@ -62,7 +58,6 @@ const TrendingMovies = ({isError, fetchedTrendingMovies, onFetchTrendingMovies, 
                         </Splide>
                     </div>
                 }
-                <div className={classes.Pagination}><Pagination totalResults={totalResults} quantity={numberOfPage} currentPage={page} setPage={setPage} /></div>
         </div>
         
     )
@@ -74,7 +69,7 @@ const mapState = state => ({
     isError: state.trendingMoviesState.error
 })
 const mapDispatchToProps = dispatch => ({
-      onFetchTrendingMovies: (page , setNumberOfPage, setTotalResults) => dispatch(actions.fetchTrendingMovies(page , setNumberOfPage, setTotalResults)),
+      onFetchTrendingMovies: () => dispatch(actions.fetchTrendingMovies()),
 })
   
 export default connect(mapState, mapDispatchToProps)(TrendingMovies);

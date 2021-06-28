@@ -5,7 +5,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import classes from './WebInfo.module.css'
 
-const WebInfo = ({}) => {
+const WebInfo = (props) => {
     const style = {
         width: '40px',
         height: '40px',

@@ -32,3 +32,18 @@
 .PlaceHolderAvatar:hover{
     opacity: 0.9;
 }
+
+@media(max-width: 500px) {
+    .AvatarContainer{
+        width: 190px;
+        height: 190px;
+    }
+    .Rouneded{
+        width: 150px;
+        height: 150px;
+    }
+    .PlaceHolderAvatar{
+        width: 190px !important;
+        height: 190px !important;
+    }
+}

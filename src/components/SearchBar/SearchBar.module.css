@@ -41,11 +41,6 @@
     width: 25px;
     margin-top: 3px;
     margin-left: 8px;
+    color: var(--colorlight);
 }
-/* 
-@media (max-width: 499px){
-    .SearchBar{
-        height: auto;
-        width: 200px;
-    }
-} */
+

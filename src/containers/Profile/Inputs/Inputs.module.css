@@ -11,6 +11,7 @@
     font-weight: bold;
     color: var(--color3);
     letter-spacing: 2px;
+    text-align: center;
 }
 .Favorites h1{
     width: 100%;
@@ -21,21 +22,22 @@
 }
 .UserProfile{
     position: relative;
-    width: 80%;
+    width: 50%;
     margin: 0 auto;
     display: flex;
     flex-flow: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     background-color: var(--colorlight);
-    border-radius: 20px;
     height: fit-content;
 }
 .Profile{
     margin: 30px 0px;
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 .Avatar{
     margin: 0px 40px;
@@ -44,26 +46,19 @@
     font-size: 40px;
     margin: 0px 0px;
     color: var(--color3);
-    width: 80%;
+    width: 100%;
     overflow: hidden;
     height: 60px;
     font-weight: bold;
+    text-align: center;
 }
 .Info{
-    width: 50%;
+    width: 80%;
     height: fit-content;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    opacity: 1;
-}
-
-.AboutMe{
-    color: var(--color3);
-    font-weight: bold;
-    font-size: 26px;
-    text-decoration: underline;
-    margin: 0px 0px;
+    justify-content: center;
+    align-items: center;
 }
 .Description{
     height: 100px;
@@ -72,14 +67,12 @@
 }
 .Description::-webkit-scrollbar-track{
     background-color: var(--colorlight);
-    border-radius: 5px;
 }
 .Description::-webkit-scrollbar{
 	width: 6px;
 	opacity: 0;
 }
 .Description::-webkit-scrollbar-thumb{
-	border-radius: 10px;
 	background-color: var(--color3);
     margin-left: 5px;
     margin-right: 5px;
@@ -92,7 +85,6 @@
     margin-right: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
-    border-radius: 20px;
     outline: none;
     color: var(--color3);
     font-size: 16px;
@@ -131,10 +123,9 @@
     color: var(--color2)
 }
 
-@media(max-width: 800px) {
+@media(max-width: 500px) {
     .UserProfile{
         width: 95%;
-        border-radius: 10px;
     }
     .Profile{
         flex-direction: column;
@@ -159,7 +150,6 @@
     .Description{
         padding: 10px 10px;
         width: 95%;
-        border-radius: 10px;
     }
     .SwitchButton{
         width: 100%;
@@ -167,10 +157,21 @@
     .Inputs{
         width: 100%;
     }
+    .SetAvatarContainer{
+        width: 190px !important;
+        position: absolute;
+        top: 190px;
+    }
 }
 
-@media(max-width: 1100px) and (min-width: 801px){
+@media(max-width: 1100px) and (min-width: 501px){
     .UserProfile{
-        width: 90%;
+        width: 95%;
+    }
+    .Info{
+        width: 95%;
+    }
+    .Inputs{
+        width: 100%;
     }
 }

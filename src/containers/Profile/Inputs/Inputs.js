@@ -114,9 +114,9 @@ const Inputs = ({watchlist,img , setAvatar, userData, onFetchProfile, onUpdateUs
     return (
         <div className={classes.container}>
             <form className={[classes.UserProfile, isInEditMode ? classes.InputsShow : classes.InfoShow].join(' ')} onSubmit={(event) => updateProfile(event, fName.value, lName.value, bDay.value, description.value)}>
-                    <Tooltip title={isInEditMode ? 'Turn off edit' : 'Click here to Edit Your Profile'} placement='right'>
-                        <div className={classes.SwitchButton}><SwitchButton switchMode={switchMode}/></div>
-                    </Tooltip>
+                        <div className={classes.SwitchButton}>
+                            <SwitchButton switchMode={switchMode}/>
+                        </div>
                     <div className={classes.Profile}>
                         <div className={classes.Avatar}>
                             {isInEditMode ? <div className={classes.SetAvatarContainer}><CameraAltIcon className={classes.SetAvatar} onClick={() => setAvatar(true)}/></div> : null}
@@ -171,7 +171,6 @@ const Inputs = ({watchlist,img , setAvatar, userData, onFetchProfile, onUpdateUs
                             </div>
                             : <div className={classes.Info}>
                                 <p className={classes.Name}>{userData ? userData.firstName+" "+userData.lastName : "Name"} </p>
-                                <p className={classes.AboutMe}>About me:</p>
                                 <p className={classes.Description}>{userData ? userData.description : ""}</p>
                             </div>}
                     </div>
@@ -179,7 +178,7 @@ const Inputs = ({watchlist,img , setAvatar, userData, onFetchProfile, onUpdateUs
                         <Link className={classes.GotoWL} to='/watchlist'>{">>>Go to WatchList"}</Link>
                     </div>
             </form>
-            {watchlist ? <div className={classes.Favorites}>
+            {watchlist.lenght === 0 ? <div className={classes.Favorites}>
                 <Favorites quantity={10} list={watchlist} title="Favorites"/>
             </div> : null}
         </div>

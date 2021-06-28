@@ -124,7 +124,7 @@ const SignIn = ({error, isLoading, onAuth, history, modalClosed}) => {
                             <p>WELCOME TO</p>
                             <p>CINEMA LOVERS</p>
                     </div>
-                    <img className={classes.Wallpaper} src={ikiru} alt="ikiru 1952" />
+                    <img className={classes.Wallpaper} src={ikiru} alt="ikiru 1952" loading="lazy"/>
                 </div>
             </div>
     )

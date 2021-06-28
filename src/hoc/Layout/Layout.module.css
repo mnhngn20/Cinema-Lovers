@@ -13,11 +13,12 @@
 .Body{
     width: 100%;
     height: fit-content;
+    min-height: 90vh;
 }
 
 .Bottom{
     width: 100%;
-    height: fit-content;
+    height: 100%;
     position: relative;
     bottom: 0;
 }

@@ -23,7 +23,7 @@ const WatchListPage = ({userId, loading, watchList, userData}) => {
             watchList = {watchList} userData={userData} userId={userId}/>
     }
     return (
-            <div className={classes.WatchListPage}>
+        <div className={classes.WatchListPage}>
             <div>
                 <Modal show={showingTrailer}
                     modalType = "Trailer"
