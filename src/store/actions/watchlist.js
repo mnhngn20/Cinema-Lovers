@@ -31,6 +31,7 @@ export const fetchWatchList = () => {
                 const movie = snapshot.val()[movieId]
                 watchList.push(movie)
             }
+            console.log(watchList)
             dispatch(fetchWLSuccess(watchList));
         })
     }

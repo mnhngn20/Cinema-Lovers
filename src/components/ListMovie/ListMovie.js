@@ -16,7 +16,7 @@ const options = {
 };
 const ListMovie = ({list, title, quantity}) => {
     let clone = [...list];
-    const favorites= clone.splice(0, clone.length < quantity + 1 ? clone.length - 1 : quantity).map(movie => {
+    const favorites= clone.splice(0, clone.length < quantity ? clone.length + 1 : quantity).map(movie => {
         return (
             <SplideSlide key={movie.id}>
                 <Item 

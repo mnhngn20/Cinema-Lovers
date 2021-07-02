@@ -6,12 +6,12 @@ import classes from './Inputs.module.css';
 import Input from '../../../components/UI/Input/Input';
 import { updateObject, checkValidity } from '../../../shared/ultility';
 import Button from '../../../components/UI/Button/Button';
-import Tooltip from '@material-ui/core/Tooltip';
 import * as actions from '../../../store/actions/index';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import SwitchButton from '../../../components/UI/SwitchButton/SwitchButton';
 import UserAvatar from '../../../components/UI/UserAvatar/UserAvatar';
 import Favorites from '../../../components/ListMovie/ListMovie';
+import LikedMovie from '../LikedMovies/LikedMovie';
 
 const Inputs = ({watchlist,img , setAvatar, userData, onFetchProfile, onUpdateUserData, isLoading, isInEditMode, switchMode, setEditSuccess}) => {
     const [canSubmitForm, setCanSubmitForm] = useState(false);
@@ -34,7 +34,7 @@ const Inputs = ({watchlist,img , setAvatar, userData, onFetchProfile, onUpdateUs
         }
     });
     const [bDay, setbDay] = useState({
-        value: isLoading ? '2000-01-01' : userData.birthDay ? userData.birthDay : "2000-01-01" ,
+        value: isLoading ? '' : userData.birthDay ? userData.birthDay : "" ,
         isValid: true,
         touched: false,
         rules: {
@@ -77,6 +77,7 @@ const Inputs = ({watchlist,img , setAvatar, userData, onFetchProfile, onUpdateUs
         }
     }, [fName, lName]); 
     const updateProfile = (event, firstName, lastName, birthDay, des) => {
+        console.log(birthDay)
         event.preventDefault();
         let updatedUserData = updateObject(userData, {
             firstName: firstName,
@@ -90,13 +91,14 @@ const Inputs = ({watchlist,img , setAvatar, userData, onFetchProfile, onUpdateUs
         setLName(updateObject(lName, {
             value: lastName
         }));
-        setbDay(updateObject(bDay, {
-            value: birthDay
-        }))
+        if(birthDay){
+            setbDay(updateObject(bDay, {
+                value: birthDay
+            }))
+        }
         setDescription(updateObject(description, {
             value: des
         }))
-        console.log(updatedUserData)
         onUpdateUserData(updatedUserData);
         setEditSuccess(true);
     }
@@ -113,9 +115,15 @@ const Inputs = ({watchlist,img , setAvatar, userData, onFetchProfile, onUpdateUs
     }
     return (
         <div className={classes.container}>
-            <form className={[classes.UserProfile, isInEditMode ? classes.InputsShow : classes.InfoShow].join(' ')} onSubmit={(event) => updateProfile(event, fName.value, lName.value, bDay.value, description.value)}>
-                        <div className={classes.SwitchButton}>
-                            <SwitchButton switchMode={switchMode}/>
+            <form className={[classes.UserProfile, isInEditMode ? classes.InputsShow : classes.InfoShow].join(' ')} onSubmit={(event) => updateProfile(event, fName.value, lName.value, bDay.value ? bDay.value : "", description.value ?description.value : "")}>
+                        <div className={classes.Top}>
+                            {watchlist ?<div className={classes.Stats}>
+                                <LikedMovie watchList={watchlist} type="Liked" />
+                                <LikedMovie watchList={watchlist} type="Watched" /> 
+                            </div> : null}
+                            <div className={classes.SwitchButton}>
+                                <SwitchButton switchMode={switchMode}/>
+                            </div>
                         </div>
                     <div className={classes.Profile}>
                         <div className={classes.Avatar}>
@@ -170,7 +178,7 @@ const Inputs = ({watchlist,img , setAvatar, userData, onFetchProfile, onUpdateUs
                                     disabled={!canSubmitForm}>UPDATE</Button>
                             </div>
                             : <div className={classes.Info}>
-                                <p className={classes.Name}>{userData ? userData.firstName+" "+userData.lastName : "Name"} </p>
+                                <p className={classes.Name}>{userData ? userData.firstName+" "+userData.lastName : "Name"}</p>
                                 <p className={classes.Description}>{userData ? userData.description : ""}</p>
                             </div>}
                     </div>
@@ -178,7 +186,7 @@ const Inputs = ({watchlist,img , setAvatar, userData, onFetchProfile, onUpdateUs
                         <Link className={classes.GotoWL} to='/watchlist'>{">>>Go to WatchList"}</Link>
                     </div>
             </form>
-            {watchlist.lenght === 0 ? <div className={classes.Favorites}>
+            {watchlist.length !== 0 ? <div className={classes.Favorites}>
                 <Favorites quantity={10} list={watchlist} title="Favorites"/>
             </div> : null}
         </div>

@@ -26,23 +26,26 @@ const Toolbar = props => {
                 <p>You Logged out.</p>
             </Modal>
             <div className={[classes.Toolbar,showSearchBar ? classes.CenterSearchBar : null].join(' ')}>
-                {showSearchBar ? null : <div className={[classes.Logo, classes.MobileOnly].join(' ')} onClick={props.clicked}>
-                    <p className={classes.LogoMain}>Cinema.</p>
-                </div>}
-                <div className={[classes.Logo, classes.DesktopOnly].join(' ')}>
-                    <p className={classes.LogoMain}>Cinema</p>
-                    <p className={classes.LogoSub}>Lovers</p>
+                <div className={classes.ToolbarItems}>
+                    {showSearchBar ? null : <div className={[classes.Logo, classes.MobileOnly].join(' ')} onClick={props.clicked}>
+                        <p className={classes.LogoMain}>Cinema.</p>
+                    </div>}
+                    <div className={[classes.Logo, classes.DesktopOnly].join(' ')}>
+                        <p className={classes.LogoMain}>Cinema</p>
+                        <p className={classes.LogoSub}>Lovers</p>
+                    </div>
+                    <div className={classes.SearchBarForDesktop}>
+                        <SearchBar />
+                    </div>
+                    <div className={classes.SearchBarForMobile}>
+                        {showSearchBar ? <ArrowBackIosIcon className={classes.Close} onClick={() => setShowSearchBar(!showSearchBar)}/> : null}
+                        <SearchBarForMobile show={showSearchBar} setShowSearchBar={setShowSearchBar}/>
+                    </div>
+                    <div className={classes.DesktopOnly}>
+                        <NavigationItems logout={() => setLogoutModal(true)}/>
+                    </div>
                 </div>
-                <div className={classes.SearchBarForDesktop}>
-                    <SearchBar />
-                </div>
-                <div className={classes.SearchBarForMobile}>
-                    {showSearchBar ? <ArrowBackIosIcon className={classes.Close} onClick={() => setShowSearchBar(!showSearchBar)}/> : null}
-                    <SearchBarForMobile show={showSearchBar} setShowSearchBar={setShowSearchBar}/>
-                </div>
-                <div className={classes.DesktopOnly}>
-                    <NavigationItems logout={() => setLogoutModal(true)}/>
-                </div>
+                
             </div>  
         </div>
         

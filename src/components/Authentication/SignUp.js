@@ -99,75 +99,82 @@ const SignUp = ({error, isLoading, onAuth, history, modalClosed}) => {
 
     return (
         <div className={classes.AuthContainer}>
-            <form className = {classes.Auth} onSubmit={submitHandler}>
-                <Modal 
-                    show={showModal} 
-                    modalType="Success" 
-                    modalClosed={closeSignUp}>
-                    <p>Signed Up Successful</p>
-                </Modal>
-                <Modal 
-                    show={showError} 
-                    modalType="Error" 
-                    modalClosed={hideError}>
-                    <p>Signed Up Failed</p>
-                </Modal>
-                <div className = {classes.AuthBox}>
-                    <div className={classes.CloseContainer}>
-                        <CloseIcon className={classes.Close} onClick={closeSignUp}/>
+            <div className={classes.AuthItems}>
+                <form className = {classes.Auth} onSubmit={submitHandler}>
+                    <Modal 
+                        show={showModal} 
+                        modalType="Success" 
+                        modalClosed={closeSignUp}>
+                        <p>Signed Up Successful</p>
+                    </Modal>
+                    <Modal 
+                        show={showError} 
+                        modalType="Error" 
+                        modalClosed={hideError}>
+                        <p>Signed Up Failed</p>
+                    </Modal>
+                    <div className = {classes.AuthBox}>
+                        <div className={classes.CloseContainer}>
+                            <CloseIcon className={classes.Close} onClick={closeSignUp}/>
+                        </div>
+                        <h2>Create an account</h2>
+                        <Input 
+                            label = "First Name"
+                            elementType ="input"
+                            elementConfig = {{type: "text", placeholder: "Example: Nam,..."}}
+                            value = {firstName.value}
+                            invalid = {!firstName.isValid}
+                            shouldValidate
+                            smallerWidth
+                            touched = {firstName.touched}
+                            changed = {event => onChangeHandler(event, firstName, setFirstName)}
+                        />
+                        <Input 
+                            label = "Last Name"
+                            elementType ="input"
+                            elementConfig = {{type: "text", placeholder: "Example: Nguyen,..."}}
+                            value = {lastName.value}
+                            invalid = {!lastName.isValid}
+                            shouldValidate
+                            smallerWidth
+                            touched = {lastName.touched}
+                            changed = {event => onChangeHandler(event, lastName, setLastName)}
+                        />
+                        <Input 
+                            label = "Email"
+                            elementType ="input"
+                            elementConfig = {{type: "text", placeholder: "Example: abc@gmail.com,..."}}
+                            value = {email.value}
+                            invalid = {!email.isValid}
+                            shouldValidate
+                            smallerWidth
+                            touched = {email.touched}
+                            changed = {event => onChangeHandler(event, email, setEmail)}
+                        />
+                        <Input 
+                            label = "Password"
+                            elementType ="input"
+                            elementConfig = {{type: "password", placeholder: "Password"}}
+                            value = {password.value}
+                            invalid = {!password.isValid}
+                            shouldValidate
+                            smallerWidth
+                            touched = {password.touched}
+                            changed = {event => onChangeHandler(event, password, setPassword)}
+                        />
+                        <Button btnType="Success" disabled={!canSubmitForm}>SIGN UP</Button>
+                        <p className={classes.AuthQuote}>Already had an account? <Link to="/signin">Sign In Now</Link></p>
                     </div>
-                    <h2>Create an account</h2>
-                    <Input 
-                        label = "First Name"
-                        elementType ="input"
-                        elementConfig = {{type: "text", placeholder: "Example: Nam,..."}}
-                        value = {firstName.value}
-                        invalid = {!firstName.isValid}
-                        shouldValidate
-                        touched = {firstName.touched}
-                        changed = {event => onChangeHandler(event, firstName, setFirstName)}
-                    />
-                    <Input 
-                        label = "Last Name"
-                        elementType ="input"
-                        elementConfig = {{type: "text", placeholder: "Example: Nguyen,..."}}
-                        value = {lastName.value}
-                        invalid = {!lastName.isValid}
-                        shouldValidate
-                        touched = {lastName.touched}
-                        changed = {event => onChangeHandler(event, lastName, setLastName)}
-                    />
-                    <Input 
-                        label = "Email"
-                        elementType ="input"
-                        elementConfig = {{type: "text", placeholder: "Example: abc@gmail.com,..."}}
-                        value = {email.value}
-                        invalid = {!email.isValid}
-                        shouldValidate
-                        touched = {email.touched}
-                        changed = {event => onChangeHandler(event, email, setEmail)}
-                    />
-                    <Input 
-                        label = "Password"
-                        elementType ="input"
-                        elementConfig = {{type: "password", placeholder: "Password"}}
-                        value = {password.value}
-                        invalid = {!password.isValid}
-                        shouldValidate
-                        touched = {password.touched}
-                        changed = {event => onChangeHandler(event, password, setPassword)}
-                    />
-                    <Button btnType="Success" disabled={!canSubmitForm}>SIGN UP</Button>
-                    <p className={classes.AuthQuote}>Already had an account? <Link to="/signin">Sign In Now</Link></p>
+                </form>
+                <div className={classes.ikiru}>
+                        <div className={classes.Welcome}>
+                                <p>WELCOME TO</p>
+                                <p>CINEMA LOVERS</p>
+                        </div>
+                        <img className={classes.Wallpaper} src={ikiru} alt="ikiru 1952" />
                 </div>
-            </form>
-            <div className={classes.ikiru}>
-                    <div className={classes.Welcome}>
-                            <p>WELCOME TO</p>
-                            <p>CINEMA LOVERS</p>
-                    </div>
-                    <img className={classes.Wallpaper} src={ikiru} alt="ikiru 1952" />
-                </div>
+            </div>
+            
         </div>
     )
 }

@@ -1,5 +1,5 @@
 .SideDrawer{
-    width: 60%;
+    width: 50%;
     position: fixed;
     height: 100%;
     background-color: black;
@@ -57,5 +57,11 @@
 @media (min-width:800px){
     .SideDrawer{
         display: none;
+    }
+}
+
+@media(max-width: 799px) and (min-width: 600px){
+    .SideDrawer{
+        width: 40%;
     }
 }

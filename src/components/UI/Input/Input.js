@@ -1,8 +1,8 @@
 import React from 'react';
 
 import classes from './Input.module.css';
-
-const Input = ({labelBlue, invalid, shouldValidate, touched, elementType, elementConfig, value, changed, disabled, label}) => {
+                                
+const Input = ({smallerWidth, labelBlue, invalid, shouldValidate, touched, elementType, elementConfig, value, changed, disabled, label}) => {
     let inputElement = null;
     const inputClasses = [classes.InputElement];
     let validationError = null;
@@ -13,6 +13,9 @@ const Input = ({labelBlue, invalid, shouldValidate, touched, elementType, elemen
     }
     if(disabled){
         inputClasses.push(classes.Disabled)
+    }
+    if(smallerWidth){
+        inputClasses.push(classes.smallerWidth)
     }
     switch (elementType){
         case ('input'):

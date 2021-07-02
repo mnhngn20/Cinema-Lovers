@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 
 import classes from './WatchListItems.module.css';
 import MoviesItem from '../../../components/TrendingMovies/MoviesItem/MoviesItem';
-import UserAvatar from '../../../components/UI/UserAvatar/UserAvatar';
 import Select from '../Select/Select';
 import {downloadImage} from '../../../shared/storage';
 
@@ -76,9 +75,7 @@ const WatchListItems = ({watchList, clicked, userId, userData}) => {
     return (
         <div className = {classes.WatchListItems}>
             <div className={classes.Box}>
-                <div className={classes.Background}></div>
                 <div className={classes.Options}>
-                    <UserAvatar image={img} />
                     <div className={classes.Option}>
                         <p className={classes.Name}>{userData.firstName +" "+ userData.lastName + "'s WatchList"}</p>
                         <p className={classes.Quote}>{

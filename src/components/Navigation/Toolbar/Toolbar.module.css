@@ -4,14 +4,20 @@
     background-color: var(--colordark);
     height: 72px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     z-index: 90;
     top: 0;
     opacity: 0.95;
 }
+.ToolbarItems{
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
 .Toolbar .Logo {
-    margin-left: 20px;
     width: 72px;
     height: auto;
 }
@@ -65,7 +71,10 @@
     width: 5vw;
     color: var(--color3)
 }
-@media (max-width: 750px){
+@media (max-width: 850px){
+    .ToolbarItems{
+        width: 100%;
+    }
     .DesktopOnly{
         display: none;
     }
@@ -99,7 +108,7 @@
     }
 }
 
-@media (max-width: 1100px) and (min-width: 751px){
+@media (max-width: 1100px) and (min-width: 851px){
     .Toolbar{
         width: 100vw;
     }

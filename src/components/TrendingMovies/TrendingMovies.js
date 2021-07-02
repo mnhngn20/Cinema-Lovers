@@ -48,7 +48,7 @@ const TrendingMovies = ({isError, fetchedTrendingMovies, onFetchTrendingMovies, 
 
     return (
         fetchedTrendingMovies.length === 0 ? <div className={classes.Spinner}><Spinner /></div>
-        : <div>
+        : <div className={classes.TrendingMovies}>
                 {
                     isError 
                     ? <p className={classes.Error}>Could not load Trending Movies</p> 

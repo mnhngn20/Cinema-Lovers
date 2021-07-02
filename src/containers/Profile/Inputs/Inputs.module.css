@@ -10,7 +10,7 @@
 .container h1{
     font-weight: bold;
     color: var(--color3);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     text-align: center;
 }
 .Favorites h1{
@@ -18,11 +18,11 @@
     text-align: center;
 }
 .Favorites{
-    width: 100vw;
+    width: 100%;
 }
 .UserProfile{
     position: relative;
-    width: 50%;
+    width: 40%;
     margin: 0 auto;
     display: flex;
     flex-flow: column;
@@ -32,15 +32,11 @@
     height: fit-content;
 }
 .Profile{
-    margin: 30px 0px;
     width: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-}
-.Avatar{
-    margin: 0px 40px;
 }
 .Name{
     font-size: 40px;
@@ -92,16 +88,16 @@
 .GotoWLContainer .GotoWL:hover{
     color: var(--color3)
 }
-.SwitchButton{
-    position: absolute;
-    width: 95%;
-    top: 20px;
+.Top{
+    width: 100%;
+    margin-top: 10px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     z-index: 20;
+    align-items: center !important;
 }
 .Inputs{
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -110,7 +106,7 @@
 .SetAvatarContainer{
     width: 250px !important;
     position: absolute;
-    top: 230px;
+    top: 270px;
 }
 .SetAvatar{
     width: 30px !important;
@@ -122,7 +118,16 @@
 .SetAvatar:hover{
     color: var(--color2)
 }
-
+.Stats{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.SwitchButton{
+    float: right;
+    display: flex;
+    justify-content: flex-end;
+}
 @media(max-width: 500px) {
     .UserProfile{
         width: 95%;
@@ -158,9 +163,13 @@
         width: 100%;
     }
     .SetAvatarContainer{
-        width: 190px !important;
+        width: 180px !important;
         position: absolute;
-        top: 190px;
+        top: 210px;
+    }
+    .SetAvatar{
+        width: 25px !important;
+        height: 25px !important;
     }
 }
 

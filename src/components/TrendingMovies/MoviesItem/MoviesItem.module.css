@@ -1,6 +1,6 @@
 .Items {
     height: 500px;
-    width:  1200px;
+    width: 85%;
     margin: 0 auto;
     margin-bottom: 40px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.5);
@@ -176,7 +176,7 @@
 @media (max-width: 399px){
     .Items {
         height: 250px;
-        width: 98%
+        width: 99%
     }
     
     .Items .Poster {

@@ -48,7 +48,7 @@
     margin: 0 0;
 }
 
-@media (max-width: 600px){
+@media (max-width: 850px){
     .NavigationItem{
         height: 60px;
         width: 100%;

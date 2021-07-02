@@ -7,7 +7,7 @@
     justify-content: center;
 }
 
-@media (max-width: 800px){
+@media (max-width: 850px){
     .NavigationItems{
         margin-bottom: 50px;
         display:flex;

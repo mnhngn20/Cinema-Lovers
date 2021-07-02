@@ -7,7 +7,11 @@
     font-weight: bold;
     width: 80px;
     font-size: 12px;
-    transition: 0.3s
+    transition: 0.3s;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .Button:disabled{
