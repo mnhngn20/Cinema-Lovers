@@ -24,14 +24,12 @@ export const fetchWLFail = (err) => {
 export const fetchWatchList = () => {
     return dispatch => {
         dispatch(fetchWLStart());
-        console.log("fetchWL")
         let watchList = [];
         database.ref("UserData/"+localStorage.getItem("userId") + "/WatchList/").get().then(snapshot => {
             for(let movieId in snapshot.val()){
                 const movie = snapshot.val()[movieId]
                 watchList.push(movie)
             }
-            console.log(watchList)
             dispatch(fetchWLSuccess(watchList));
         })
     }

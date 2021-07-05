@@ -11,7 +11,7 @@ import * as actions from '../../store/actions/index';
 import { checkValidity, updateObject } from '../../shared/ultility';
 import ikiru from '../../assets/ikiru.jpg';
 
-const SignUp = ({error, isLoading, onAuth, history, modalClosed}) => {
+const SignUp = ({error, isLoading, onAuth, history}) => {
     const [firstName, setFirstName] = useState({
         value:'', 
         isValid: false, 
@@ -111,7 +111,7 @@ const SignUp = ({error, isLoading, onAuth, history, modalClosed}) => {
                         show={showError} 
                         modalType="Error" 
                         modalClosed={hideError}>
-                        <p>Signed Up Failed</p>
+                        <p>Username's already in used.</p>
                     </Modal>
                     <div className = {classes.AuthBox}>
                         <div className={classes.CloseContainer}>
@@ -167,11 +167,11 @@ const SignUp = ({error, isLoading, onAuth, history, modalClosed}) => {
                     </div>
                 </form>
                 <div className={classes.ikiru}>
-                        <div className={classes.Welcome}>
-                                <p>WELCOME TO</p>
-                                <p>CINEMA LOVERS</p>
-                        </div>
-                        <img className={classes.Wallpaper} src={ikiru} alt="ikiru 1952" />
+                    <div className={classes.Welcome}>
+                            <p>WELCOME TO</p>
+                            <p>CINEMA LOVERS</p>
+                    </div>
+                    <img className={classes.Wallpaper} src={ikiru} alt="ikiru 1952" />
                 </div>
             </div>
             

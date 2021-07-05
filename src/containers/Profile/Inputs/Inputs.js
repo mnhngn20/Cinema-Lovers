@@ -183,7 +183,8 @@ const Inputs = ({watchlist,img , setAvatar, userData, onFetchProfile, onUpdateUs
                             </div>}
                     </div>
                     <div className={classes.GotoWLContainer}>
-                        <Link className={classes.GotoWL} to='/watchlist'>{">>>Go to WatchList"}</Link>
+                        <Link className={classes.ChangePassword} to='/change-password'>{"Change Password"}</Link>
+                        <Link className={classes.GotoWL} to='/watchlist'>{"Go to WatchList"}</Link>
                     </div>
             </form>
             {watchlist.length !== 0 ? <div className={classes.Favorites}>

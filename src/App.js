@@ -23,7 +23,9 @@ const Profile = React.lazy(() => {
 const WatchListPage = React.lazy(() => {
   return import('./containers/WatchListPage/WatchListPage');
 }) 
-
+const ChangePassword = React.lazy(() => {
+  return import('./components/Authentication/ChangePassword/ChangePassword');
+})
 const App = props => {
   const { onAutoSignIn } = props;
   useState(() => {
@@ -42,6 +44,8 @@ const App = props => {
   if(props.isAuthenticated){
     routes = (
       <Switch>
+        <Route path = '/signin' exact render={props => <SignIn {...props} />} />
+        <Route path = '/change-password' render={props => <ChangePassword {...props}/>} />
         <Route path = '/watchlist' render={props => <WatchListPage {...props} />} />
         <Route path = '/profile' render={props => <Profile {...props} />}/>
         <Route path = '/movies/:id' render={props => <Movie {...props}/> } />

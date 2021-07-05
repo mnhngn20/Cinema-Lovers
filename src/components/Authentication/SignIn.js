@@ -11,7 +11,7 @@ import * as actions from '../../store/actions/index';
 import { checkValidity, updateObject } from '../../shared/ultility';
 import ikiru from '../../assets/ikiru.jpg';
 
-const SignIn = ({error, isLoading, onAuth, history, modalClosed}) => {
+const SignIn = ({error, isLoading, onAuth, history}) => {
     const [email, setEmail] = useState({
         value: '', 
         isValid: false, 
@@ -29,7 +29,6 @@ const SignIn = ({error, isLoading, onAuth, history, modalClosed}) => {
             required: true
         }
     });
-
     const [showModal, setShowModal] = useState(false)
     const [showError, setShowError] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -39,6 +38,7 @@ const SignIn = ({error, isLoading, onAuth, history, modalClosed}) => {
         if(isSubmitted && error && !isLoading){
             setShowError(true);
         } else if(isSubmitted && !error && !isLoading){
+            console.log("aaaa")
             setShowModal(true)
         }
     }, [isSubmitted, error, isLoading])
@@ -82,14 +82,15 @@ const SignIn = ({error, isLoading, onAuth, history, modalClosed}) => {
                     <form className = {classes.Auth} onSubmit = {submitHandler}>
                         <Modal 
                             show={showModal} 
-                            modalType="Success">
-                            <p>You logged in!</p>
+                            modalType="Success"
+                            modalClosed={closeSignUp}>
+                            <p>Signed In Successful</p>
                         </Modal>
                         <Modal 
                             show={showError} 
                             modalType="Error" 
                             modalClosed={hideError}>
-                            <p>Signed In Failed</p>
+                            <p>Invalid username or password.</p>
                         </Modal>
                         <div className = {classes.AuthBox}>
                             <div className={classes.CloseContainer}>

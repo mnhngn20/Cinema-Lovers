@@ -10,10 +10,11 @@ export const authStart = () => {
     }
 }
 
-export const authSuccess = (token, userId, isSignUp) => {
+export const authSuccess = (token, userId, refreshToken, isSignUp) => {
     if(!isSignUp){
         localStorage.setItem('token', token);
-        localStorage.setItem('userId', userId); 
+        localStorage.setItem('userId', userId);
+        localStorage.setItem('refreshToken', refreshToken)
     }   
     return {
         type: actionTypes.AUTH_SUCCESS,
@@ -30,10 +31,19 @@ export const authFail = (error) => {
     }
 }
 
+export const checkAuthTimeout = (expirationTime) => {
+    console.log(expirationTime)
+    return dispatch => {
+        setTimeout(()=> {
+            dispatch(logout())
+        }, expirationTime * 1000)
+    }
+}
+
 export const logout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('expirationDate'); 
     localStorage.removeItem('userId'); 
+    localStorage.removeItem('refreshToken');
     return {
         type: actionTypes.AUTH_LOGOUT
     }
@@ -53,17 +63,20 @@ export const auth = (username, password, isSignUp, userData) => {
         }
         axios.post(resQuery, resData)
         .then(res => {
+            console.log(res.data)
             if(!isSignUp){
-                dispatch(authSuccess(res.data.idToken, res.data.localId));
+                dispatch(authSuccess(res.data.idToken, res.data.localId, res.data.refreshToken));
                 dispatch(fetchUserProfile(res.data.localId));
                 dispatch(fetchWatchList(res.data.localId));
+                dispatch(checkAuthTimeout(res.data.expiresIn))
             }
             if(userData){
                 database.ref("UserData/"+ res.data.localId + "/Info").set(userData);
-                dispatch(authSuccess(res.data.idToken, res.data.localId, isSignUp));
+                dispatch(authSuccess(res.data.idToken, res.data.localId, res.data.refreshToken, isSignUp));
             }
         })
         .catch(err => {
+            console.log(JSON.stringify(err))
             dispatch(authFail(err));
         })
     }
@@ -71,19 +84,18 @@ export const auth = (username, password, isSignUp, userData) => {
 
 export const autoSignIn = () => {
     return dispatch => {
-        if(localStorage.getItem('userId') && localStorage.getItem('token')){
-            axios.get('https://cinema-lovers-506de-default-rtdb.firebaseio.com/UserData.json')
-            .then(res => {
-                for(let id in res.data){
-                    if (id === localStorage.getItem('userId')) {
-                        dispatch(authSuccess(localStorage.getItem('token'), localStorage.getItem('userId')));
-                        dispatch(fetchUserProfile());
-                        dispatch(fetchWatchList(localStorage.getItem('userId')));
-                    }
-                }
-            })
-            .catch(err => {
-                console.log(err);
+        if(localStorage.getItem('refreshToken')){
+            const reqPayload = {
+                "grant_type": "refresh_token",
+                "refresh_token": localStorage.getItem('refreshToken')
+            }
+            axios.post('https://securetoken.googleapis.com/v1/token?key=' + apiKey, reqPayload).then(res => {
+                dispatch(authSuccess(res.data.id_token, res.data.user_id, res.data.refresh_token));
+                dispatch(fetchUserProfile(res.data.user_id));
+                dispatch(fetchWatchList(res.data.user_id));
+                dispatch(checkAuthTimeout(res.data.expires_in))
+            }).catch(err => {
+                dispatch(authFail(err))
             })
         }
     }
@@ -119,7 +131,7 @@ export const fetchUserProfile = () => {
             dispatch(fetchUserSuccess(userData));
         })
         .catch(err => {
-            console.log(err);
+            dispatch(fetchUserFail(err))
         })
     }
 }
@@ -129,7 +141,22 @@ export const updateUserProfile = (userData) => {
         dispatch(fetchUserStart());
         database.ref("UserData/"+localStorage.getItem("userId") + "/Info").set(userData).then(snapshot => {
             dispatch(fetchUserSuccess(userData));
-            // dispatch(fetchUserProfile());
         });
+    }
+}
+
+export const changePassword = (newPassword) => {
+    return dispatch => {
+        dispatch(authStart());
+        const payload = {
+            idToken: localStorage.getItem('token'),
+            password: newPassword,
+            returnSecureToken: true
+        }
+        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:update?key='+ apiKey, payload).then((res)=>{
+            localStorage.setItem('token', res.data.idToken);
+            localStorage.setItem('userId', res.data.localId);
+            localStorage.setItem('refreshToken', res.data.refreshToken)
+        }).catch(err => dispatch(authFail(err)))
     }
 }
