@@ -11,6 +11,7 @@ import { checkIsInWatchList, getGenre, addToWatchList, removeFromWatchList, setW
 import Score from '../../UI/Score/Score';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import imageErrorPoster from '../../../assets/blank.png';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const MoviesItem = ({watchList, movie, isAuthenticated, clicked, poster, watched, onUpdateWatchList, setCountMovie}) => {
     const [isInWatchList, setIsInWatchList] = useState(false);
@@ -73,7 +74,13 @@ const MoviesItem = ({watchList, movie, isAuthenticated, clicked, poster, watched
         <div className= {classes.Items}>
             <div className = {classes.BtnPosterContainer}>
                 <PlayCircleFilledIcon className={classes.PlayTrailerButton} onClick={() => clicked(movie.id)}/>
-                <img className={classes.Poster} src={movie.posterPath ? poster : imageErrorPoster} alt="img" loading="lazy"/>
+                <LazyLoadImage 
+                    effect="blur"
+                    height="100%"
+                    width="100%"
+                    className={classes.Poster} 
+                    src={movie.posterPath ? poster : imageErrorPoster} 
+                    alt="img" />
             </div>
             <div className= {classes.MovieInfos}>
                 <div className={classes.Title}>

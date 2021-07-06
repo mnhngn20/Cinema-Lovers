@@ -32,13 +32,12 @@ const SignIn = ({error, isLoading, onAuth, history}) => {
     const [showModal, setShowModal] = useState(false)
     const [showError, setShowError] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [canSubmitForm, setCanSubmitForm] = useState('false')
+    const [canSubmitForm, setCanSubmitForm] = useState(false)
 
     useEffect(()=>{
         if(isSubmitted && error && !isLoading){
             setShowError(true);
         } else if(isSubmitted && !error && !isLoading){
-            console.log("aaaa")
             setShowModal(true)
         }
     }, [isSubmitted, error, isLoading])

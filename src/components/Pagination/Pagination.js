@@ -4,6 +4,7 @@ import classes from './Pagination.module.css';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 const Pagination = ({quantity, currentPage, setPage, totalResults}) =>{
+    console.log("i was called")
     const [group, setGroup] = useState(0)
     let pagination = [];
     let number = window.outerWidth < 600 ? 5 :10

@@ -6,7 +6,6 @@ const Input = ({smallerWidth, labelBlue, invalid, shouldValidate, touched, eleme
     let inputElement = null;
     const inputClasses = [classes.InputElement];
     let validationError = null;
-
     if(invalid && shouldValidate && touched){
         inputClasses.push(classes.Invalid);
         validationError = <p className={classes.ValidationError}>Please enter a valid value!</p>;

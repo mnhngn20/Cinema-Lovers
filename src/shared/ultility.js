@@ -160,3 +160,12 @@ export const setWatchForWatchList = (watchList, updateWatchList, movie, watched)
     updateWatchList(watchList);
     database.ref("UserData/"+ localStorage.getItem("userId") + "/WatchList/" + movie.id).set(newMovie);
 }
+
+export const convertMtoH = (minutes) => {
+    let h = 0;
+    let m = minutes
+    h = parseInt(m/60);
+    m -= h*60;
+    const time = h + "h" + m + "m";
+    return time
+}

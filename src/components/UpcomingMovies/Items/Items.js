@@ -10,6 +10,7 @@ import FavoriteButton from '../../UI/FavoriteButton/FavoriteButton';
 import * as actions from '../../../store/actions/index';
 import { checkIsInWatchList, getGenre, addToWatchList, removeFromWatchList} from '../../../shared/ultility';
 import blankImg from '../../../assets/blank.png';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Items = ({noTrailer, watchList, movie, isAuthenticated, poster, clicked, onUpdateWatchList}) => {
     const [isInWatchList, setIsInWatchList] = useState(false);
@@ -42,7 +43,13 @@ const Items = ({noTrailer, watchList, movie, isAuthenticated, poster, clicked, o
                             type="ItemType"/>}
                     </div>
                 </div>
-                <img className={classes.Poster} src={poster !== '' ? poster : blankImg} alt="img" loading="lazy"/>
+                <LazyLoadImage 
+                    effect="blur"
+                    height="auto"
+                    width="auto"
+                    className={classes.Poster} 
+                    src={poster !== '' ? poster : blankImg} 
+                    alt="img" />
             </div>
             <div className={classes.Title}>
                 <Link
