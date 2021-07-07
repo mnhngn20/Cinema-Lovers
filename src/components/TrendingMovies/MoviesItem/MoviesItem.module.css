@@ -16,6 +16,7 @@
 }
 
 .Items .BtnPosterContainer{
+    min-width: 300px;
     width: fit-content;
     height: 100%;
     display: flex;
@@ -51,12 +52,11 @@
 
 .Items .MovieInfos {
     width: 70%;
-    margin-right: 25px;
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
+    margin: 0 10px;
 }
 
 .Items .MovieInfos .Title {
@@ -185,6 +185,7 @@
     
     .Items .BtnPosterContainer{
         width: 50%;
+        min-width: 100px;
     }
     
     .Items .PlayTrailerButton{
@@ -256,6 +257,8 @@
     
     .Items .BtnPosterContainer{
         width: 50%;
+        min-width: 100px;
+
     }
     
     .Items .PlayTrailerButton:hover{

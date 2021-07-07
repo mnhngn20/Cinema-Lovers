@@ -17,6 +17,7 @@
 
 .MovieContainer .BackdropContainer{
     width: 1000px;
+    min-height: 500px;
     height: auto;
     margin: 0 auto;
     display: flex;
@@ -74,11 +75,12 @@
         width: 100%;
         height: fit-content;
         align-items: center;
+        z-index: 49;
     }
     
     .BackdropContainer .Backdrop{
         width: 100%;
-        z-index: 50;
+        min-height: 200px;
     }
     
     .MovieContainer .BackGround{
