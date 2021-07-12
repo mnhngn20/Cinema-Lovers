@@ -24,7 +24,7 @@ export const fetchTrendingMoviesFail = (error) => {
 export const fetchTrendingMovies  = () => {
     return dispatch => {
         dispatch(fetchTrendingMoviesStart());
-        axios.get('trending/all/day?api_key=ccc040ef39e5eace4f5cd8028421f9f1&page=1') 
+        axios.get('trending/all/day?api_key='+ process.env.REACT_APP_MOVIE_API_KEY +'&page=1') 
         .then(res => {
             let fetchedTrendingMovies = [];
             let fetchedTrendingMovie = null;

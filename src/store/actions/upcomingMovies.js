@@ -24,7 +24,7 @@ export const fetchUpcomingMoviesFail = (error) => {
 export const fetchUpcomingMovies  = (page, setNumberOfPage, setTotalResults) => {
     return dispatch => {
         dispatch(fetchUpcomingMoviesStart());
-        axios.get('movie/upcoming?api_key=ccc040ef39e5eace4f5cd8028421f9f1&page='+ page) 
+        axios.get('movie/upcoming?api_key='+ process.env.REACT_APP_MOVIE_API_KEY +'&page='+ page) 
         .then(res => {
             let fetchedUpcomingMovies = [];
             let fetchedUpcomingMovie = null;

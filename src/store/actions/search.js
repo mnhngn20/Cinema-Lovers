@@ -26,7 +26,7 @@ export const search = (typeOfSearch, query, setNumberOfPage, setTotalResults) =>
         if (query !== ''){
             dispatch(searchStart());
             if(typeOfSearch === 'movie'){
-                movieAxios.get('search/movie?api_key=ccc040ef39e5eace4f5cd8028421f9f1&query='+ query + '&page=1')
+                movieAxios.get('search/movie?api_key='+ process.env.REACT_APP_MOVIE_API_KEY +'&query='+ query + '&page=1')
                 .then(res => {
                     let fetchedSearchMovies = [];
                     let fetchedSearchMovie = null;
