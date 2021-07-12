@@ -2,8 +2,8 @@ import * as actionTypes from './actionTypes';
 import axios from 'axios';
 import { fetchWatchList } from './watchlist';
 import { database } from '../../instance/Firebase'
-import env from "react-dotenv";
-const apiKey = env.API_KEY;
+
+const apiKey = process.env.REACT_APP_API_KEY;
 
 export const authStart = () => {
     return {
