@@ -18,7 +18,7 @@ const SelectSort = ({select, handleChange}) => {
       <FormControl variant="outlined" className={formClasses.formControl}>
         <label className={classes.label}>Sort By</label>
           <Select
-              classes = {{root: classes.root, outlined: classes.outlined, filled: classes.filled, focused: classes.focus, icon: classes.icon, focused: classes.focused}}
+              classes = {{root: classes.root, outlined: classes.outlined, filled: classes.filled, focused: classes.focus, icon: classes.icon}}
               value={select}
               onChange={handleChange}
               label="Sort By">

@@ -60,6 +60,7 @@
     "react-cropper": "^2.1.7",
     "react-dev-utils": "^11.0.3",
     "react-dom": "^17.0.2",
+    "react-dotenv": "^0.1.3",
     "react-lazy-load-image-component": "^1.5.1",
     "react-redux": "^7.2.3",
     "react-refresh": "^0.8.3",
@@ -83,8 +84,8 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "start": "react-dotenv && node scripts/start.js",
+    "build": "react-dotenv && node scripts/build.js",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
@@ -165,5 +166,8 @@
   "main": "index.js",
   "repository": "https://github.com/mnhngn20/Cinema-Lovers.git",
   "author": "Minh Nguyen <mnhngn20@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "react-dotenv": {
+    "whitelist": ["API_KEY","AUTH_DOMAIN","DATABASE_URL","PROJECT_ID","STORAGE_BUCKET","MESSANGING_SENDER_ID","APP_ID"]
+  }
 }

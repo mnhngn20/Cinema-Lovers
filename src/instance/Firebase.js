@@ -1,15 +1,16 @@
 import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/storage';
+import env from "react-dotenv";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAjXOiBjFoQ8KFlFolctnns5BeHKIua4Mw",
-    authDomain: "cinema-lovers-506de.firebaseapp.com",
-    databaseURL: "https://cinema-lovers-506de-default-rtdb.firebaseio.com",
-    projectId: "cinema-lovers-506de",
-    storageBucket: "cinema-lovers-506de.appspot.com",
-    messagingSenderId: "887588241776",
-    appId: "1:887588241776:web:95421a1415248aaf62cfb5"
+    apiKey: env.API_KEY,
+    authDomain: env.AUTH_DOMAIN,
+    databaseURL: env.DATABASE_URL,
+    projectId: env.PROJECT_ID,
+    storageBucket: env.STORAGE_BUCKET,
+    messagingSenderId: env.MESSANGING_SENDER_ID,
+    appId: env.APP_ID
   };
 firebase.initializeApp(firebaseConfig)
 export const database = firebase.database();

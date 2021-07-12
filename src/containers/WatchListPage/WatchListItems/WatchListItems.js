@@ -3,23 +3,13 @@ import React, {useState, useEffect} from 'react';
 import classes from './WatchListItems.module.css';
 import MoviesItem from '../../../components/TrendingMovies/MoviesItem/MoviesItem';
 import Select from '../Select/Select';
-import {downloadImage} from '../../../shared/storage';
 
 const imgPath = 'https://image.tmdb.org/t/p/';
 const imgWidth = 300;
 
-const WatchListItems = ({watchList, clicked, userId, userData}) => {
+const WatchListItems = ({watchList, clicked, userData}) => {
     const [countMovie, setCountMovie] = useState(0);
     const [select, setSelect] = useState(1);
-    const [img, setImg] = useState(false);
-
-    useEffect(()=>{
-        if(userData){
-            if(userData.avatar){
-                downloadImage(userId, setImg);
-            }
-        }
-    }, [userData, userId])
 
     const watchlist = watchList.map(movie => {
         if(select === 1){

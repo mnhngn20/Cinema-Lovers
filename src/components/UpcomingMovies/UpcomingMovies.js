@@ -19,7 +19,7 @@ const options = {
     perPage: 3
 };
 
-const UpcomingMovies = ({isError, fetchedUpcomingMovies, clicked, onFetchUpcomingMovies}) => {
+const UpcomingMovies = ({isError, fetchedUpcomingMovies, clicked, onFetchUpcomingMovies, isLoading}) => {
     const [upcomingMovies, setUpcomingMovies] = useState();
     const [page, setPage] = useState(1);
     const [numberOfPage, setNumberOfPage] = useState(0);
@@ -30,7 +30,7 @@ const UpcomingMovies = ({isError, fetchedUpcomingMovies, clicked, onFetchUpcomin
     }, [onFetchUpcomingMovies, page, setNumberOfPage, setTotalResults]);
 
     useEffect(()=>{
-        if(fetchedUpcomingMovies){
+        if(fetchedUpcomingMovies && !isLoading){
             setUpcomingMovies(fetchedUpcomingMovies.map((movie) => {
                 return (
                     <SplideSlide key={movie.id}>
@@ -45,7 +45,10 @@ const UpcomingMovies = ({isError, fetchedUpcomingMovies, clicked, onFetchUpcomin
                 )
             }))
         }
-    }, [fetchedUpcomingMovies, clicked])
+        return () => {
+            setUpcomingMovies([]);
+        }
+    }, [fetchedUpcomingMovies, clicked, setUpcomingMovies, isLoading])
 
     return (
         fetchedUpcomingMovies.length === 0 ? <div className={classes.spinner}><Spinner /></div>

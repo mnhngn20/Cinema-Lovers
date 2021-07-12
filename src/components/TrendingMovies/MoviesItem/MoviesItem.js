@@ -27,7 +27,6 @@ const MoviesItem = ({watchList, movie, isAuthenticated, clicked, poster, watched
     }, [watched, movie])
 
     const updateWL = (movie, watched) => {
-        console.log(watchList);
         setWatchForWatchList(watchList, onUpdateWatchList, movie, watched);
         setIsWatched(watched);
         let count = 0;

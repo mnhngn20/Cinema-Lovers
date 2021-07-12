@@ -2,7 +2,8 @@ import * as actionTypes from './actionTypes';
 import axios from 'axios';
 import { fetchWatchList } from './watchlist';
 import { database } from '../../instance/Firebase'
-const apiKey = 'AIzaSyAjXOiBjFoQ8KFlFolctnns5BeHKIua4Mw';
+import env from "react-dotenv";
+const apiKey = env.API_KEY;
 
 export const authStart = () => {
     return {
@@ -32,7 +33,6 @@ export const authFail = (error) => {
 }
 
 export const checkAuthTimeout = (expirationTime) => {
-    console.log(expirationTime)
     return dispatch => {
         setTimeout(()=> {
             dispatch(logout())
@@ -63,7 +63,6 @@ export const auth = (username, password, isSignUp, userData) => {
         }
         axios.post(resQuery, resData)
         .then(res => {
-            console.log(res.data)
             if(!isSignUp){
                 dispatch(authSuccess(res.data.idToken, res.data.localId, res.data.refreshToken));
                 dispatch(fetchUserProfile(res.data.localId));
@@ -76,7 +75,6 @@ export const auth = (username, password, isSignUp, userData) => {
             }
         })
         .catch(err => {
-            console.log(JSON.stringify(err))
             dispatch(authFail(err));
         })
     }

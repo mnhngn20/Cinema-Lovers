@@ -44,6 +44,9 @@ const TrendingMovies = ({isError, fetchedTrendingMovies, onFetchTrendingMovies, 
                 )
             }))
         }
+        return () => {
+            setTrendingMovies([]);
+        }
     },[fetchedTrendingMovies, clicked, setTrendingMovies]);
 
     return (

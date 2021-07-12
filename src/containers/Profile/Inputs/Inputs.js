@@ -77,7 +77,6 @@ const Inputs = ({watchlist,img , setAvatar, userData, onFetchProfile, onUpdateUs
         }
     }, [fName, lName]); 
     const updateProfile = (event, firstName, lastName, birthDay, des) => {
-        console.log(birthDay)
         event.preventDefault();
         let updatedUserData = updateObject(userData, {
             firstName: firstName,
@@ -104,7 +103,6 @@ const Inputs = ({watchlist,img , setAvatar, userData, onFetchProfile, onUpdateUs
     }
 
     const onChangeHandler = (event, typeInput, setInput) => {
-        console.log(typeInput)
         const newInput = event.target.value;
         const updatedInput = updateObject(typeInput,{
             value: newInput,

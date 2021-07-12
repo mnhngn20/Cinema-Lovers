@@ -110,7 +110,6 @@ export const addToWatchList = (watchList, updateWatchList ,movie, setIsInWatchLi
             watched: 'no'
         }
         watchList.push(newMovie);
-        console.log(watchList)
         updateWatchList(watchList);
         database.ref("UserData/"+ localStorage.getItem("userId") + "/WatchList/" + movie.id).set(newMovie);
         setIsInWatchList(true);
