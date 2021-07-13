@@ -90,12 +90,12 @@ const Movie = ({match, watchList, isAuthenticated, onUpdateWatchList}) => {
         }
         return refactoredMovie
     }
-    let addOrRemoveButton = useMemo(()=>{<FavoriteButton isAuthenticated={isAuthenticated} isInWatchList={isInWatchList}
+    let addOrRemoveButton = <FavoriteButton isAuthenticated={isAuthenticated} isInWatchList={isInWatchList}
                                 toolTipPlacement="right"  
                                 clicked={isInWatchList
                                     ? () => removeFromWatchList(watchList, onUpdateWatchList, movie.id, setIsInWatchList)
                                     : () => addToWatchList(watchList, onUpdateWatchList ,refactorMovie(movie), setIsInWatchList)}
-                                    type= "MovieType"/>},[isAuthenticated, isInWatchList, movie, onUpdateWatchList, watchList])
+                                    type= "MovieType"/>
     let movieInfo = useMemo(()=>
         movie && !loading
             ? <div className={classes.MovieContainer}>

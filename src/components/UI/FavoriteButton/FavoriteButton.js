@@ -5,6 +5,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const FavoriteButton = ({isAuthenticated, isInWatchList, toolTipPlacement, clicked, type}) => {
+    console.log(isAuthenticated);
     const btnType = isInWatchList ? "R" : "A";
     let iconColor = null;
     switch(type){
